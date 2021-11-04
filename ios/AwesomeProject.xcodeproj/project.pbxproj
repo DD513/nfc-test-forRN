@@ -308,7 +308,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = AwesomeProject/y.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AwesomeProject/app.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWVFHTEDSF;
 				ENABLE_BITCODE = NO;
@@ -324,8 +324,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = y;
-				PRODUCT_NAME = y;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trunksys.nfc.demo.app;
+				PRODUCT_NAME = app;
 				SWIFT_OBJC_BRIDGING_HEADER = "AwesomeProject/AwesomeProject-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -340,7 +340,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = AwesomeProject/y.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AwesomeProject/app.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWVFHTEDSF;
 				INFOPLIST_FILE = AwesomeProject/Info.plist;
@@ -351,8 +351,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = y;
-				PRODUCT_NAME = y;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trunksys.nfc.demo.app;
+				PRODUCT_NAME = app;
 				SWIFT_OBJC_BRIDGING_HEADER = "AwesomeProject/AwesomeProject-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -389,7 +389,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = AwesomeProject/y.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AwesomeProject/app.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -448,7 +448,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = AwesomeProject/y.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AwesomeProject/app.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
