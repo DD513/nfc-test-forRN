@@ -57,6 +57,8 @@ export default function NFC({route}) {
     NfcManager.cancelTechnologyRequest().catch(() => 0);
   }
 
+  console.log("[NFC Read] [INFO]"+JSON.stringify(route));
+
   initNfc();
   return (
     <View style={styles.container}>

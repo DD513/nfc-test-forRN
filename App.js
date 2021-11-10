@@ -13,24 +13,23 @@ export default function App() {
     prefixes: ['https://monofitness.tw'],
   };
 
-const config = {
-  screens: {
-    Home: {
-      screen: Home,
-      navigationOptions: {
-        title: 'Home',
+  const config = {
+    screens: {
+      Home: {
+        screen: Home,
+        navigationOptions: {
+          title: 'Home',
+        },
+        path: ['/','Home'],
       },
-      path: ['/','Home'],
-    },
-    NFC: {
-      screen: NFC,
-      navigationOptions: {
-        title: 'NFC',
+      NFC: {
+        screen: '/:id:category',
+        navigationOptions: {
+          title: 'NFC',
+        },
       },
-      path: 'NFC/:id'
     },
-  },
-};
+  };
   
 
   return (
