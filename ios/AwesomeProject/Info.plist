@@ -25,7 +25,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>y</string>
+          <string>com.trunksys.nfc.demo.app</string>
         </array>
       </dict>
     </array>
