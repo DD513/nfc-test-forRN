@@ -6,14 +6,11 @@ import { WebView } from 'react-native-webview';
 const { width, height } = Dimensions.get("window");
 
 export default function Webview({route}) {
-    const { params } = route;
     return (
       <View style={styles.container}>
         <WebView
         style={{width: width, height: height}}
-        source={{ uri: 'http://192.168.168.50:3000/'+params.url }} 
-        postMessage={params.url}
-        injectedJavaScript={`alert(123)`}
+        source={{ uri: 'https://fintess-coach.herokuapp.com/' }} 
         />
       </View>
     )

@@ -1,33 +1,43 @@
 import React from "react";
-import { Text } from 'react-native';
+import { Text,Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import NFC from './nfc';
-import Home from './home';
-import Webview from './webview';
+import { createNavigationContainerRef } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/AntDesign';
+import Reader from './app/screens/NFCReader/reader';
+import Webview from './app/screens/Webview/webview';
 
 const Stack = createNativeStackNavigator();
-
+const navigationRef = createNavigationContainerRef();
+export function navigate(name, params) {
+  if (navigationRef.isReady()) {
+    navigationRef.navigate(name, params);
+  }
+}
 
 export default function App() {
   const linking = {
-    prefixes: ['https://monofitness.tw'],
+    prefixes: ['https://fintess-coach.herokuapp.com'],
   };
 
   const config = {
     screens: {
-      Home: 'Home',
-      NFC: ':id',
+      Reader: 'Reader',
+      Home: ':id',
       Webview: 'Webview/:url'
     },
   };
-  
 
   return (
-    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
+    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>} ref={navigationRef}>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="NFC" component={NFC} />
+        <Stack.Screen name="Reader" component={Reader} options={{
+          title: 'NFC 感應',
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <Icon.Button name="arrowleft" size={30} color="#000" backgroundColor="#fff" onPress={()=>{navigationRef.navigate('Webview')}}></Icon.Button>
+          ),
+        }} />
         <Stack.Screen name="Webview" component={Webview} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>

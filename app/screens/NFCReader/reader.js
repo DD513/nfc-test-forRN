@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet, Button, Text, View } from "react-native";
 import NfcManager, { NfcTech } from "react-native-nfc-manager";
 
-export default function NFC({route}) {
+export default function Reader({navigation}) {
   // Pre-step, call this before any NFC operations
   async function initNfc() {
     await NfcManager.start();
@@ -57,12 +57,11 @@ export default function NFC({route}) {
     NfcManager.cancelTechnologyRequest().catch(() => 0);
   }
 
-  console.log("[NFC Read] [INFO]"+JSON.stringify(route));
-
   initNfc();
+
   return (
     <View style={styles.container}>
-      <Text>Test NFC@!NFC{route.params.id}</Text>
+      <Text>Test NFC@!</Text>
       <Button
         onPress={() => readMifare()}
         mode="contained"
