@@ -327,7 +327,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.trunksys.nfc.demo.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trunksys.nfc.demo.app;
 				PRODUCT_NAME = app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AwesomeProject/AwesomeProject-Bridging-Header.h";
@@ -357,7 +357,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.trunksys.nfc.demo.app.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trunksys.nfc.demo.app;
 				PRODUCT_NAME = app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AwesomeProject/AwesomeProject-Bridging-Header.h";
