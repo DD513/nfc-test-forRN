@@ -35,26 +35,48 @@ export default function App() {
   initNfc();
   readNdef();
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      marginHorizontal: 16,
+    },
+    baseText: {
+      textAlign: "center",
+      fontFamily: "Roboto",
+      fontSize: 20,
+      color: "rgba(0, 0, 0, 0.85)",
+    },
+    title: {
+      marginVertical: 8,
+    },
+    desc: {
+      textAlign: "center",
+      fontSize: 14,
+      lineHeight: 22,
+      color: "rgba(0, 0, 0, 0.45)",
+    },
+    nfcButton: {
+      height: 140,
+      // borderRadius: "2px",
+      // margin: "16px 0px",
+    },
+  });
   return (
     <View style={styles.container}>
-      <Text>Test NFC@!</Text>
+      <Text style={styles.baseText}>
+        <Text style={styles.title}>感應功能已就緒 {"\n"}</Text>
+        <Text style={styles.desc} numberOfLines={5}>
+          {"\n"}
+          請點擊【開啟感應】並靠近設備
+          {"\n"}
+        </Text>
+      </Text>
       <Button
+        title="開啟感應"
+        style={styles.nfcButton}
         onPress={() => readNdef()}
-        mode="contained"
-        style={{ paddingTop: 32 }}
-        title="Open NFC"
-        color="#000"
       />
-      <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
