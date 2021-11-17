@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NFC from './nfc';
 import Home from './home';
+import Webview from './webview';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,19 +16,9 @@ export default function App() {
 
   const config = {
     screens: {
-      Home: {
-        screen: Home,
-        navigationOptions: {
-          title: 'Home',
-        },
-        path: ['/','Home'],
-      },
-      NFC: {
-        screen: '/:id:category',
-        navigationOptions: {
-          title: 'NFC',
-        },
-      },
+      Home: 'Home',
+      NFC: ':id',
+      Webview: 'Webview/:url'
     },
   };
   
@@ -37,6 +28,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="NFC" component={NFC} />
+        <Stack.Screen name="Webview" component={Webview} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

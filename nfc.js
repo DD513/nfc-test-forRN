@@ -62,7 +62,7 @@ export default function NFC({route}) {
   initNfc();
   return (
     <View style={styles.container}>
-      <Text>Test NFC@!NFC</Text>
+      <Text>Test NFC@!NFC{route.params.id}</Text>
       <Button
         onPress={() => readMifare()}
         mode="contained"
