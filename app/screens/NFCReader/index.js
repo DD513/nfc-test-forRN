@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Platform,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 
-export default function NFCReader() {
+export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("Hello World");
   const [count, setCount] = useState(0);
 
@@ -21,6 +21,7 @@ export default function NFCReader() {
   async function readNdef() {
     await initNfc();
     let nfcTag;
+    let ndefURL;
     try {
       // Step 1 依照裝置個別讀取技術內容
       if (Platform.OS === "ios") {
@@ -46,17 +47,12 @@ export default function NFCReader() {
       nfcTag = await NfcManager.getTag();
       console.log("[NFC Read] [INFO] Tag: ", nfcTag);
       // Step 3 讀取 NDEF 內容
-      // let ndefMessage = await NfcManager.getNdefMessage();
       console.log("[NFC Read] [INFO] NdefMessage: ", nfcTag.ndefMessage);
       // Step 4 解碼 NDEF 內容
-      let ndefRecords0 = Ndef.decodeMessage(nfcTag.ndefMessage[0].payload);
-      let ndefRecords1 = Ndef.text.decodePayload(nfcTag.ndefMessage[0].payload);
-      let ndefRecords2 = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
-      let ndefRecords3 = Ndef.isType(nfcTag.ndefMessage);
-      console.log("[NFC Read] [INFO] NdefRecords: ", ndefRecords0);
-      console.log("[NFC Read] [INFO] NdefRecords: ", ndefRecords1);
-      console.log("[NFC Read] [INFO] NdefRecords: ", ndefRecords2);
-      console.log("[NFC Read] [INFO] NdefRecords: ", ndefRecords3);
+      ndefURL = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
+      console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
+      // Step 4 將讀取到的資料設定給 state
+      setTag(ndefURL);
 
     } catch (ex) {
       console.log(ex);
@@ -65,10 +61,18 @@ export default function NFCReader() {
     // Step 3 結束連結本次讀取
     NfcManager.cancelTechnologyRequest().catch(() => 0);
 
+
     return nfcTag;
   }
 
   readNdef();
+  useEffect(() => {
+    
+    console.log(tag);
+    if (tag !== 'Hello World') {
+      navigation.navigate("category", { url: tag });
+    }
+  }, [tag]);
 
   const styles = StyleSheet.create({
     container: {

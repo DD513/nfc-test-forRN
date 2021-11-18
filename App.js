@@ -25,7 +25,7 @@ export default function App() {
     screens: {
       NFCReader: "NFCReader",
       home: "home",
-      category: "category:id",
+      category: "category:id", // https://fintess-coach.herokuapp.com/category?id=1
     },
   };
 
@@ -37,7 +37,7 @@ export default function App() {
     >
       <Stack.Navigator>
         <Stack.Screen
-          name="Reader"
+          name="NFCReader"
           component={NFCReader}
           options={{
             title: "NFC 感應",
