@@ -5,8 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
 import Reader from "./app/screens/NFCReader/reader";
-import Webview from "./app/screens/Webview/webview";
-import Filter from "./app/screens/Webview/filter";
+import category from "./app/screens/category";
 
 const Stack = createNativeStackNavigator();
 const navigationRef = createNavigationContainerRef();
@@ -24,8 +23,7 @@ export default function App() {
   const config = {
     screens: {
       Reader: "Reader",
-      Webview: "Webview",
-      Filter: "Filter",
+      category: "category:id",
     },
   };
 
@@ -49,20 +47,15 @@ export default function App() {
                 color="#000"
                 backgroundColor="#fff"
                 onPress={() => {
-                  navigationRef.navigate("Webview");
+                  navigationRef.navigate("category");
                 }}
               ></Icon.Button>
             ),
           }}
         />
         <Stack.Screen
-          name="Webview"
-          component={Webview}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Filter"
-          component={Filter}
+          name="category"
+          component={category}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
