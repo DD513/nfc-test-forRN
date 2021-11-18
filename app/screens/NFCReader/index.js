@@ -46,13 +46,9 @@ export default function NFCReader({ navigation }) {
       // Step 2 取得 TAG 內容
       nfcTag = await NfcManager.getTag();
       console.log("[NFC Read] [INFO] Tag: ", nfcTag);
-      // Step 3 讀取 NDEF 內容
-      console.log("[NFC Read] [INFO] NdefMessage: ", nfcTag.ndefMessage);
-      // Step 4 解碼 NDEF 內容
+      // Step 2.5 解碼 NDEF 內容
       ndefURL = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
-      // Step 4 將讀取到的資料設定給 state
-      setTag(ndefURL);
 
     } catch (ex) {
       console.log(ex);
@@ -60,6 +56,8 @@ export default function NFCReader({ navigation }) {
 
     // Step 3 結束連結本次讀取
     NfcManager.cancelTechnologyRequest().catch(() => 0);
+    // Step 4 將讀取到的資料設定給 state
+    setTag(ndefURL);
 
 
     return nfcTag;
