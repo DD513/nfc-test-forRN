@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 
-export default function App() {
+export default function NFCReader() {
   const [tag, setTag] = useState("Hello World");
   const [count, setCount] = useState(0);
 

@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
-import Reader from "./app/screens/NFCReader/reader";
+import NFCReader from "./app/screens/NFCReader";
 import category from "./app/screens/category";
 
 const Stack = createNativeStackNavigator();
@@ -22,7 +22,7 @@ export default function App() {
 
   const config = {
     screens: {
-      Reader: "Reader",
+      NFCReader: "NFCReader",
       category: "category:id",
     },
   };
@@ -36,7 +36,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen
           name="Reader"
-          component={Reader}
+          component={NFCReader}
           options={{
             title: "NFC 感應",
             headerTitleAlign: "center",
