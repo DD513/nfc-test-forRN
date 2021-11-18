@@ -6,6 +6,7 @@ import { createNavigationContainerRef } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
 import NFCReader from "./app/screens/NFCReader";
 import category from "./app/screens/category";
+import home from "./app/screens/home";
 
 const Stack = createNativeStackNavigator();
 const navigationRef = createNavigationContainerRef();
@@ -23,6 +24,7 @@ export default function App() {
   const config = {
     screens: {
       NFCReader: "NFCReader",
+      home: "home",
       category: "category:id",
     },
   };
@@ -47,11 +49,16 @@ export default function App() {
                 color="#000"
                 backgroundColor="#fff"
                 onPress={() => {
-                  navigationRef.navigate("category");
+                  navigationRef.navigate("home");
                 }}
               ></Icon.Button>
             ),
           }}
+        />
+        <Stack.Screen
+          name="home"
+          component={home}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="category"
