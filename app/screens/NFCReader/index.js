@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Platform,
   StyleSheet,
@@ -12,6 +12,7 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
   const [count, setCount] = useState(0);
+  let ndefURL = null;
 
   // Pre-step, call this before any NFC operations
   async function initNfc() {
@@ -20,8 +21,7 @@ export default function NFCReader({ navigation }) {
 
   async function readNdef() {
     await initNfc();
-    let nfcTag;
-    let ndefURL;
+    let nfcTag = null;
     try {
       // Step 1 依照裝置個別讀取技術內容
       if (Platform.OS === "ios") {
@@ -34,9 +34,7 @@ export default function NFCReader({ navigation }) {
           );
         }
       } else {
-        let reqNdef = await NfcManager.requestTechnology(
-          NfcTech.Ndef,
-        );
+        let reqNdef = await NfcManager.requestTechnology(NfcTech.Ndef);
         if (reqNdef !== "Ndef") {
           throw new Error(
             "[NFC Read] [ERR] Ndef technology could not be requested"
@@ -50,6 +48,7 @@ export default function NFCReader({ navigation }) {
       ndefURL = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
 
+      setTag(ndefURL);
     } catch (ex) {
       console.log(ex);
     }
@@ -60,7 +59,6 @@ export default function NFCReader({ navigation }) {
     setTag(ndefURL);
     return nfcTag;
   }
-
   readNdef();
   useEffect(() => {
     setTag("init");
