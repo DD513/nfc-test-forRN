@@ -47,16 +47,14 @@ export default function NFCReader({ navigation }) {
       // Step 2.5 解碼 NDEF 內容
       ndefURL = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
-
+      // Step 4 結束連結本次讀取
+      NfcManager.cancelTechnologyRequest();
+      // Step 3 將讀取到的資料設定給 state
       setTag(ndefURL);
     } catch (ex) {
       console.log(ex);
     }
 
-    // Step 3 結束連結本次讀取
-    NfcManager.cancelTechnologyRequest().catch(() => 0);
-    // Step 4 將讀取到的資料設定給 state
-    setTag(ndefURL);
     return nfcTag;
   }
   readNdef();
