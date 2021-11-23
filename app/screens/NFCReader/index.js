@@ -49,17 +49,18 @@ export default function NFCReader({ navigation }) {
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
 
       setTag(ndefURL);
-      if (Platform.OS === 'ios') {
-        await NfcManager.setAlertMessageIOS('Success');
-      }
     } catch (ex) {
       console.log(ex);
     } finally {
       // Step 3 結束連結本次讀取
-      NfcManager.cancelTechnologyRequest();
+      if (Platform.OS === 'ios') {
+        await NfcManager.setAlertMessageIOS('Success');
+      }
       if (Platform.OS === 'android') {
         console.log("close nfc");
       }
+
+      NfcManager.cancelTechnologyRequest();
       if (ndefURL !== null) {
         navigation.navigate("category", { url: ndefURL });
       }
