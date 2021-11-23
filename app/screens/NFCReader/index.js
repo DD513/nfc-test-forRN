@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Platform,
   StyleSheet,
@@ -10,7 +10,7 @@ import {
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 
 export default function NFCReader({ navigation }) {
-  const [tag, setTag] = useState("Hello World");
+  const [tag, setTag] = useState("");
   const [count, setCount] = useState(0);
 
   // Pre-step, call this before any NFC operations
@@ -50,27 +50,27 @@ export default function NFCReader({ navigation }) {
       ndefURL = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
 
+      // Step 3 結束連結本次讀取
+      NfcManager.cancelTechnologyRequest().catch(() => 0);
     } catch (ex) {
       console.log(ex);
+      // Step 3 結束連結本次讀取
+      NfcManager.cancelTechnologyRequest().catch(() => 0);
     }
-
-    // Step 3 結束連結本次讀取
-    NfcManager.cancelTechnologyRequest().catch(() => 0);
     // Step 4 將讀取到的資料設定給 state
     setTag(ndefURL);
 
+    // Step 5 將讀取到的資料傳給下一個頁面
+    navigation.navigate("category", { url: ndefURL });
 
     return nfcTag;
   }
-
   readNdef();
   useEffect(() => {
-    
-    console.log(tag);
-    if (tag !== 'Hello World') {
-      navigation.navigate("category", { url: tag });
-    }
-  }, [tag]);
+    // clean tag state
+    setTag("");
+    console.log("[NFC Read] [INFO] Tag: ", tag);
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
