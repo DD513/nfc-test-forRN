@@ -50,20 +50,16 @@ export default function NFCReader({ navigation }) {
       ndefURL = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
 
+      setTag(ndefURL);
       // Step 3 結束連結本次讀取
       NfcManager.cancelTechnologyRequest().catch(() => 0);
+
+      navigation.navigate("category", { url: ndefURL });
     } catch (ex) {
       console.log(ex);
       // Step 3 結束連結本次讀取
       NfcManager.cancelTechnologyRequest().catch(() => 0);
     }
-    // Step 4 將讀取到的資料設定給 state
-    setTag(ndefURL);
-
-    // Step 5 將讀取到的資料傳給下一個頁面
-    navigation.navigate("category", { url: ndefURL });
-
-    return nfcTag;
   }
   readNdef();
   useEffect(() => {
