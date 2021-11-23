@@ -12,6 +12,7 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("");
   const [count, setCount] = useState(0);
+  let ndefURL = null;
 
   // Pre-step, call this before any NFC operations
   async function initNfc() {
@@ -20,8 +21,7 @@ export default function NFCReader({ navigation }) {
 
   async function readNdef() {
     await initNfc();
-    let nfcTag;
-    let ndefURL;
+    let nfcTag = null;
     try {
       // Step 1 依照裝置個別讀取技術內容
       if (Platform.OS === "ios") {
@@ -34,9 +34,7 @@ export default function NFCReader({ navigation }) {
           );
         }
       } else {
-        let reqNdef = await NfcManager.requestTechnology(
-          NfcTech.Ndef,
-        );
+        let reqNdef = await NfcManager.requestTechnology(NfcTech.Ndef);
         if (reqNdef !== "Ndef") {
           throw new Error(
             "[NFC Read] [ERR] Ndef technology could not be requested"
@@ -51,15 +49,23 @@ export default function NFCReader({ navigation }) {
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
 
       setTag(ndefURL);
-      // Step 3 結束連結本次讀取
-      NfcManager.cancelTechnologyRequest().catch(() => 0);
-
-      navigation.navigate("category", { url: ndefURL });
+      if (Platform.OS === 'ios') {
+        await NfcManager.setAlertMessageIOS('Success');
+      }
     } catch (ex) {
       console.log(ex);
+    } finally {
       // Step 3 結束連結本次讀取
-      NfcManager.cancelTechnologyRequest().catch(() => 0);
+      NfcManager.cancelTechnologyRequest();
+      if (Platform.OS === 'android') {
+        console.log("close nfc");
+      }
+      if (ndefURL !== null) {
+        navigation.navigate("category", { url: ndefURL });
+      }
     }
+
+    return tag;
   }
   readNdef();
   useEffect(() => {
