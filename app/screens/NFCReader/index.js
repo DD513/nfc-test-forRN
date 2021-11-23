@@ -10,7 +10,7 @@ import {
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 
 export default function NFCReader({ navigation }) {
-  const [tag, setTag] = useState("Hello World");
+  const [tag, setTag] = useState("init");
   const [count, setCount] = useState(0);
 
   // Pre-step, call this before any NFC operations
@@ -58,16 +58,16 @@ export default function NFCReader({ navigation }) {
     NfcManager.cancelTechnologyRequest().catch(() => 0);
     // Step 4 將讀取到的資料設定給 state
     setTag(ndefURL);
-
-
     return nfcTag;
   }
 
   readNdef();
   useEffect(() => {
-    
-    console.log(tag);
-    if (tag !== 'Hello World') {
+    setTag("init");
+  }, [navigation]);
+
+  useEffect(() => {
+    if (tag !== "init" && tag !== undefined) {
       navigation.navigate("category", { url: tag });
     }
   }, [tag]);
