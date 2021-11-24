@@ -50,20 +50,20 @@ export default function NFCReader({ navigation }) {
       // Step 4 結束連結本次讀取
       NfcManager.cancelTechnologyRequest();
       // Step 3 將讀取到的資料設定給 state
+
       setTag(ndefURL);
     } catch (ex) {
-      console.log(ex);
+      console.log("123", ex);
     }
-
     return nfcTag;
   }
-  readNdef();
   useEffect(() => {
     setTag("init");
   }, [navigation]);
 
   useEffect(() => {
     if (tag !== "init" && tag !== undefined) {
+      setTag("init");
       navigation.navigate("category", { url: tag });
     }
   }, [tag]);
