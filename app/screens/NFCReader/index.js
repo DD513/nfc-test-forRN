@@ -12,7 +12,6 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
   const [count, setCount] = useState(0);
-  let ndefURL = null;
 
   // Pre-step, call this before any NFC operations
   async function initNfc() {
@@ -22,6 +21,7 @@ export default function NFCReader({ navigation }) {
   async function readNdef() {
     await initNfc();
     let nfcTag = null;
+    let ndefURL = null;
     try {
       // Step 1 依照裝置個別讀取技術內容
       if (Platform.OS === "ios") {
