@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
+import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import NFCReader from "./app/screens/NFCReader";
 import category from "./app/screens/category";
 import home from "./app/screens/home";
@@ -39,7 +40,24 @@ export default function App() {
         <Stack.Screen
           name="home"
           component={home}
-          options={{ headerShown: false }}
+          options={{
+            title: "Workout",
+            headerTitleStyle: {
+              fontSize: 20,
+            },
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              <Icon2.Button
+                name="nfc"
+                size={30}
+                color="#000"
+                backgroundColor="#fff"
+                onPress={() => {
+                  navigationRef.navigate("NFCReader");
+                }}
+              ></Icon2.Button>
+            ),
+          }}
         />
         <Stack.Screen
           name="NFCReader"
