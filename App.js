@@ -37,6 +37,11 @@ export default function App() {
     >
       <Stack.Navigator>
         <Stack.Screen
+          name="home"
+          component={home}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="NFCReader"
           component={NFCReader}
           options={{
@@ -54,11 +59,6 @@ export default function App() {
               ></Icon.Button>
             ),
           }}
-        />
-        <Stack.Screen
-          name="home"
-          component={home}
-          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="category"
