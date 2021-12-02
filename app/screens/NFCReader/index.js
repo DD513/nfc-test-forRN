@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Platform, StyleSheet, Text, View, Linking } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
-import { Button } from "@ant-design/react-native";
+import { Button, Flex, WhiteSpace, WingBlank } from "@ant-design/react-native";
+import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
 
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
@@ -64,15 +65,11 @@ export default function NFCReader({ navigation }) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: "center",
       marginHorizontal: 16,
     },
-    baseText: {
-      textAlign: "center",
-      fontSize: 20,
-      color: "rgba(0, 0, 0, 0.85)",
-    },
     title: {
+      fontSize: 20,
+      textAlign: "center",
       marginVertical: 8,
     },
     desc: {
@@ -94,7 +91,34 @@ export default function NFCReader({ navigation }) {
     },
   });
   return (
-    <View style={styles.container}>
+    <ScrollView
+      // style={styles.container}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    >
+      <WingBlank style={{ marginBottom: 5 }}>
+        <Flex
+          justify="between"
+          align="stretch"
+          direction="column"
+          justify="around"
+        >
+          <Flex.Item>
+            <Text style={styles.title}>感應功能已就緒</Text>
+          </Flex.Item>
+          <Flex.Item>
+            <Text style={styles.desc}>請點擊【開啟感應】並靠近設備</Text>
+          </Flex.Item>
+          <Flex.Item>
+            <Button type="primary" onPress={() => readNdef()}>
+              開啟感應
+            </Button>
+          </Flex.Item>
+        </Flex>
+      </WingBlank>
+      <Flex justify="between" align="stretch"></Flex>
+      {/* 
       <Text style={styles.baseText}>
         <Text style={styles.title}>感應功能已就緒 {"\n\n"}</Text>
         <Text style={styles.desc}>請點擊【開啟感應】並靠近設備 {"\n\n"}</Text>
@@ -123,6 +147,7 @@ export default function NFCReader({ navigation }) {
       >
         我想手動選取
       </Text>
-    </View>
+       */}
+    </ScrollView>
   );
 }
