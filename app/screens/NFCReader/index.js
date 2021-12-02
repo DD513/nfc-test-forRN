@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  Platform,
-  StyleSheet,
-  Button,
-  Text,
-  View,
-  Linking,
-} from "react-native";
+import { Platform, StyleSheet, Text, View, Linking } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
+import { Button } from "@ant-design/react-native";
 
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
@@ -94,6 +88,9 @@ export default function NFCReader({ navigation }) {
     },
     link: {
       color: "rgba(0, 0, 0, 0.45)",
+      textAlign: "center",
+      padding: 8,
+      margin: 8,
     },
   });
   return (
@@ -107,6 +104,7 @@ export default function NFCReader({ navigation }) {
         style={styles.nfcButton}
         onPress={() => readNdef()}
       />
+      <Button type="primary">primary</Button>
       <Text
         style={styles.link}
         onPress={() => console.log("[CLICK] open latest equipment")}
@@ -123,7 +121,7 @@ export default function NFCReader({ navigation }) {
         style={styles.link}
         onPress={() => console.log("[CLICK] open manual list")}
       >
-        我想手動選取" style={styles.link}
+        我想手動選取
       </Text>
     </View>
   );
