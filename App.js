@@ -81,7 +81,7 @@ export default function App() {
         <Stack.Screen
           name="category"
           component={category}
-          options={{ headerShown: false }}
+          options={{ headerShown: true }}
         />
       </Stack.Navigator>
     </NavigationContainer>
