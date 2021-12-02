@@ -11,7 +11,6 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
-  const [count, setCount] = useState(0);
 
   // Pre-step, call this before any NFC operations
   async function initNfc() {
@@ -93,8 +92,8 @@ export default function NFCReader({ navigation }) {
       // borderRadius: "2px",
       // margin: "16px 0px",
     },
-    qrcodeButton: {
-      backgroundColor: "#fff",
+    link: {
+      color: "rgba(0, 0, 0, 0.45)",
     },
   });
   return (
@@ -102,28 +101,30 @@ export default function NFCReader({ navigation }) {
       <Text style={styles.baseText}>
         <Text style={styles.title}>感應功能已就緒 {"\n\n"}</Text>
         <Text style={styles.desc}>請點擊【開啟感應】並靠近設備 {"\n\n"}</Text>
-        <Text style={styles.desc}>
-          {tag}
-          {count}
-          {"\n\n"}
-        </Text>
       </Text>
       <Button
         title="開啟感應"
         style={styles.nfcButton}
         onPress={() => readNdef()}
       />
-
-      <Button
-        title="測試"
-        style={styles.qrcodeButton}
-        onPress={() => setCount(count + 1)}
-      />
-      <Button
-        title="無法感應 ? 試試 QR Code 掃描"
-        style={styles.qrcodeButton}
-        onPress={() => console.log("open qrcode")}
-      />
+      <Text
+        style={styles.link}
+        onPress={() => console.log("[CLICK] open latest equipment")}
+      >
+        與上一組器材相同
+      </Text>
+      <Text
+        style={styles.link}
+        onPress={() => console.log("[CLICK] open qrcode")}
+      >
+        無法感應 ? 試試 QR Code 掃描
+      </Text>
+      <Text
+        style={styles.link}
+        onPress={() => console.log("[CLICK] open manual list")}
+      >
+        我想手動選取" style={styles.link}
+      </Text>
     </View>
   );
 }
