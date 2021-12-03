@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
+import { Platform, StyleSheet, Text, View } from "react-native";
+
+import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
+import { Button, Flex } from "@ant-design/react-native";
+import { IconOutline } from "@ant-design/icons-react-native";
+
+import Logo from "../../../assets/NFC.svg";
+=======
 import { Platform, StyleSheet } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import { Button, Flex, WhiteSpace, WingBlank } from "@ant-design/react-native";
 import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
+>>>>>>> master
 
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
@@ -63,6 +73,11 @@ export default function NFCReader({ navigation }) {
   }, [tag]);
 
   const styles = StyleSheet.create({
+<<<<<<< HEAD
+    title: {
+      textAlign: "center",
+      fontSize: 24,
+=======
     container: {
       flex: 1,
       marginHorizontal: 16,
@@ -71,83 +86,68 @@ export default function NFCReader({ navigation }) {
       fontSize: 20,
       textAlign: "center",
       marginVertical: 8,
+>>>>>>> master
     },
     desc: {
+      margin: 16,
       textAlign: "center",
-      fontSize: 14,
       lineHeight: 22,
       color: "rgba(0, 0, 0, 0.45)",
     },
-    nfcButton: {
-      height: 140,
-      // borderRadius: "2px",
-      // margin: "16px 0px",
-    },
     link: {
-      color: "rgba(0, 0, 0, 0.45)",
       textAlign: "center",
-      padding: 8,
+      color: "#1890FF",
+    },
+    gap: {
       margin: 8,
     },
+    icon: {
+      color: "#1890FF",
+      margin: 8,
+    },
+    container: {
+      flex: 1,
+      padding: 20,
+      flexDirection: "column",
+      justifyContent: "space-evenly",
+      alignItems: "stretch",
+    },
+    nfc: {
+      margin: 24,
+      padding: 24,
+      alignSelf: "center",
+    },
   });
+
   return (
-    <ScrollView
-      // style={styles.container}
-      automaticallyAdjustContentInsets={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-    >
-      <WingBlank style={{ marginBottom: 5 }}>
-        <Flex
-          justify="between"
-          align="stretch"
-          direction="column"
-          justify="around"
-        >
-          <Flex.Item>
-            <Text style={styles.title}>感應功能已就緒</Text>
-          </Flex.Item>
-          <Flex.Item>
-            <Text style={styles.desc}>請點擊【開啟感應】並靠近設備</Text>
-          </Flex.Item>
-          <Flex.Item>
-            <Button type="primary" onPress={() => readNdef()}>
-              開啟感應
-            </Button>
-          </Flex.Item>
+    <View style={styles.container}>
+      <View
+        style={{
+          flex: 3,
+          justifyContent: "center",
+        }}
+      >
+        <Logo style={styles.nfc} />
+        <Text style={styles.title}>感應功能已就緒</Text>
+        <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
+        <Button type="primary" onPress={() => readNdef()}>
+          開啟感應
+        </Button>
+      </View>
+      <View style={{ flex: 1 }}>
+        <Flex justify="center" style={styles.gap}>
+          <IconOutline name="copy" size={20} style={styles.icon} />
+          <Text style={styles.link}>與上一組器材相同</Text>
         </Flex>
-      </WingBlank>
-      <Flex justify="between" align="stretch"></Flex>
-      {/* 
-      <Text style={styles.baseText}>
-        <Text style={styles.title}>感應功能已就緒 {"\n\n"}</Text>
-        <Text style={styles.desc}>請點擊【開啟感應】並靠近設備 {"\n\n"}</Text>
-      </Text>
-      <Button
-        title="開啟感應"
-        style={styles.nfcButton}
-        onPress={() => readNdef()}
-      />
-      <Button type="primary">primary</Button>
-      <Text
-        style={styles.link}
-        onPress={() => console.log("[CLICK] open latest equipment")}
-      >
-        與上一組器材相同
-      </Text>
-      <Text
-        style={styles.link}
-        onPress={() => console.log("[CLICK] open qrcode")}
-      >
-        無法感應 ? 試試 QR Code 掃描
-      </Text>
-      <Text
-        style={styles.link}
-        onPress={() => console.log("[CLICK] open manual list")}
-      >
-        我想手動選取
-      </Text>
-       */}
-    </ScrollView>
+        <Flex justify="center" style={styles.gap}>
+          <IconOutline name="qrcode" size={20} style={styles.icon} />
+          <Text style={styles.link}>無法感應 ? 試試 QR Code 掃描</Text>
+        </Flex>
+        <Flex justify="center" style={styles.gap}>
+          <IconOutline name="plus-circle" size={20} style={styles.icon} />
+          <Text style={styles.link}> 我想手動選取</Text>
+        </Flex>
+      </View>
+    </View>
   );
 }

@@ -7,7 +7,7 @@ platform :ios, '12.0'
 require 'json'
 podfile_properties = JSON.parse(File.read('./Podfile.properties.json')) rescue {}
 
-target 'AwesomeProject' do
+target 'MonoFitnessNFC' do
   use_expo_modules!
   config = use_native_modules!
 
@@ -21,7 +21,6 @@ target 'AwesomeProject' do
   # if !ENV['CI']
   #   use_flipper!('Flipper' => '0.75.1', 'Flipper-Folly' => '2.5.3', 'Flipper-RSocket' => '1.3.1')
   # end
-
 
   post_install do |installer|
     react_native_post_install(installer)
