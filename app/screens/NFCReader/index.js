@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Platform, StyleSheet, Text, View, Linking } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
-import { Button } from "@ant-design/react-native";
+
+import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Button, Flex, WhiteSpace, WingBlank } from "@ant-design/react-native";
 
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
@@ -62,16 +64,6 @@ export default function NFCReader({ navigation }) {
   }, [tag]);
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      marginHorizontal: 16,
-    },
-    baseText: {
-      textAlign: "center",
-      fontSize: 20,
-      color: "rgba(0, 0, 0, 0.85)",
-    },
     title: {
       marginVertical: 8,
     },
@@ -92,37 +84,33 @@ export default function NFCReader({ navigation }) {
       padding: 8,
       margin: 8,
     },
+    gap: {
+      marginTop: 4,
+      paddingTop: 4,
+    },
   });
   return (
-    <View style={styles.container}>
-      <Text style={styles.baseText}>
-        <Text style={styles.title}>感應功能已就緒 {"\n\n"}</Text>
-        <Text style={styles.desc}>請點擊【開啟感應】並靠近設備 {"\n\n"}</Text>
-      </Text>
-      <Button
-        title="開啟感應"
-        style={styles.nfcButton}
-        onPress={() => readNdef()}
-      />
-      <Button type="primary">primary</Button>
-      <Text
-        style={styles.link}
-        onPress={() => console.log("[CLICK] open latest equipment")}
-      >
-        與上一組器材相同
-      </Text>
-      <Text
-        style={styles.link}
-        onPress={() => console.log("[CLICK] open qrcode")}
-      >
-        無法感應 ? 試試 QR Code 掃描
-      </Text>
-      <Text
-        style={styles.link}
-        onPress={() => console.log("[CLICK] open manual list")}
-      >
-        我想手動選取
-      </Text>
-    </View>
+    <ScrollView
+      style={{ flex: 1 }}
+      automaticallyAdjustContentInsets={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    >
+      <WingBlank>
+        <Flex direction="column" justify="center" align="stretch">
+          <Flex.Item>
+            <Text style={styles.gap}>项目在主轴上的对齐方式</Text>
+          </Flex.Item>
+          <Flex.Item>
+            <Text style={styles.gap}>项目在主轴上的对齐方式</Text>
+          </Flex.Item>
+          <Flex.Item>
+            <Button type="primary" onPress={() => readNdef()}>
+              開啟感應
+            </Button>
+          </Flex.Item>
+        </Flex>
+      </WingBlank>
+    </ScrollView>
   );
 }
