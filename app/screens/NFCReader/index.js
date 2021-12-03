@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import { Platform, StyleSheet, Text, View } from "react-native";
 
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
@@ -7,12 +6,6 @@ import { Button, Flex } from "@ant-design/react-native";
 import { IconOutline } from "@ant-design/icons-react-native";
 
 import Logo from "../../../assets/NFC.svg";
-=======
-import { Platform, StyleSheet } from "react-native";
-import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
-import { Button, Flex, WhiteSpace, WingBlank } from "@ant-design/react-native";
-import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
->>>>>>> master
 
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
