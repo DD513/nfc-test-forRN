@@ -68,7 +68,7 @@ export default function NFCReader({ navigation }) {
   const styles = StyleSheet.create({
     title: {
       textAlign: "center",
-      fontSize: 20,
+      fontSize: 24,
     },
     desc: {
       margin: 16,
@@ -85,7 +85,7 @@ export default function NFCReader({ navigation }) {
     },
     icon: {
       color: "#1890FF",
-      margin: 4,
+      margin: 8,
     },
     container: {
       flex: 1,
