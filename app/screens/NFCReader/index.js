@@ -3,7 +3,10 @@ import { Platform, StyleSheet } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 
 import { ScrollView, Text, TouchableWithoutFeedback, View } from "react-native";
-import { Button, Flex, WhiteSpace, WingBlank } from "@ant-design/react-native";
+import { Grid, Icon, Button, Flex, WingBlank } from "@ant-design/react-native";
+import { IconFill, IconOutline } from "@ant-design/icons-react-native";
+
+import { outlineGlyphMap } from "@ant-design/icons-react-native/lib/outline";
 
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
@@ -65,49 +68,53 @@ export default function NFCReader({ navigation }) {
 
   const styles = StyleSheet.create({
     title: {
-      marginVertical: 8,
+      textAlign: "center",
+      fontSize: 20,
     },
     desc: {
       textAlign: "center",
-      fontSize: 14,
       lineHeight: 22,
       color: "rgba(0, 0, 0, 0.45)",
     },
-    nfcButton: {
-      height: 140,
-      // borderRadius: "2px",
-      // margin: "16px 0px",
-    },
     link: {
-      color: "rgba(0, 0, 0, 0.45)",
       textAlign: "center",
-      padding: 8,
-      margin: 8,
+      color: "#1890FF",
     },
     gap: {
-      marginTop: 4,
-      paddingTop: 4,
+      margin: 16,
     },
   });
+
   return (
     <ScrollView
-      style={{ flex: 1 }}
       automaticallyAdjustContentInsets={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
       <WingBlank>
         <Flex direction="column" justify="center" align="stretch">
-          <Flex.Item>
-            <Text style={styles.gap}>项目在主轴上的对齐方式</Text>
+          <Flex.Item style={styles.gap}>
+            <Icon name="account-book" size={100} />
+            <IconFill name="account-book" />
+            <IconOutline name="account-book" />
+            <Text style={styles.title}>感應功能已就緒</Text>
           </Flex.Item>
-          <Flex.Item>
-            <Text style={styles.gap}>项目在主轴上的对齐方式</Text>
+          <Flex.Item style={styles.gap}>
+            <Text style={styles.desc}>請點擊【開啟感應】並靠近設備</Text>
           </Flex.Item>
-          <Flex.Item>
+          <Flex.Item style={styles.gap}>
             <Button type="primary" onPress={() => readNdef()}>
               開啟感應
             </Button>
+          </Flex.Item>
+          <Flex.Item style={styles.gap}>
+            <Text style={styles.link}>與上一組器材相同</Text>
+          </Flex.Item>
+          <Flex.Item style={styles.gap}>
+            <Text style={styles.link}>無法感應 ? 試試 QR Code 掃描</Text>
+          </Flex.Item>
+          <Flex.Item style={styles.gap}>
+            <Text style={styles.link}> 我想手動選取</Text>
           </Flex.Item>
         </Flex>
       </WingBlank>

@@ -48,6 +48,11 @@
         </dict>
       </dict>
     </dict>
+    <key>UIAppFonts</key>
+    <array>
+      <string>antfill.ttf</string>
+      <string>antoutline.ttf</string>
+    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>
