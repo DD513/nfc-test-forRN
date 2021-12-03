@@ -105,7 +105,7 @@ export default function NFCReader({ navigation }) {
     <View style={styles.container}>
       <View
         style={{
-          flex: 4,
+          flex: 3,
           justifyContent: "center",
         }}
       >
