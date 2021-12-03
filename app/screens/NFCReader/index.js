@@ -73,20 +73,9 @@ export default function NFCReader({ navigation }) {
   }, [tag]);
 
   const styles = StyleSheet.create({
-<<<<<<< HEAD
     title: {
       textAlign: "center",
       fontSize: 24,
-=======
-    container: {
-      flex: 1,
-      marginHorizontal: 16,
-    },
-    title: {
-      fontSize: 20,
-      textAlign: "center",
-      marginVertical: 8,
->>>>>>> master
     },
     desc: {
       margin: 16,
