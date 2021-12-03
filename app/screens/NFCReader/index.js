@@ -5,6 +5,8 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import { Button, Flex } from "@ant-design/react-native";
 import { IconOutline } from "@ant-design/icons-react-native";
 
+import Logo from "../../../assets/NFC.svg";
+
 export default function NFCReader({ navigation }) {
   const [tag, setTag] = useState("init");
 
@@ -92,6 +94,11 @@ export default function NFCReader({ navigation }) {
       justifyContent: "space-evenly",
       alignItems: "stretch",
     },
+    nfc: {
+      margin: 24,
+      padding: 24,
+      alignSelf: "center",
+    },
   });
 
   return (
@@ -99,17 +106,17 @@ export default function NFCReader({ navigation }) {
       <View
         style={{
           flex: 4,
-          backgroundColor: "darkorange",
           justifyContent: "center",
         }}
       >
+        <Logo style={styles.nfc} />
         <Text style={styles.title}>感應功能已就緒</Text>
-        <Text style={styles.desc}>請點擊【開啟感應】並靠近設備</Text>
+        <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
         <Button type="primary" onPress={() => readNdef()}>
           開啟感應
         </Button>
       </View>
-      <View style={{ flex: 1, backgroundColor: "green" }}>
+      <View style={{ flex: 1 }}>
         <Flex justify="center" style={styles.gap}>
           <IconOutline name="copy" size={20} style={styles.icon} />
           <Text style={styles.link}>與上一組器材相同</Text>

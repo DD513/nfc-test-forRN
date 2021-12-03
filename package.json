@@ -39,7 +39,8 @@
     "eslint-config-airbnb": "^19.0.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.27.0"
+    "eslint-plugin-react": "^7.27.0",
+    "react-native-svg-transformer": "^0.14.3"
   },
   "private": true,
   "name": "AwesomeProject",
