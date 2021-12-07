@@ -3,14 +3,16 @@ import { Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createNavigationContainerRef } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/AntDesign";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import NFCReader from "./app/screens/NFCReader";
 import category from "./app/screens/category";
 import home from "./app/screens/home";
+import { Icon } from "@ant-design/react-native";
+import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 
-const Stack = createNativeStackNavigator();
 const navigationRef = createNavigationContainerRef();
+const Tab = createBottomTabNavigator();
+
 export function navigate(name, params) {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name, params);
@@ -36,54 +38,48 @@ export default function App() {
       fallback={<Text>Loading...</Text>}
       ref={navigationRef}
     >
-      <Stack.Navigator>
-        <Stack.Screen
-          name="home"
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Workout"
           component={home}
           options={{
-            title: "Workout",
-            headerTitleStyle: {
-              fontSize: 20,
-            },
-            headerTitleAlign: "center",
-            headerLeft: () => (
-              <Icon2.Button
-                name="nfc"
-                size={30}
-                color="#000"
-                backgroundColor="#fff"
-                onPress={() => {
-                  navigationRef.navigate("NFCReader");
-                }}
-              ></Icon2.Button>
+            tabBarLabel: "Workout",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="fire" color={color} size={size} />
             ),
           }}
         />
-        <Stack.Screen
-          name="NFCReader"
+        <Tab.Screen
+          name="History"
+          component={home}
+          options={{
+            tabBarLabel: "History",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="calendar" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Program"
+          component={category}
+          options={{
+            tabBarLabel: "Program",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="project" color={color} size={size} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Setting"
           component={NFCReader}
           options={{
-            title: "NFC 感應",
-            headerTitleAlign: "center",
-            headerLeft: () => (
-              <Icon.Button
-                name="arrowleft"
-                size={30}
-                color="#000"
-                backgroundColor="#fff"
-                onPress={() => {
-                  navigationRef.navigate("home");
-                }}
-              ></Icon.Button>
+            tabBarLabel: "Setting",
+            tabBarIcon: ({ color, size }) => (
+              <Icon name="setting" color={color} size={size} />
             ),
           }}
         />
-        <Stack.Screen
-          name="category"
-          component={category}
-          options={{ headerShown: true }}
-        />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
