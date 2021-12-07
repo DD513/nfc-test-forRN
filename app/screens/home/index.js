@@ -21,43 +21,43 @@ export default class Home extends React.Component {
             計畫
           </Divider>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             爆發力日
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             肌力日
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             臀腿日
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             胸背日
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             腹肌撕裂
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             肌肥大漸進性增肌
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             上下分法
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             上下分法
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             上下分法
           </Button>
           <Button type="ghost" style={styles.plan}>
-            <Icon name="thunderbolt" size={20} color="prmiary" />
+            <Icon name="thunderbolt" size={20} color="#1890ff" />
             上下分法
           </Button>
         </View>
