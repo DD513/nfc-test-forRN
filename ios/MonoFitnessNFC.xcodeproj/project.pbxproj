@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D58DFE7BA44BDB9EFAE8BD /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AAEC21846B14242944168E4 /* antoutline.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		7CE97D4623DB44D58090DD07 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A2530E1AA54955888F02DB /* noop-file.swift */; };
+		85A350FA56DE43C984D4DC58 /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = F368D59081F945B4BE83D553 /* noop-file.swift */; };
 		96905EF65AED1B983A6B3ABC /* libPods-MonoFitnessNFC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-MonoFitnessNFC.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
+		B6E8489C714F41ADB7531599 /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65284DFC06C242D8BAAB3ACA /* antfill.ttf */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		C290ED53FF49481DB993E5F9 /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83F8B8A0ED5E4970968672AF /* antfill.ttf */; };
-		6A675C85642B41B3BD79055D /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 854B2A5EDD7245A69E192915 /* antoutline.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,17 +27,17 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MonoFitnessNFC/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MonoFitnessNFC/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MonoFitnessNFC/main.m; sourceTree = "<group>"; };
+		1AAEC21846B14242944168E4 /* antoutline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antoutline.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-MonoFitnessNFC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MonoFitnessNFC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65284DFC06C242D8BAAB3ACA /* antfill.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antfill.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; };
 		6C2E3173556A471DD304B334 /* Pods-MonoFitnessNFC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoFitnessNFC.debug.xcconfig"; path = "Target Support Files/Pods-MonoFitnessNFC/Pods-MonoFitnessNFC.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-MonoFitnessNFC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoFitnessNFC.release.xcconfig"; path = "Target Support Files/Pods-MonoFitnessNFC/Pods-MonoFitnessNFC.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = MonoFitnessNFC/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B72152B388BF45E8A777929D /* MonoFitnessNFC-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "MonoFitnessNFC-Bridging-Header.h"; path = "MonoFitnessNFC/MonoFitnessNFC-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		D8A2530E1AA54955888F02DB /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "MonoFitnessNFC/noop-file.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EF7620A918824DABB0D1B57D /* MonoFitnessNFC-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "MonoFitnessNFC-Bridging-Header.h"; path = "MonoFitnessNFC/MonoFitnessNFC-Bridging-Header.h"; sourceTree = "<group>"; };
+		F368D59081F945B4BE83D553 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "MonoFitnessNFC/noop-file.swift"; sourceTree = "<group>"; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-MonoFitnessNFC/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		83F8B8A0ED5E4970968672AF /* antfill.ttf */ = {isa = PBXFileReference; name = "antfill.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		854B2A5EDD7245A69E192915 /* antoutline.ttf */ = {isa = PBXFileReference; name = "antoutline.ttf"; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +63,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				D8A2530E1AA54955888F02DB /* noop-file.swift */,
-				B72152B388BF45E8A777929D /* MonoFitnessNFC-Bridging-Header.h */,
+				F368D59081F945B4BE83D553 /* noop-file.swift */,
+				EF7620A918824DABB0D1B57D /* MonoFitnessNFC-Bridging-Header.h */,
 			);
 			name = MonoFitnessNFC;
 			sourceTree = "<group>";
@@ -76,6 +76,15 @@
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-MonoFitnessNFC.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4EDB36B038A245D9A6360FEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				65284DFC06C242D8BAAB3ACA /* antfill.ttf */,
+				1AAEC21846B14242944168E4 /* antoutline.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -94,7 +103,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
-				4909F6F3D264445FA251F91D /* Resources */,
+				4EDB36B038A245D9A6360FEA /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -143,16 +152,6 @@
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		4909F6F3D264445FA251F91D /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				83F8B8A0ED5E4970968672AF /* antfill.ttf */,
-				854B2A5EDD7245A69E192915 /* antoutline.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,7 +182,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = TWVFHTEDSF;
@@ -217,8 +216,8 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				C290ED53FF49481DB993E5F9 /* antfill.ttf in Resources */,
-				6A675C85642B41B3BD79055D /* antoutline.ttf in Resources */,
+				B6E8489C714F41ADB7531599 /* antfill.ttf in Resources */,
+				04D58DFE7BA44BDB9EFAE8BD /* antoutline.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +343,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				7CE97D4623DB44D58090DD07 /* noop-file.swift in Sources */,
+				85A350FA56DE43C984D4DC58 /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +360,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWVFHTEDSF;
 				ENABLE_BITCODE = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
@@ -393,7 +391,6 @@
 				CODE_SIGN_ENTITLEMENTS = MonoFitnessNFC/app.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TWVFHTEDSF;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				INFOPLIST_FILE = MonoFitnessNFC/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -434,7 +431,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -445,7 +441,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -493,7 +489,6 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -504,7 +499,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -518,7 +513,6 @@
 				LIBRARY_SEARCH_PATHS = "\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
