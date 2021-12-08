@@ -8,7 +8,7 @@ import { Icon } from "@ant-design/react-native";
 // Dimensions 用於獲取裝置寬、高、解析度
 const { width, height } = Dimensions.get("window");
 
-export default Home = () => {
+export default Home = ({ navigation }) => {
   const days = [
     "爆發力日",
     "肌力日",
@@ -21,12 +21,20 @@ export default Home = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Button type="primary" style={styles.startButton}>
+        <Button
+          type="primary"
+          style={styles.startButton}
+          onPress={() =>
+            navigation.navigate("NFCReader", {
+              screen: "NFCReader",
+            })
+          }
+        >
           <Icon name="fire" size={20} color="#FFF" />
           開始訓練
         </Button>
         <Divider orientation="left" style={styles.divider}>
-          計畫
+          <Text style={styles.titleText}>計畫</Text>
         </Divider>
         {days.map((day) => {
           return (
@@ -61,7 +69,8 @@ const styles = StyleSheet.create({
     width: "100%",
     margin: 8,
   },
-  divider: {
-    fontSize: 60, //大小沒改
+  titleText: {
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });
