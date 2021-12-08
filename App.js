@@ -47,6 +47,7 @@ export default function App() {
             tabBarIcon: ({ color, size }) => (
               <Icon name="fire" color={color} size={size} />
             ),
+            headerTitleAlign: "center",
           }}
         />
         <Tab.Screen
