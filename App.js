@@ -88,14 +88,25 @@ export default function App() {
       fallback={<Text>Loading...</Text>}
       ref={navigationRef}
     >
-      <Stack.Navigator
-        initialRouteName="Root"
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Root" component={Root} />
-        <Stack.Screen name="NFCReader" component={NFCReader} />
+      <Stack.Navigator initialRouteName="Root">
+        <Stack.Group
+          screenOptions={({ navigation }) => ({
+            headerLeft: () => <Button title="hi" onPress={navigation.goBack} />,
+          })}
+        >
+          <Stack.Screen
+            name="NFCReader"
+            options={{ title: "NFC 感應", headerTitleAlign: "center" }}
+            component={NFCReader}
+          />
+        </Stack.Group>
+        <Stack.Group
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Root" component={Root} />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
