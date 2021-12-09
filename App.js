@@ -9,8 +9,6 @@ import NFCReader from "./app/screens/NFCReader";
 import Category from "./app/screens/category";
 import Workout from "./app/screens/Workout";
 import { Icon } from "@ant-design/react-native";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
-
 const navigationRef = createNavigationContainerRef();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -64,12 +62,18 @@ export default function App() {
       <Stack.Navigator initialRouteName="Root">
         <Stack.Screen
           name="NFCReader"
+          component={NFCReader}
           options={({ navigation }) => ({
             title: "NFC 感應",
             headerTitleAlign: "center",
-            headerLeft: () => <Button title="hi" onPress={navigation.goBack} />,
+            headerLeft: () => (
+              <Icon
+                name="arrow-left"
+                color="#000"
+                onPress={navigation.goBack}
+              />
+            ),
           })}
-          component={NFCReader}
         />
         <Stack.Screen
           name="Root"
