@@ -8,7 +8,7 @@ import { Icon } from "@ant-design/react-native";
 // Dimensions 用於獲取裝置寬、高、解析度
 const { width, height } = Dimensions.get("window");
 
-export default Home = ({ navigation }) => {
+export default Workout = ({ navigation }) => {
   const days = [
     "爆發力日",
     "肌力日",

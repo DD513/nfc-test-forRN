@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import NFCReader from "./app/screens/NFCReader";
 import Category from "./app/screens/category";
-import Home from "./app/screens/home";
+import Workout from "./app/screens/Workout";
 import { Icon } from "@ant-design/react-native";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -22,49 +22,30 @@ export function navigate(name, params) {
 }
 
 function Root() {
+  const rootConfig = [
+    { name: "Workout", component: Workout, icon: "fire" },
+    { name: "History", component: NFCReader, icon: "calendar" },
+    { name: "Program", component: NFCReader, icon: "project" },
+    { name: "Settings", component: NFCReader, icon: "setting" },
+  ];
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        name="Workout"
-        component={Home}
-        options={{
-          tabBarLabel: "Workout",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="fire" color={color} size={size} />
-          ),
-          headerTitleAlign: "center",
-        }}
-      />
-      <Tab.Screen
-        name="History"
-        component={Home}
-        options={{
-          tabBarLabel: "History",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="calendar" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Program"
-        component={Category}
-        options={{
-          tabBarLabel: "Program",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="project" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Setting"
-        component={NFCReader}
-        options={{
-          tabBarLabel: "Setting",
-          tabBarIcon: ({ color, size }) => (
-            <Icon name="setting" color={color} size={size} />
-          ),
-        }}
-      />
+      {rootConfig.map((tab) => {
+        return (
+          <Tab.Screen
+            key={tab.name}
+            name={tab.name}
+            component={tab.component}
+            options={{
+              headerTitleAlign: "center",
+              tabBarLabel: tab.name,
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={tab.icon} color={color} size={size} />
+              ),
+            }}
+          />
+        );
+      })}
     </Tab.Navigator>
   );
 }
@@ -74,14 +55,6 @@ export default function App() {
     prefixes: ["https://fintess-coach.herokuapp.com"],
   };
 
-  const config = {
-    screens: {
-      NFCReader: "NFCReader",
-      Home: "Home",
-      Category: "category:id", // https://fintess-coach.herokuapp.com/category?id=1
-    },
-  };
-
   return (
     <NavigationContainer
       linking={linking}
@@ -89,24 +62,22 @@ export default function App() {
       ref={navigationRef}
     >
       <Stack.Navigator initialRouteName="Root">
-        <Stack.Group
-          screenOptions={({ navigation }) => ({
+        <Stack.Screen
+          name="NFCReader"
+          options={({ navigation }) => ({
+            title: "NFC 感應",
+            headerTitleAlign: "center",
             headerLeft: () => <Button title="hi" onPress={navigation.goBack} />,
           })}
-        >
-          <Stack.Screen
-            name="NFCReader"
-            options={{ title: "NFC 感應", headerTitleAlign: "center" }}
-            component={NFCReader}
-          />
-        </Stack.Group>
-        <Stack.Group
-          screenOptions={{
+          component={NFCReader}
+        />
+        <Stack.Screen
+          name="Root"
+          component={Root}
+          options={{
             headerShown: false,
           }}
-        >
-          <Stack.Screen name="Root" component={Root} />
-        </Stack.Group>
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
