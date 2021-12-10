@@ -75,13 +75,10 @@ export default function App() {
             ),
           })}
         />
-        <Stack.Screen
-          name="Root"
-          component={Root}
-          options={{
-            headerShown: false,
-          }}
-        />
+        <Stack.Group screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Root" component={Root} />
+          <Stack.Screen name="Category" component={Category} />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
