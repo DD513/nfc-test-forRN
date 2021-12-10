@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Dimensions, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import Divider from "react-native-divider";
 import { Button } from "@ant-design/react-native";
-import { Icon } from "@ant-design/react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 export default Workout = ({ navigation }) => {
   const days = [
@@ -41,14 +41,13 @@ export default Workout = ({ navigation }) => {
         <Button
           type="primary"
           style={styles.startButton}
-          onPress={() =>
-            navigation.navigate("NFCReader", {
-              screen: "NFCReader",
-            })
-          }
+          onPress={() => {
+            navigation.navigate("NFCReader");
+          }}
         >
-          <Icon name="fire" color="#fff" />
-          開始訓練
+          <Icon name="fire-alt" color="#fff" size={16}>
+            {"  "}開始訓練
+          </Icon>
         </Button>
         <Divider orientation="left">
           <Text style={styles.titleText}>計畫</Text>
@@ -56,8 +55,10 @@ export default Workout = ({ navigation }) => {
         {days.map((day, index) => {
           return (
             <Button type="ghost" style={styles.plan} key={index}>
-              <Icon name="thunderbolt" size={20} color="#1890FF" />
-              {day}
+              <Icon name="bolt" size={16}>
+                {"  "}
+                {day}
+              </Icon>
             </Button>
           );
         })}
@@ -76,16 +77,22 @@ const styles = StyleSheet.create({
   },
   startButton: {
     width: "100%",
-    height: 80,
-    backgroundColor: "#1890ff",
+    height: 100,
     margin: 8,
   },
   plan: {
     width: "100%",
     margin: 8,
+    height: "auto",
+    padding: 16,
   },
   titleText: {
     fontSize: 20,
     fontWeight: "bold",
+  },
+  iconText: {
+    paddingRight: 16,
+    marginRight: 16,
+    color: "#fff",
   },
 });
