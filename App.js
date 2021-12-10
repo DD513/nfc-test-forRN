@@ -1,17 +1,17 @@
 import React from "react";
 import { Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import NFCReader from "./app/screens/NFCReader";
-import category from "./app/screens/category";
-import home from "./app/screens/home";
-import { Icon } from "@ant-design/react-native";
-import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import NFCReader from "./app/screens/NFCReader";
+import Category from "./app/screens/category";
+import Workout from "./app/screens/Workout";
+import { Icon } from "@ant-design/react-native";
 const navigationRef = createNavigationContainerRef();
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export function navigate(name, params) {
   if (navigationRef.isReady()) {
@@ -19,17 +19,38 @@ export function navigate(name, params) {
   }
 }
 
+function Root() {
+  const rootConfig = [
+    { name: "Workout", component: Workout, icon: "fire" },
+    { name: "History", component: NFCReader, icon: "calendar" },
+    { name: "Program", component: NFCReader, icon: "project" },
+    { name: "Settings", component: NFCReader, icon: "setting" },
+  ];
+  return (
+    <Tab.Navigator>
+      {rootConfig.map((tab) => {
+        return (
+          <Tab.Screen
+            key={tab.name}
+            name={tab.name}
+            component={tab.component}
+            options={{
+              headerTitleAlign: "center",
+              tabBarLabel: tab.name,
+              tabBarIcon: ({ color, size }) => (
+                <Icon name={tab.icon} color={color} size={size} />
+              ),
+            }}
+          />
+        );
+      })}
+    </Tab.Navigator>
+  );
+}
+
 export default function App() {
   const linking = {
     prefixes: ["https://fintess-coach.herokuapp.com"],
-  };
-
-  const config = {
-    screens: {
-      NFCReader: "NFCReader",
-      home: "home",
-      category: "category:id", // https://fintess-coach.herokuapp.com/category?id=1
-    },
   };
 
   return (
@@ -38,48 +59,27 @@ export default function App() {
       fallback={<Text>Loading...</Text>}
       ref={navigationRef}
     >
-      <Tab.Navigator>
-        <Tab.Screen
-          name="Workout"
-          component={home}
-          options={{
-            tabBarLabel: "Workout",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="fire" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="History"
-          component={home}
-          options={{
-            tabBarLabel: "History",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="calendar" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Program"
-          component={category}
-          options={{
-            tabBarLabel: "Program",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="project" color={color} size={size} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Setting"
+      <Stack.Navigator initialRouteName="Root">
+        <Stack.Screen
+          name="NFCReader"
           component={NFCReader}
-          options={{
-            tabBarLabel: "Setting",
-            tabBarIcon: ({ color, size }) => (
-              <Icon name="setting" color={color} size={size} />
+          options={({ navigation }) => ({
+            title: "NFC 感應",
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              <Icon
+                name="arrow-left"
+                color="#000"
+                onPress={navigation.goBack}
+              />
             ),
-          }}
+          })}
         />
-      </Tab.Navigator>
+        <Stack.Group screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Root" component={Root} />
+          <Stack.Screen name="Category" component={Category} />
+        </Stack.Group>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

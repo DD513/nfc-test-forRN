@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
-
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import { Button, Flex } from "@ant-design/react-native";
 import { IconOutline } from "@ant-design/icons-react-native";
-
 import Logo from "../../../assets/NFC.svg";
-
-export default function NFCReader({ navigation }) {
+export default NFCReader = ({ navigation }) => {
   const [tag, setTag] = useState("init");
 
   // Pre-step, call this before any NFC operations
@@ -41,16 +38,18 @@ export default function NFCReader({ navigation }) {
       // Step 2 取得 TAG 內容
       nfcTag = await NfcManager.getTag();
       console.log("[NFC Read] [INFO] Tag: ", nfcTag);
-      // Step 2.5 解碼 NDEF 內容
+      // Step 3 解碼 NDEF 內容
       ndefURL = Ndef.uri.decodePayload(nfcTag.ndefMessage[0].payload);
       console.log("[NFC Read] [INFO] NdefRecords: ", ndefURL);
       // Step 4 結束連結本次讀取
       NfcManager.cancelTechnologyRequest();
-      // Step 3 將讀取到的資料設定給 state
-
+      // Step 5 將讀取到的資料設定給 state
       setTag(ndefURL);
     } catch (ex) {
-      console.log("123", ex);
+      console.log(
+        "[NFC Read] [ERR] Ndef technology could not be requested",
+        ex
+      );
     }
     return nfcTag;
   }
@@ -61,7 +60,7 @@ export default function NFCReader({ navigation }) {
   useEffect(() => {
     if (tag !== "init" && tag !== undefined) {
       setTag("init");
-      navigation.navigate("category", { url: tag });
+      navigation.navigate("Category", { url: tag });
     }
   }, [tag]);
 
@@ -93,6 +92,7 @@ export default function NFCReader({ navigation }) {
       flexDirection: "column",
       justifyContent: "space-evenly",
       alignItems: "stretch",
+      backgroundColor: "#fff",
     },
     nfc: {
       margin: 24,
@@ -100,6 +100,12 @@ export default function NFCReader({ navigation }) {
       alignSelf: "center",
     },
   });
+
+  const links = [
+    { title: "與上一組器材相同", icon: "copy" },
+    { title: "無法感應 ? 試試 QR Code 掃描", icon: "qrcode" },
+    { title: "我想手動選取", icon: "plus-circle" },
+  ];
 
   return (
     <View style={styles.container}>
@@ -117,19 +123,15 @@ export default function NFCReader({ navigation }) {
         </Button>
       </View>
       <View style={{ flex: 1 }}>
-        <Flex justify="center" style={styles.gap}>
-          <IconOutline name="copy" size={20} style={styles.icon} />
-          <Text style={styles.link}>與上一組器材相同</Text>
-        </Flex>
-        <Flex justify="center" style={styles.gap}>
-          <IconOutline name="qrcode" size={20} style={styles.icon} />
-          <Text style={styles.link}>無法感應 ? 試試 QR Code 掃描</Text>
-        </Flex>
-        <Flex justify="center" style={styles.gap}>
-          <IconOutline name="plus-circle" size={20} style={styles.icon} />
-          <Text style={styles.link}> 我想手動選取</Text>
-        </Flex>
+        {links.map((link, index) => {
+          return (
+            <Flex justify="center" style={styles.gap} key={index}>
+              <IconOutline name={link.icon} size={20} style={styles.icon} />
+              <Text style={styles.link}>{link.title}</Text>
+            </Flex>
+          );
+        })}
       </View>
     </View>
   );
-}
+};
