@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, SafeAreaView, View, Text, ScrollView, Image, TextInput } from "react-native";
 import styles from "./styles.js";
-import { AppLoading } from "expo-app-loading";
-import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
 
 import {
   Button,
@@ -27,10 +25,10 @@ export default Category = ({ navigation }) => {
   ];
 
   /* bug happened! */
-  // // To avoid rendering text before the font is loaded, install the expo-app-loading package to use the <AppLoading /> component: https://stackoverflow.com/questions/33971221/google-fonts-in-react-native
-  let [fontsLoaded] = useFonts({
-    Roboto_500Medium,
-  });
+  // // // To avoid rendering text before the font is loaded, install the expo-app-loading package to use the <AppLoading /> component: https://stackoverflow.com/questions/33971221/google-fonts-in-react-native
+  // let [fontsLoaded] = useFonts({
+  //   Roboto_500Medium,
+  // });
   // if (!fontsLoaded) {
   //   return <AppLoading />;
   // } else {
