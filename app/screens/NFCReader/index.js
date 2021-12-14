@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, SafeAreaView, Text, View } from "react-native";
 import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import { Button, Flex } from "@ant-design/react-native";
 import { IconOutline } from "@ant-design/icons-react-native";
@@ -108,30 +108,32 @@ export default NFCReader = ({ navigation }) => {
   ];
 
   return (
-    <View style={styles.container}>
-      <View
-        style={{
-          flex: 3,
-          justifyContent: "center",
-        }}
-      >
-        <Logo style={styles.nfc} />
-        <Text style={styles.title}>感應功能已就緒</Text>
-        <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
-        <Button type="primary" onPress={() => readNdef()}>
-          開啟感應
-        </Button>
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View
+          style={{
+            flex: 3,
+            justifyContent: "center",
+          }}
+        >
+          <Logo style={styles.nfc} />
+          <Text style={styles.title}>感應功能已就緒</Text>
+          <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
+          <Button type="primary" onPress={() => readNdef()}>
+            開啟感應
+          </Button>
+        </View>
+        <View style={{ flex: 1 }}>
+          {links.map((link, index) => {
+            return (
+              <Flex justify="center" style={styles.gap} key={index}>
+                <IconOutline name={link.icon} size={20} style={styles.icon} />
+                <Text style={styles.link}>{link.title}</Text>
+              </Flex>
+            );
+          })}
+        </View>
       </View>
-      <View style={{ flex: 1 }}>
-        {links.map((link, index) => {
-          return (
-            <Flex justify="center" style={styles.gap} key={index}>
-              <IconOutline name={link.icon} size={20} style={styles.icon} />
-              <Text style={styles.link}>{link.title}</Text>
-            </Flex>
-          );
-        })}
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };

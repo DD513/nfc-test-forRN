@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, SafeAreaView, View, Text, ScrollView } from "react-native";
 import Divider from "react-native-divider";
 import { Button } from "@ant-design/react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -36,41 +36,43 @@ export default Workout = ({ navigation }) => {
     // "肌肥大漸進性增肌",
   ];
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Button
-          type="primary"
-          style={styles.startButton}
-          onPress={() => {
-            navigation.navigate("NFCReader");
-          }}
-        >
-          <Icon name="fire-alt" color="#fff" size={18}>
-            {"  "}開始訓練
-          </Icon>
-        </Button>
-        <Divider orientation="left">
-          <Text style={styles.titleText}>計畫</Text>
-        </Divider>
-        {days.map((day, index) => {
-          return (
-            <Button
-              type="ghost"
-              style={styles.plan}
-              key={index}
-              onPress={() => {
-                navigation.navigate("Category");
-              }}
-            >
-              <Icon name="bolt" size={18}>
-                {"  "}
-                {day}
-              </Icon>
-            </Button>
-          );
-        })}
-      </View>
-    </ScrollView>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.container}>
+          <Button
+            type="primary"
+            style={styles.startButton}
+            onPress={() => {
+              navigation.navigate("NFCReader");
+            }}
+          >
+            <Icon name="fire-alt" color="#fff" size={18}>
+              {"  "}開始訓練
+            </Icon>
+          </Button>
+          <Divider orientation="left">
+            <Text style={styles.titleText}>計畫</Text>
+          </Divider>
+          {days.map((day, index) => {
+            return (
+              <Button
+                type="ghost"
+                style={styles.plan}
+                key={index}
+                onPress={() => {
+                  navigation.navigate("Category");
+                }}
+              >
+                <Icon name="bolt" size={18}>
+                  {"  "}
+                  {day}
+                </Icon>
+              </Button>
+            );
+          })}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
