@@ -42,7 +42,7 @@ export default Workout = ({ navigation }) => {
           type="primary"
           style={styles.startButton}
           onPress={() => {
-            navigation.navigate("Category");
+            navigation.navigate("NFCReader");
           }}
         >
           <Icon name="fire-alt" color="#fff" size={18}>
@@ -54,7 +54,14 @@ export default Workout = ({ navigation }) => {
         </Divider>
         {days.map((day, index) => {
           return (
-            <Button type="ghost" style={styles.plan} key={index}>
+            <Button
+              type="ghost"
+              style={styles.plan}
+              key={index}
+              onPress={() => {
+                navigation.navigate("Category");
+              }}
+            >
               <Icon name="bolt" size={18}>
                 {"  "}
                 {day}
