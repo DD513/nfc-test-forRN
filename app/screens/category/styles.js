@@ -125,12 +125,18 @@ export default StyleSheet.create({
     height: 46,
   },
   timerText: {
-    width: 97,
-    ...layout.margin(0),
+    // position: "static", // not supported in RN
+    // width: 97, // can't show full time in RN
+    height: 46,
+    top: 0,
+    ...layout.margin(10, 0),
     fontFamily: "Roboto_500Medium",
     fontStyle: "normal",
+    // fontWeight: 500, // not supported in RN
     fontSize: 38,
     lineHeight: 46,
+    textAlign: "center",
+    color: "rgba(0, 0, 0, 0.85)",
   },
   minute: {
     width: 42.28,
