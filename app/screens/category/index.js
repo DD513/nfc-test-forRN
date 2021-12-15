@@ -8,10 +8,13 @@ function MyStopwatch() {
   const { seconds, minutes, hours, isRunning, start, pause, reset } =
     useStopwatch({ autoStart: true });
 
+  console.log("=== timer ===", seconds + minutes + hours + isRunning);
+
   return (
     <View style={{ textAlign: "center" }}>
       <Text>
-        {hours}:{minutes}:{seconds}
+        {minutes > 9 ? minutes : "0" + minutes}:
+        {seconds > 9 ? seconds : "0" + seconds}
       </Text>
       <Text>{isRunning ? "Running" : "Not running"}</Text>
       <Button onPress={start}>Start</Button>
