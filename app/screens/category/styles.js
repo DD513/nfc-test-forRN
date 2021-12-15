@@ -112,7 +112,13 @@ export default StyleSheet.create({
     textAlign: "center",
     // alignItems: "center",
     display: "flex",
-    justifyContent: "space-around",
+    justifyContent: "center",
+  },
+  timerStatus: {
+    textAlign: "center",
+    alignItems: "center",
+    display: "flex",
+    justifyContent: "center",
   },
   timerStatusButton: {
     width: 64,
@@ -156,7 +162,7 @@ export default StyleSheet.create({
     lineHeight: 24,
   },
   trainingButton: {
-    height: 40,
+    marginBottom: 8,
     fontFamily: "Roboto_500Medium",
     fontStyle: "normal",
     fontWeight: "bold",
