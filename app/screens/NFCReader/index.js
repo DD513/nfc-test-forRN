@@ -108,7 +108,8 @@ export default NFCReader = ({ navigation }) => {
   ];
 
   return (
-    <SafeAreaView>
+    // not required with existed header
+    // <SafeAreaView>
       <View style={styles.container}>
         <View
           style={{
@@ -134,6 +135,6 @@ export default NFCReader = ({ navigation }) => {
           })}
         </View>
       </View>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 };

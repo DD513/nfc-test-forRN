@@ -36,43 +36,44 @@ export default Workout = ({ navigation }) => {
     // "肌肥大漸進性增肌",
   ];
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.container}>
-          <Button
-            type="primary"
-            style={styles.startButton}
-            onPress={() => {
-              navigation.navigate("NFCReader");
-            }}
-          >
-            <Icon name="fire-alt" color="#fff" size={18}>
-              {"  "}開始訓練
-            </Icon>
-          </Button>
-          <Divider orientation="left">
-            <Text style={styles.titleText}>計畫</Text>
-          </Divider>
-          {days.map((day, index) => {
-            return (
-              <Button
-                type="ghost"
-                style={styles.plan}
-                key={index}
-                onPress={() => {
-                  navigation.navigate("Category");
-                }}
-              >
-                <Icon name="bolt" size={18}>
-                  {"  "}
-                  {day}
-                </Icon>
-              </Button>
-            );
-          })}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    //  conflicted with existed header
+    // <SafeAreaView>
+    <ScrollView>
+      <View style={styles.container}>
+        <Button
+          type="primary"
+          style={styles.startButton}
+          onPress={() => {
+            navigation.navigate("NFCReader");
+          }}
+        >
+          <Icon name="fire-alt" color="#fff" size={18}>
+            {"  "}開始訓練
+          </Icon>
+        </Button>
+        <Divider orientation="left">
+          <Text style={styles.titleText}>計畫</Text>
+        </Divider>
+        {days.map((day, index) => {
+          return (
+            <Button
+              type="ghost"
+              style={styles.plan}
+              key={index}
+              onPress={() => {
+                navigation.navigate("Category");
+              }}
+            >
+              <Icon name="bolt" size={18}>
+                {"  "}
+                {day}
+              </Icon>
+            </Button>
+          );
+        })}
+      </View>
+    </ScrollView>
+    // </SafeAreaView>
   );
 };
 
