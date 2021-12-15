@@ -54,7 +54,14 @@ export default Workout = ({ navigation }) => {
         </Divider>
         {days.map((day, index) => {
           return (
-            <Button type="ghost" style={styles.plan} key={index}>
+            <Button
+              type="ghost"
+              style={styles.plan}
+              key={index}
+              onPress={() => {
+                navigation.navigate("Category");
+              }}
+            >
               <Icon name="bolt" size={18}>
                 {"  "}
                 {day}
