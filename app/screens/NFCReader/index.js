@@ -4,8 +4,15 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import { Button, Flex } from "@ant-design/react-native";
 import { IconOutline } from "@ant-design/icons-react-native";
 import Logo from "../../../assets/NFC.svg";
+import Modal from "react-native-modal";
+
 export default NFCReader = ({ navigation }) => {
   const [tag, setTag] = useState("init");
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   // Pre-step, call this before any NFC operations
   async function initNfc() {
@@ -28,6 +35,7 @@ export default NFCReader = ({ navigation }) => {
           );
         }
       } else {
+        // toggleModal();
         let reqNdef = await NfcManager.requestTechnology(NfcTech.Ndef);
         if (reqNdef !== "Ndef") {
           throw new Error(
@@ -99,6 +107,22 @@ export default NFCReader = ({ navigation }) => {
       padding: 24,
       alignSelf: "center",
     },
+    content: {
+      backgroundColor: "white",
+      padding: 22,
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 4,
+      borderColor: "rgba(0, 0, 0, 0.1)",
+    },
+    contentTitle: {
+      fontSize: 20,
+      marginBottom: 12,
+    },
+    view: {
+      justifyContent: "flex-end",
+      margin: 0,
+    },
   });
 
   const links = [
@@ -121,6 +145,13 @@ export default NFCReader = ({ navigation }) => {
         <Button type="primary" onPress={() => readNdef()}>
           開啟感應
         </Button>
+        <Button onPress={toggleModal}>open</Button>
+        <Modal isVisible={isModalVisible} style={styles.view}>
+          <View style={styles.content}>
+            <Text style={styles.contentTitle}>Hi 👋!</Text>
+            <Button onPress={toggleModal}>取消</Button>
+          </View>
+        </Modal>
       </View>
       <View style={{ flex: 1 }}>
         {links.map((link, index) => {
