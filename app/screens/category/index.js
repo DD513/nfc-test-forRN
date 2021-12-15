@@ -1,12 +1,23 @@
-import React, { Component } from "react";
-import { StyleSheet, SafeAreaView, View, Text, ScrollView, Image, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import { useStopwatch } from "react-timer-hook";
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TextInput,
+} from "react-native";
 import styles from "./styles.js";
+import Fintesslogo from "../../../assets/fitnesslogo.svg";
+import Breaklogo from "../../../assets/break.svg";
 
 import {
   Button,
   Flex,
   Icon,
-  // IconFill, 
+  // IconFill,
   // IconOutline,
   InputItem,
   List,
@@ -17,6 +28,35 @@ import {
 } from "@ant-design/react-native";
 
 export default Category = ({ navigation }) => {
+  const [buttonKey, setbuttonKey] = useState("開始");
+  let [totalTime, setTotalTime] = useState(0);
+
+  // stopwatch
+  const { seconds, minutes, start, pause, reset } = useStopwatch({
+    autoStart: false,
+  });
+
+  const onPressStart = () => {
+    let restSec, fitnessSec;
+    switch (buttonKey) {
+      case "開始":
+        restSec = minutes * 60 + seconds;
+        setTotalTime(totalTime + restSec);
+
+        reset();
+        setbuttonKey("休息");
+        break;
+      case "休息":
+        fitnessSec = minutes * 60 + seconds;
+        setTotalTime(totalTime + fitnessSec);
+        reset();
+        setbuttonKey("開始");
+        break;
+      default:
+        break;
+    }
+    console.log("total", totalTime, "rest", restSec, "fintess", fitnessSec);
+  };
   const right = [
     {
       text: <Icon name="delete" style={styles.deleteButton} />,
@@ -129,25 +169,32 @@ export default Category = ({ navigation }) => {
             <View style={styles.timerBlock}>
               <View style={styles.rowContent}>
                 <Flex.Item style={styles.timerStatus}>
-                  <Image
-                    style={styles.timerStatusButton}
-                    /* rendering svg is different from web */
-                    // source={timerStatus === '運動時間' ? `${images.workout}` : `${images.break}`}
-                  />
+                  {buttonKey === "開始" ? (
+                    <Breaklogo width={64} height={64} />
+                  ) : (
+                    <Fintesslogo width={64} height={64} />
+                  )}
                 </Flex.Item>
 
-                <Flex justify="center" align="center" style={styles.timer}>
-                  <Text style={styles.timerText}>
-                    <Text style={styles.minute}>00</Text>
-                    <Text style={styles.semicolon}>:</Text>
-                    <Text style={styles.second}>00</Text>
+                <Flex justify="center" align="center">
+                  <Text style={styles.timer}>
+                    {minutes > 9 ? minutes : "0" + minutes}:
+                    {seconds > 9 ? seconds : "0" + seconds}
                   </Text>
                 </Flex>
 
                 <View style={styles.colContent}>
                   <Provider>
-                    <Button style={(styles.startButton, styles.trainingButton)}>
-                      開始/休息
+                    <Button
+                      type={buttonKey === "開始" ? "primary" : "warning"}
+                      style={
+                        buttonKey === "開始"
+                          ? styles.startButton
+                          : styles.trainingButton
+                      }
+                      onPress={onPressStart}
+                    >
+                      {buttonKey}
                     </Button>
                   </Provider>
                 </View>
@@ -199,5 +246,5 @@ export default Category = ({ navigation }) => {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
 // };
