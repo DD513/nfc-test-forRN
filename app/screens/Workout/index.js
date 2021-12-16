@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, SafeAreaView, View, Text, ScrollView } from "react-native";
 import Divider from "react-native-divider";
 import { Button } from "@ant-design/react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -13,6 +13,7 @@ export default Workout = ({ navigation }) => {
     "臀腿日",
     "胸背日",
     "肌肥大漸進性增肌",
+    // 重複放的原因：檢查 scroll view樣式效果
     "爆發力日",
     "肌力日",
     "上下分法",
@@ -36,6 +37,8 @@ export default Workout = ({ navigation }) => {
     "肌肥大漸進性增肌",
   ];
   return (
+    //  conflicted with existed header
+    // <SafeAreaView>
     <ScrollView>
       <View style={styles.container}>
         <Button
@@ -71,6 +74,7 @@ export default Workout = ({ navigation }) => {
         })}
       </View>
     </ScrollView>
+    // </SafeAreaView>
   );
 };
 

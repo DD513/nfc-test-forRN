@@ -4,6 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AppLoading } from "expo-app-loading";
+import { useFonts, Roboto_500Medium } from "@expo-google-fonts/roboto";
 
 import NFCReader from "./app/screens/NFCReader";
 import Category from "./app/screens/category";
@@ -52,6 +54,9 @@ export default function App() {
   const linking = {
     prefixes: ["https://fintess-coach.herokuapp.com"],
   };
+  const [fontsLoaded] = useFonts({
+    Roboto_500Medium,
+  });
 
   return (
     <NavigationContainer
