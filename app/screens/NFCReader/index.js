@@ -35,7 +35,7 @@ export default NFCReader = ({ navigation }) => {
           );
         }
       } else {
-        // toggleModal();
+        toggleModal();
         let reqNdef = await NfcManager.requestTechnology(NfcTech.Ndef);
         if (reqNdef !== "Ndef") {
           throw new Error(
@@ -145,7 +145,6 @@ export default NFCReader = ({ navigation }) => {
         <Button type="primary" onPress={() => readNdef()}>
           開啟感應
         </Button>
-        <Button onPress={toggleModal}>open</Button>
         <Modal isVisible={isModalVisible} style={styles.view}>
           <View style={styles.content}>
             <Text style={styles.contentTitle}>Hi 👋!</Text>
