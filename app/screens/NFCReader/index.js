@@ -11,6 +11,7 @@ export default NFCReader = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
+    NfcManager.cancelTechnologyRequest();
     setModalVisible(!isModalVisible);
   };
 
@@ -108,16 +109,24 @@ export default NFCReader = ({ navigation }) => {
       alignSelf: "center",
     },
     content: {
-      backgroundColor: "white",
-      padding: 22,
-      justifyContent: "center",
+      padding: 24,
       alignItems: "center",
-      borderRadius: 4,
-      borderColor: "rgba(0, 0, 0, 0.1)",
+      alignItems: "stretch",
+      backgroundColor: "#fff",
     },
     contentTitle: {
+      fontWeight: "bold",
       fontSize: 20,
-      marginBottom: 12,
+      margin: 24,
+      textAlign: "center",
+    },
+    contentDesc: {
+      fontSize: 14,
+      textAlign: "center",
+      margin: 24,
+    },
+    cancelButton: {
+      marginTop: 24,
     },
     view: {
       justifyContent: "flex-end",
@@ -147,8 +156,12 @@ export default NFCReader = ({ navigation }) => {
         </Button>
         <Modal isVisible={isModalVisible} style={styles.view}>
           <View style={styles.content}>
-            <Text style={styles.contentTitle}>Hi 👋!</Text>
-            <Button onPress={toggleModal}>取消</Button>
+            <Text style={styles.contentTitle}>可進行掃描</Text>
+            <Logo style={styles.nfc} />
+            <Text style={styles.contentDesc}>請靠近器材讀取 NFC TAG</Text>
+            <Button onPress={toggleModal} style={styles.cancelButton}>
+              取消
+            </Button>
           </View>
         </Modal>
       </View>
