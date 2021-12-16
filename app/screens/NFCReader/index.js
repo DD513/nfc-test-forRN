@@ -4,8 +4,16 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import { Button, Flex } from "@ant-design/react-native";
 import { IconOutline } from "@ant-design/icons-react-native";
 import Logo from "../../../assets/NFC.svg";
+import Modal from "react-native-modal";
+
 export default NFCReader = ({ navigation }) => {
   const [tag, setTag] = useState("init");
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    NfcManager.cancelTechnologyRequest();
+    setModalVisible(!isModalVisible);
+  };
 
   // Pre-step, call this before any NFC operations
   async function initNfc() {
@@ -28,6 +36,7 @@ export default NFCReader = ({ navigation }) => {
           );
         }
       } else {
+        toggleModal();
         let reqNdef = await NfcManager.requestTechnology(NfcTech.Ndef);
         if (reqNdef !== "Ndef") {
           throw new Error(
@@ -99,6 +108,30 @@ export default NFCReader = ({ navigation }) => {
       padding: 24,
       alignSelf: "center",
     },
+    content: {
+      padding: 24,
+      alignItems: "center",
+      alignItems: "stretch",
+      backgroundColor: "#fff",
+    },
+    contentTitle: {
+      fontWeight: "bold",
+      fontSize: 20,
+      margin: 24,
+      textAlign: "center",
+    },
+    contentDesc: {
+      fontSize: 14,
+      textAlign: "center",
+      margin: 24,
+    },
+    cancelButton: {
+      marginTop: 24,
+    },
+    view: {
+      justifyContent: "flex-end",
+      margin: 0,
+    },
   });
 
   const links = [
@@ -108,32 +141,29 @@ export default NFCReader = ({ navigation }) => {
   ];
 
   return (
-    // not required with existed header
-    // <SafeAreaView>
-      <View style={styles.container}>
-        <View
-          style={{
-            flex: 3,
-            justifyContent: "center",
-          }}
-        >
-          <Logo style={styles.nfc} />
-          <Text style={styles.title}>感應功能已就緒</Text>
-          <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
-          <Button type="primary" onPress={() => readNdef()}>
-            開啟感應
-          </Button>
-        </View>
-        <View style={{ flex: 1 }}>
-          {links.map((link, index) => {
-            return (
-              <Flex justify="center" style={styles.gap} key={index}>
-                <IconOutline name={link.icon} size={20} style={styles.icon} />
-                <Text style={styles.link}>{link.title}</Text>
-              </Flex>
-            );
-          })}
-        </View>
+    <View style={styles.container}>
+      <View
+        style={{
+          flex: 3,
+          justifyContent: "center",
+        }}
+      >
+        <Logo style={styles.nfc} />
+        <Text style={styles.title}>感應功能已就緒</Text>
+        <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
+        <Button type="primary" onPress={() => readNdef()}>
+          開啟感應
+        </Button>
+        <Modal isVisible={isModalVisible} style={styles.view}>
+          <View style={styles.content}>
+            <Text style={styles.contentTitle}>可進行掃描</Text>
+            <Logo style={styles.nfc} />
+            <Text style={styles.contentDesc}>請靠近器材讀取 NFC TAG</Text>
+            <Button onPress={toggleModal} style={styles.cancelButton}>
+              取消
+            </Button>
+          </View>
+        </Modal>
       </View>
     // </SafeAreaView>
   );
