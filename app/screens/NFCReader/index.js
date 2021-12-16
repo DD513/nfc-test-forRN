@@ -165,6 +165,6 @@ export default NFCReader = ({ navigation }) => {
           </View>
         </Modal>
       </View>
-    // </SafeAreaView>
+    </View>
   );
 };
