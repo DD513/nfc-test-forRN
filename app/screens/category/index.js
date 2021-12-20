@@ -12,6 +12,7 @@ import {
 import styles from "./styles.js";
 import Fintesslogo from "../../../assets/workout.svg";
 import Breaklogo from "../../../assets/break.svg";
+import _ from "lodash";
 
 import {
   Button,
@@ -35,6 +36,25 @@ export default Category = ({ navigation }) => {
   const { seconds, minutes, start, pause, reset } = useStopwatch({
     autoStart: false,
   });
+
+  // 後端假資料
+  const res = {
+    id: 1,
+    category: "肩推",
+    model: "MATRIX G7-S23",
+    name: "Ultra 合式肩推訓練機",
+    location: "Mono Gym - Taichung",
+    menu: [
+      {
+        kg: 30,
+        reps: 12,
+      },
+    ],
+    video_url: "https://www.youtube.com/embed/uIJjC7zjJYc",
+  };
+
+  const { category, location, model, menu } = res;
+  const renderData = menu;
 
   const onPressStart = () => {
     let restSec, fitnessSec;
@@ -77,7 +97,9 @@ export default Category = ({ navigation }) => {
       <ScrollView>
         <View style={styles.divBlock}>
           <Flex justify="between" align="center" style={styles.titleFrame}>
-            <Text style={styles.categoryInfo}>器材名稱</Text>
+            <Text style={styles.categoryInfo}>
+              {category !== "" ? category : "類別"}
+            </Text>
             <Flex style={styles.categoryIcons} justify="between">
               <Icon
                 style={styles.categoryIcon}
@@ -121,48 +143,51 @@ export default Category = ({ navigation }) => {
               </Flex>
             </Flex>
             <ScrollView style={styles.randerBlock}>
-              {/* {_.map(renderData, (item, index) => ( */}
-              <SwipeAction
-                autoClose
-                style={styles.swipeAction}
-                right={right}
-                onOpen={() => console.log("open")}
-                onClose={() => console.log("close")}
-              >
-                <Flex
-                  justify="between"
-                  align="center"
-                  direction="row"
-                  style={styles.categoryInputRow}
+              {_.map(renderData, (item, index) => (
+                <SwipeAction
+                  key={index}
+                  autoClose
+                  style={styles.swipeAction}
+                  right={right}
+                  onOpen={() => console.log("open")}
+                  onClose={() => console.log("close")}
                 >
-                  <View>
-                    <Button
-                      style={styles.categoryInputButton}
-                      type="ghost"
-                      shape="circle"
-                    >
-                      {/* {++index} */}
-                    </Button>
-                  </View>
-                  {/* {this.changeRenderKg(index)}
+                  <Flex
+                    justify="between"
+                    align="center"
+                    direction="row"
+                    style={styles.categoryInputRow}
+                  >
+                    <View>
+                      <Button
+                        style={styles.categoryInputButton}
+                        type="ghost"
+                        shape="circle"
+                      >
+                        {++index}
+                      </Button>
+                    </View>
+                    {/* {this.changeRenderKg(index)}
                   {this.changeRenderReps(index)} */}
-                  <View>
-                    <TextInput
-                      style={styles.categoryInputButtonItem}
-                      // value={this.state.number}
-                      keyboardType="numeric"
-                    />
-                  </View>
-                  <View>
-                    <TextInput
-                      style={styles.categoryInputButtonItem}
-                      // value={this.state.number}
-                      keyboardType="numeric"
-                    />
-                  </View>
-                </Flex>
-              </SwipeAction>
-              {/* ))} */}
+                    <View>
+                      <TextInput
+                        key={`kg${index}`}
+                        style={styles.categoryInputButtonItem}
+                        value={item.kg.toString()}
+                        keyboardType="numeric" // 更改這個只是增加使用者體驗，要使用toString讓他變成自串
+                      />
+                    </View>
+                    <View>
+                      <TextInput
+                        key={`reps${index}`}
+                        style={styles.categoryInputButtonItem}
+                        value={item.reps.toString()}
+                        keyboardType="numeric"
+                      />
+                    </View>
+                  </Flex>
+                </SwipeAction>
+              ))}
             </ScrollView>
             <DropShadow style={styles.timerBlockShadow}>
               <View style={styles.timerBlock}>
@@ -207,7 +232,9 @@ export default Category = ({ navigation }) => {
                         name="aim"
                         size={14}
                       />
-                      <Text style={styles.equipmentInfoName}>地點</Text>
+                      <Text style={styles.equipmentInfoName}>
+                        {location !== "" ? location : "地點"}
+                      </Text>
                     </Flex>
                     <Flex
                       style={(styles.equipmentInfoColContent, { marginTop: 8 })}
@@ -219,7 +246,9 @@ export default Category = ({ navigation }) => {
                         name="barcode"
                         size={14}
                       />
-                      <Text style={styles.equipmentInfoName}>器材</Text>
+                      <Text style={styles.equipmentInfoName}>
+                        {model !== "" ? model : "器材"}
+                      </Text>
                     </Flex>
                   </View>
 
