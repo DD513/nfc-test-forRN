@@ -232,7 +232,12 @@ export default Category = ({ navigation }) => {
               </View>
             </DropShadow>
           </View>
-          <VideoModal visible={videoModal} setVideoModal={setVideoModal} />
+          <VideoModal
+            visible={videoModal}
+            setVideoModal={setVideoModal}
+            videoId={"qiYAjdOW2t4"}
+            title={'肩推'}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
