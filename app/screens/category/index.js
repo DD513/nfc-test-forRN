@@ -20,18 +20,16 @@ import {
   InputItem,
   List,
   SwipeAction,
-  Provider,
   WingBlank,
   Modal,
 } from "@ant-design/react-native";
-
+import VideoModal from "./videoModal";
 import DropShadow from "react-native-drop-shadow";
 
 export default Category = ({ navigation }) => {
-
+  const [videoModal, setVideoModal] = useState(true);
   const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
-
 
   // stopwatch
   const { seconds, minutes, start, pause, reset } = useStopwatch({
@@ -92,6 +90,7 @@ export default Category = ({ navigation }) => {
                 size={36}
                 color="#1890FF"
                 name="play-circle"
+                onPress={() => setVideoModal(true)}
               />
             </Flex>
           </Flex>
@@ -185,17 +184,15 @@ export default Category = ({ navigation }) => {
                   </Flex>
 
                   <View style={styles.colContent}>
-                    <Provider>
-                      <DropShadow styles={styles.startButtonShadow}>
-                        <Button
-                          type={buttonKey === "開始" ? "primary" : "warning"}
-                          style={styles.trainingButton}
-                          onPress={onPressStart}
-                        >
-                          {buttonKey}
-                        </Button>
-                      </DropShadow>
-                    </Provider>
+                    <DropShadow styles={styles.startButtonShadow}>
+                      <Button
+                        type={buttonKey === "開始" ? "primary" : "warning"}
+                        style={styles.trainingButton}
+                        onPress={onPressStart}
+                      >
+                        {buttonKey}
+                      </Button>
+                    </DropShadow>
                   </View>
 
                   <View style={(styles.rowContent, styles.equipmentInfo)}>
@@ -252,7 +249,16 @@ export default Category = ({ navigation }) => {
               </View>
             </DropShadow>
           </View>
-          {/* <Modal></Modal> */}
+          <Modal
+            title="Ultra 複合式肩推訓練機"
+            transparent
+            onClose={() => setVideoModal(false)}
+            maskClosable
+            visible={videoModal}
+            closable
+          >
+            <VideoModal />
+          </Modal>
         </View>
       </ScrollView>
     </SafeAreaView>

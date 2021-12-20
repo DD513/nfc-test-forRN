@@ -4,8 +4,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AppLoading } from "expo-app-loading";
-import { useFonts, Roboto_500Medium, Roboto_700Bold } from "@expo-google-fonts/roboto";
+
+import { Provider } from "@ant-design/react-native";
+import {
+  useFonts,
+  Roboto_500Medium,
+  Roboto_700Bold,
+} from "@expo-google-fonts/roboto";
 
 import NFCReader from "./app/screens/NFCReader";
 import Category from "./app/screens/category";
@@ -55,36 +60,39 @@ export default function App() {
     prefixes: ["https://fintess-coach.herokuapp.com"],
   };
   const [fontsLoaded] = useFonts({
-    Roboto_500Medium, Roboto_700Bold
+    Roboto_500Medium,
+    Roboto_700Bold,
   });
 
   return (
-    <NavigationContainer
-      linking={linking}
-      fallback={<Text>Loading...</Text>}
-      ref={navigationRef}
-    >
-      <Stack.Navigator initialRouteName="Root">
-        <Stack.Screen
-          name="NFCReader"
-          component={NFCReader}
-          options={({ navigation }) => ({
-            title: "NFC 感應",
-            headerTitleAlign: "center",
-            headerLeft: () => (
-              <Icon
-                name="arrow-left"
-                color="#000"
-                onPress={navigation.goBack}
-              />
-            ),
-          })}
-        />
-        <Stack.Group screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Root" component={Root} />
-          <Stack.Screen name="Category" component={Category} />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider>
+      <NavigationContainer
+        linking={linking}
+        fallback={<Text>Loading...</Text>}
+        ref={navigationRef}
+      >
+        <Stack.Navigator initialRouteName="Root">
+          <Stack.Screen
+            name="NFCReader"
+            component={NFCReader}
+            options={({ navigation }) => ({
+              title: "NFC 感應",
+              headerTitleAlign: "center",
+              headerLeft: () => (
+                <Icon
+                  name="arrow-left"
+                  color="#000"
+                  onPress={navigation.goBack}
+                />
+              ),
+            })}
+          />
+          <Stack.Group screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Root" component={Root} />
+            <Stack.Screen name="Category" component={Category} />
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
