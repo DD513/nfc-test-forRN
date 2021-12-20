@@ -1,28 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useStopwatch } from "react-timer-hook";
-import {
-  StyleSheet,
-  SafeAreaView,
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TextInput,
-} from "react-native";
+import { SafeAreaView, View, Text, ScrollView, TextInput } from "react-native";
 import styles from "./styles.js";
 import FitnessIcon from "../../../assets/workout.svg";
 import BreakIcon from "../../../assets/break.svg";
 
-import {
-  Button,
-  Flex,
-  Icon,
-  InputItem,
-  List,
-  SwipeAction,
-  WingBlank,
-  Modal,
-} from "@ant-design/react-native";
+import { Button, Flex, Icon, SwipeAction } from "@ant-design/react-native";
 import VideoModal from "./videoModal";
 import DropShadow from "react-native-drop-shadow";
 
@@ -249,16 +232,7 @@ export default Category = ({ navigation }) => {
               </View>
             </DropShadow>
           </View>
-          <Modal
-            title="Ultra 複合式肩推訓練機"
-            transparent
-            onClose={() => setVideoModal(false)}
-            maskClosable
-            visible={videoModal}
-            closable
-          >
-            <VideoModal />
-          </Modal>
+          <VideoModal visible={videoModal} setVideoModal={setVideoModal} />
         </View>
       </ScrollView>
     </SafeAreaView>
