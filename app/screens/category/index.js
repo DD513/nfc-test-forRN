@@ -10,8 +10,8 @@ import {
   TextInput,
 } from "react-native";
 import styles from "./styles.js";
-import Fintesslogo from "../../../assets/workout.svg";
-import Breaklogo from "../../../assets/break.svg";
+import FitnessIcon from "../../../assets/workout.svg";
+import BreakIcon from "../../../assets/break.svg";
 
 import {
   Button,
@@ -28,8 +28,10 @@ import {
 import DropShadow from "react-native-drop-shadow";
 
 export default Category = ({ navigation }) => {
-  const [buttonKey, setbuttonKey] = useState("開始");
+
+  const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
+
 
   // stopwatch
   const { seconds, minutes, start, pause, reset } = useStopwatch({
@@ -44,13 +46,13 @@ export default Category = ({ navigation }) => {
         setTotalTime(totalTime + restSec);
 
         reset();
-        setbuttonKey("休息");
+        setButtonKey("休息");
         break;
       case "休息":
         fitnessSec = minutes * 60 + seconds;
         setTotalTime(totalTime + fitnessSec);
         reset();
-        setbuttonKey("開始");
+        setButtonKey("開始");
         break;
       default:
         break;
@@ -169,9 +171,9 @@ export default Category = ({ navigation }) => {
                 <View style={styles.rowContent}>
                   <Flex.Item style={styles.timerStatus}>
                     {buttonKey === "開始" ? (
-                      <Breaklogo width={64} height={64} />
+                      <BreakIcon width={64} height={64} />
                     ) : (
-                      <Fintesslogo width={64} height={64} />
+                      <FitnessIcon width={64} height={64} />
                     )}
                   </Flex.Item>
 
