@@ -31,6 +31,8 @@ import DropShadow from "react-native-drop-shadow";
 export default Category = ({ navigation }) => {
   const [buttonKey, setbuttonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
+  let [newKg, setNewKg] = useState(30);
+  let [newReps, setNewReps] = useState(12);
 
   // stopwatch
   const { seconds, minutes, start, pause, reset } = useStopwatch({
@@ -54,7 +56,8 @@ export default Category = ({ navigation }) => {
   };
 
   const { category, location, model, menu } = res;
-  const renderData = menu;
+  let [renderData, setRenderData] = useState(menu);
+  let [allData, setAllData] = useState([]);
 
   const onPressStart = () => {
     let restSec, fitnessSec;
@@ -62,13 +65,29 @@ export default Category = ({ navigation }) => {
       case "開始":
         restSec = minutes * 60 + seconds;
         setTotalTime(totalTime + restSec);
-
         reset();
         setbuttonKey("休息");
         break;
       case "休息":
         fitnessSec = minutes * 60 + seconds;
         setTotalTime(totalTime + fitnessSec);
+        setRenderData((renderData) => [
+          ...renderData,
+          {
+            kg: newKg,
+            reps: newReps,
+          },
+        ]);
+        setAllData((allData) => [
+          ...allData,
+          {
+            kg: newKg,
+            reps: newReps,
+            totalTime: totalTime,
+          },
+        ]);
+
+        console.log("aaa", allData);
         reset();
         setbuttonKey("開始");
         break;
@@ -77,12 +96,15 @@ export default Category = ({ navigation }) => {
     }
     console.log("total", totalTime, "rest", restSec, "fintess", fitnessSec);
   };
-  const right = [
-    {
-      text: <Icon name="delete" style={styles.deleteButton} />,
-      onPress: () => console.log("delete"),
-    },
-  ];
+
+  // const right = [
+  //   {
+  //     text: <Icon name="delete" style={styles.deleteButton} />,
+  //     onPress: () => {
+  //       setRenderData
+  //     },
+  //   },
+  // ];
 
   /* bug happened! */
   // // // To avoid rendering text before the font is loaded, install the expo-app-loading package to use the <AppLoading /> component: https://stackoverflow.com/questions/33971221/google-fonts-in-react-native
@@ -148,7 +170,14 @@ export default Category = ({ navigation }) => {
                   key={index}
                   autoClose
                   style={styles.swipeAction}
-                  right={right}
+                  right={[
+                    {
+                      text: <Icon name="delete" style={styles.deleteButton} />,
+                      onPress: () => {
+                        console.log("delete", index, renderData[index]);
+                      },
+                    },
+                  ]}
                   onOpen={() => console.log("open")}
                   onClose={() => console.log("close")}
                 >
@@ -173,15 +202,17 @@ export default Category = ({ navigation }) => {
                       <TextInput
                         key={`kg${index}`}
                         style={styles.categoryInputButtonItem}
-                        value={item.kg.toString()}
+                        onChangeText={setNewKg}
+                        defaultValue={item.kg.toString()}
                         keyboardType="numeric" // 更改這個只是增加使用者體驗，要使用toString讓他變成自串
                       />
                     </View>
                     <View>
                       <TextInput
                         key={`reps${index}`}
+                        onChangeText={setNewReps}
                         style={styles.categoryInputButtonItem}
-                        value={item.reps.toString()}
+                        defaultValue={item.reps.toString()}
                         keyboardType="numeric"
                       />
                     </View>

@@ -90,8 +90,8 @@ export default StyleSheet.create({
     ...layout.padding(8, 24),
   },
   categoryInputButton: {
-    width: 40,
-    height: 40,
+    width: 45,
+    height: 45,
     borderRadius: 100,
   },
   categoryInputButtonItem: {
