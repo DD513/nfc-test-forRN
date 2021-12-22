@@ -102,6 +102,16 @@ export default StyleSheet.create({
     borderColor: "#D9D9D9",
     borderRadius: 2,
   },
+  categoryInputButtonItemDisabled: {
+    textAlign: "center",
+    width: 50,
+    height: 40,
+    borderWidth: 1,
+    borderColor: "#D9D9D9",
+    borderRadius: 2,
+    backgroundColor: "#F5F5F5",
+    color: "rgba(0, 0, 0, 0.25)",
+  },
   timerBlockShadow: {
     /* Different from web:
     boxShadow: "0px -10px 10px rgba(0, 0, 0, 0.05)", */
