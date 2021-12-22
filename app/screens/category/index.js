@@ -24,6 +24,7 @@ import {
   Provider,
   WingBlank,
   Modal,
+  Toast,
 } from "@ant-design/react-native";
 
 import DropShadow from "react-native-drop-shadow";
@@ -118,6 +119,11 @@ export default Category = ({ navigation }) => {
   deleteRenderData = (index) => {
     renderData.splice(index - 1, 1);
     allData.splice(index - 1, 1);
+    Toast.success({
+      content: `第${index}筆紀錄已刪除`,
+      stackable: false,
+      duration: 1,
+    });
     console.log("56", renderData, "分隔線", allData);
   };
 
