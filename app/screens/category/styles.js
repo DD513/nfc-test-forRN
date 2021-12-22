@@ -32,6 +32,7 @@ export default StyleSheet.create({
   },
   categoryList: {
     backgroundColor: "#ffffff",
+    height: screenHeight - 78 - 354,
   },
   categoryDynamic: {
     ...layout.padding(8, 24),
@@ -73,7 +74,7 @@ export default StyleSheet.create({
     color: "rgba(0, 0, 0, 0.45)",
   },
   randerBlock: {
-    height: screenHeight - 472,
+    height: screenHeight - 78 - 354 - 40,
     backgroundColor: "#fff",
     // overflow: "auto", // conflict with RN
   },
@@ -115,8 +116,7 @@ export default StyleSheet.create({
   },
   timerBlock: {
     backgroundColor: "#ffffff",
-    left: 0,
-    bottom: 0,
+    // position: "fixed", // not available in RN
     width: "100%",
     // height: 354, // break layout in RN
     ...layout.padding(16),
@@ -147,7 +147,6 @@ export default StyleSheet.create({
     // position: "static", // not supported in RN
     // width: 97, // can't show full time in RN
     height: 46,
-    top: 0,
     ...layout.margin(10, 0),
     fontFamily: "Roboto_500Medium",
     fontStyle: "normal",
