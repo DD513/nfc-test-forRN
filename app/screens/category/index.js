@@ -33,6 +33,9 @@ export default Category = ({ navigation }) => {
   let [totalTime, setTotalTime] = useState(0);
   let [newKg, setNewKg] = useState(30);
   let [newReps, setNewReps] = useState(12);
+  const [disabled, setDisabled] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  let [deleteSets, setDeleteSets] = useState(null);
 
   // stopwatch
   const { seconds, minutes, start, pause, reset } = useStopwatch({
@@ -94,17 +97,33 @@ export default Category = ({ navigation }) => {
       default:
         break;
     }
-    console.log("total", totalTime, "rest", restSec, "fintess", fitnessSec);
   };
 
-  // const right = [
-  //   {
-  //     text: <Icon name="delete" style={styles.deleteButton} />,
-  //     onPress: () => {
-  //       setRenderData
-  //     },
-  //   },
-  // ];
+  changeRenderKg = (index) => {
+    if (renderData.length === index) {
+      renderData[index - 1].kg = newKg;
+    }
+  };
+  changeRenderReps = (index) => {
+    if (renderData.length === index) {
+      renderData[index - 1].reps = newReps;
+    }
+  };
+
+  deleteModalClick = (index) => {
+    setDeleteSets(index);
+    setDeleteModal(true);
+  };
+
+  deleteRenderData = (index) => {
+    renderData.splice(index - 1, 1);
+    allData.splice(index - 1, 1);
+    console.log("56", renderData, "分隔線", allData);
+  };
+
+  deleteModalOnClose = () => {
+    setDeleteModal(false);
+  };
 
   /* bug happened! */
   // // // To avoid rendering text before the font is loaded, install the expo-app-loading package to use the <AppLoading /> component: https://stackoverflow.com/questions/33971221/google-fonts-in-react-native
@@ -174,7 +193,7 @@ export default Category = ({ navigation }) => {
                     {
                       text: <Icon name="delete" style={styles.deleteButton} />,
                       onPress: () => {
-                        console.log("delete", index, renderData[index]);
+                        deleteModalClick(index);
                       },
                     },
                   ]}
@@ -196,14 +215,24 @@ export default Category = ({ navigation }) => {
                         {++index}
                       </Button>
                     </View>
-                    {/* {this.changeRenderKg(index)}
-                  {this.changeRenderReps(index)} */}
+                    {changeRenderKg(index)}
+                    {changeRenderReps(index)}
                     <View>
                       <TextInput
                         key={`kg${index}`}
-                        style={styles.categoryInputButtonItem}
+                        style={
+                          renderData.length === index
+                            ? styles.categoryInputButtonItem
+                            : styles.categoryInputButtonItemDisabled
+                        }
                         onChangeText={setNewKg}
                         defaultValue={item.kg.toString()}
+                        editable={
+                          renderData.length === index ? !disabled : disabled
+                        }
+                        selectTextOnFocus={
+                          renderData.length === index ? !disabled : disabled
+                        }
                         keyboardType="numeric" // 更改這個只是增加使用者體驗，要使用toString讓他變成自串
                       />
                     </View>
@@ -211,8 +240,18 @@ export default Category = ({ navigation }) => {
                       <TextInput
                         key={`reps${index}`}
                         onChangeText={setNewReps}
-                        style={styles.categoryInputButtonItem}
+                        style={
+                          renderData.length === index
+                            ? styles.categoryInputButtonItem
+                            : styles.categoryInputButtonItemDisabled
+                        }
                         defaultValue={item.reps.toString()}
+                        editable={
+                          renderData.length === index ? !disabled : disabled
+                        }
+                        selectTextOnFocus={
+                          renderData.length === index ? !disabled : disabled
+                        }
                         keyboardType="numeric"
                       />
                     </View>
@@ -310,7 +349,25 @@ export default Category = ({ navigation }) => {
               </View>
             </DropShadow>
           </View>
-          {/* <Modal></Modal> */}
+          <Provider>
+            <Modal
+              title={`確定要刪除第${deleteSets}筆紀錄嗎？`}
+              transparent
+              onClose={deleteModalOnClose}
+              maskClosable
+              visible={deleteModal}
+              footer={[
+                { text: "Cancel", onPress: () => deleteModalOnClose },
+                { text: "Ok", onPress: () => deleteRenderData(deleteSets) },
+              ]}
+            >
+              <View style={{ paddingVertical: 20 }}>
+                <Text style={{ textAlign: "center" }}>
+                  注意！刪除後無法回覆紀錄
+                </Text>
+              </View>
+            </Modal>
+          </Provider>
         </View>
       </ScrollView>
     </SafeAreaView>
