@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useStopwatch } from "react-timer-hook";
-import {
-  StyleSheet,
-  SafeAreaView,
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TextInput,
-} from "react-native";
+import { SafeAreaView, View, Text, ScrollView, TextInput } from "react-native";
 import styles from "./styles.js";
-import Fintesslogo from "../../../assets/workout.svg";
-import Breaklogo from "../../../assets/break.svg";
+import FitnessIcon from "../../../assets/workout.svg";
+import BreakIcon from "../../../assets/break.svg";
 import _ from "lodash";
-
 import {
   Button,
   Flex,
@@ -27,10 +18,13 @@ import {
   Toast,
 } from "@ant-design/react-native";
 
+import { Button, Flex, Icon, SwipeAction } from "@ant-design/react-native";
+import VideoModal from "./videoModal";
 import DropShadow from "react-native-drop-shadow";
 
 export default Category = ({ navigation }) => {
-  const [buttonKey, setbuttonKey] = useState("開始");
+  const [videoModal, setVideoModal] = useState(true);
+  const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
   let [newKg, setNewKg] = useState(30);
   let [newReps, setNewReps] = useState(12);
@@ -70,7 +64,7 @@ export default Category = ({ navigation }) => {
         restSec = minutes * 60 + seconds;
         setTotalTime(totalTime + restSec);
         reset();
-        setbuttonKey("休息");
+        setButtonKey("休息");
         break;
       case "休息":
         fitnessSec = minutes * 60 + seconds;
@@ -93,7 +87,7 @@ export default Category = ({ navigation }) => {
 
         console.log("aaa", allData);
         reset();
-        setbuttonKey("開始");
+        setButtonKey("開始");
         break;
       default:
         break;
@@ -159,6 +153,7 @@ export default Category = ({ navigation }) => {
                 size={36}
                 color="#1890FF"
                 name="play-circle"
+                onPress={() => setVideoModal(true)}
               />
             </Flex>
           </Flex>
@@ -270,9 +265,9 @@ export default Category = ({ navigation }) => {
                 <View style={styles.rowContent}>
                   <Flex.Item style={styles.timerStatus}>
                     {buttonKey === "開始" ? (
-                      <Breaklogo width={64} height={64} />
+                      <BreakIcon width={64} height={64} />
                     ) : (
-                      <Fintesslogo width={64} height={64} />
+                      <FitnessIcon width={64} height={64} />
                     )}
                   </Flex.Item>
 
@@ -284,17 +279,15 @@ export default Category = ({ navigation }) => {
                   </Flex>
 
                   <View style={styles.colContent}>
-                    <Provider>
-                      <DropShadow styles={styles.startButtonShadow}>
-                        <Button
-                          type={buttonKey === "開始" ? "primary" : "warning"}
-                          style={styles.trainingButton}
-                          onPress={onPressStart}
-                        >
-                          {buttonKey}
-                        </Button>
-                      </DropShadow>
-                    </Provider>
+                    <DropShadow styles={styles.startButtonShadow}>
+                      <Button
+                        type={buttonKey === "開始" ? "primary" : "warning"}
+                        style={styles.trainingButton}
+                        onPress={onPressStart}
+                      >
+                        {buttonKey}
+                      </Button>
+                    </DropShadow>
                   </View>
 
                   <View style={(styles.rowContent, styles.equipmentInfo)}>
@@ -355,6 +348,12 @@ export default Category = ({ navigation }) => {
               </View>
             </DropShadow>
           </View>
+          <VideoModal
+            visible={videoModal}
+            setVideoModal={setVideoModal}
+            videoId={"qiYAjdOW2t4"}
+            title={'肩推'}
+          />
           <Provider>
             <Modal
               title={`確定要刪除第${deleteSets}筆紀錄嗎？`}

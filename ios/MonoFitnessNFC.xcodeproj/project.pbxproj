@@ -10,34 +10,34 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		174D9CF2D2034CE19342F9B0 /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCA89D7B13824CEC82A0A9A5 /* antoutline.ttf */; };
-		2F0929EF4D074C198B1D8A9B /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A015F282140417C8EF585B4 /* antfill.ttf */; };
+		2236C0A3ABFF4AE28810CD53 /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F702951023443F4AD6CD7B9 /* antoutline.ttf */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		6FB5B24B43B343C392C0126C /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498A65DA7206433085900E4F /* noop-file.swift */; };
+		924E8988442A4F62A59A1D54 /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDA3920048C442F3B619C06F /* antfill.ttf */; };
 		96905EF65AED1B983A6B3ABC /* libPods-MonoFitnessNFC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-MonoFitnessNFC.a */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
+		B61F7D4E4AC64AF7B3007ADE /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF40402D763B4C98AD21BDA3 /* noop-file.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		0505117719AE4B3C9041E64C /* MonoFitnessNFC-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "MonoFitnessNFC-Bridging-Header.h"; path = "MonoFitnessNFC/MonoFitnessNFC-Bridging-Header.h"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MonoFitnessNFC/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MonoFitnessNFC/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MonoFitnessNFC/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MonoFitnessNFC/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MonoFitnessNFC/main.m; sourceTree = "<group>"; };
-		1A015F282140417C8EF585B4 /* antfill.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antfill.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; };
-		498A65DA7206433085900E4F /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "MonoFitnessNFC/noop-file.swift"; sourceTree = "<group>"; };
+		2F702951023443F4AD6CD7B9 /* antoutline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antoutline.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-MonoFitnessNFC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MonoFitnessNFC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-MonoFitnessNFC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoFitnessNFC.debug.xcconfig"; path = "Target Support Files/Pods-MonoFitnessNFC/Pods-MonoFitnessNFC.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-MonoFitnessNFC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MonoFitnessNFC.release.xcconfig"; path = "Target Support Files/Pods-MonoFitnessNFC/Pods-MonoFitnessNFC.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = MonoFitnessNFC/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		CF7E78C995274895918885DE /* MonoFitnessNFC-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "MonoFitnessNFC-Bridging-Header.h"; path = "MonoFitnessNFC/MonoFitnessNFC-Bridging-Header.h"; sourceTree = "<group>"; };
+		BF40402D763B4C98AD21BDA3 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "MonoFitnessNFC/noop-file.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EDA3920048C442F3B619C06F /* antfill.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antfill.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-MonoFitnessNFC/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		FCA89D7B13824CEC82A0A9A5 /* antoutline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = antoutline.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +63,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				498A65DA7206433085900E4F /* noop-file.swift */,
-				CF7E78C995274895918885DE /* MonoFitnessNFC-Bridging-Header.h */,
+				BF40402D763B4C98AD21BDA3 /* noop-file.swift */,
+				0505117719AE4B3C9041E64C /* MonoFitnessNFC-Bridging-Header.h */,
 			);
 			name = MonoFitnessNFC;
 			sourceTree = "<group>";
@@ -94,7 +94,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
-				B0F6E8E4B42342D8BEA04915 /* Resources */,
+				A5FBDE28CD9649A59C531F78 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -117,11 +117,11 @@
 			name = MonoFitnessNFC;
 			sourceTree = "<group>";
 		};
-		B0F6E8E4B42342D8BEA04915 /* Resources */ = {
+		A5FBDE28CD9649A59C531F78 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1A015F282140417C8EF585B4 /* antfill.ttf */,
-				FCA89D7B13824CEC82A0A9A5 /* antoutline.ttf */,
+				EDA3920048C442F3B619C06F /* antfill.ttf */,
+				2F702951023443F4AD6CD7B9 /* antoutline.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -216,8 +216,8 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				2F0929EF4D074C198B1D8A9B /* antfill.ttf in Resources */,
-				174D9CF2D2034CE19342F9B0 /* antoutline.ttf in Resources */,
+				924E8988442A4F62A59A1D54 /* antfill.ttf in Resources */,
+				2236C0A3ABFF4AE28810CD53 /* antoutline.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +343,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				6FB5B24B43B343C392C0126C /* noop-file.swift in Sources */,
+				B61F7D4E4AC64AF7B3007ADE /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
