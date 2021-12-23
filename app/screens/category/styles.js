@@ -90,8 +90,8 @@ export default StyleSheet.create({
     ...layout.padding(8, 24),
   },
   categoryInputButton: {
-    width: 40,
-    height: 40,
+    width: 45,
+    height: 45,
     borderRadius: 100,
   },
   categoryInputButtonItem: {
@@ -101,6 +101,16 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: "#D9D9D9",
     borderRadius: 2,
+  },
+  categoryInputButtonItemDisabled: {
+    textAlign: "center",
+    width: 50,
+    height: 40,
+    borderWidth: 1,
+    borderColor: "#D9D9D9",
+    borderRadius: 2,
+    backgroundColor: "#F5F5F5",
+    color: "rgba(0, 0, 0, 0.25)",
   },
   timerBlockShadow: {
     /* Different from web:
