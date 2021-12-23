@@ -42,10 +42,21 @@ function Root() {
             name={tab.name}
             component={tab.component}
             options={{
+              headerTitleStyle: {
+                width: 211,
+                height: 28,
+                fontFamily: "Roboto_500Medium",
+                fontStyle: "normal",
+                fontWeight: "normal",
+                fontSize: 20,
+                lineHeight: 28,
+                alignItems: "center",
+                textAlign: "center",
+              },
               headerTitleAlign: "center",
               tabBarLabel: tab.name,
               tabBarIcon: ({ color, size }) => (
-                <Icon name={tab.icon} color={color} size={size} />
+                <Icon name={tab.icon} color={color} size={14} />
               ),
             }}
           />
@@ -77,11 +88,17 @@ export default function App() {
             component={NFCReader}
             options={({ navigation }) => ({
               title: "NFC 感應",
+            headerTitleStyle: {
+              fontFamily: "Roboto_500Medium",
+              fontStyle: "normal",
+              fontSize: 20,
+              lineHeight: 28,
+            },
               headerTitleAlign: "center",
               headerLeft: () => (
                 <Icon
                   name="arrow-left"
-                  color="#000"
+                  color="rgba(0, 0, 0, 0.85)"
                   onPress={navigation.goBack}
                 />
               ),

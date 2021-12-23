@@ -76,13 +76,28 @@ export default NFCReader = ({ navigation }) => {
   const styles = StyleSheet.create({
     title: {
       textAlign: "center",
-      fontSize: 24,
+      fontFamily: "Roboto_500Medium",
+      fontStyle: "normal",
+      fontSize: 20,
+      lineHeight: 28,
+      color: "rgba(0, 0, 0, 0.85)",
     },
     desc: {
       margin: 16,
       textAlign: "center",
+      fontFamily: "Roboto_500Medium",
+      fontStyle: "normal",
+      fontSize: 14,
       lineHeight: 22,
       color: "rgba(0, 0, 0, 0.45)",
+    },
+    buttonText: {
+      fontFamily: "Roboto_700Bold",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: 16,
+      lineHeight: 24,
+      textAlign: "center",
     },
     link: {
       textAlign: "center",
@@ -115,17 +130,30 @@ export default NFCReader = ({ navigation }) => {
       backgroundColor: "#fff",
     },
     contentTitle: {
+      fontFamily: "Roboto_700Bold",
+      fontStyle: "normal",
       fontWeight: "bold",
-      fontSize: 20,
+      fontSize: 16,
       margin: 24,
       textAlign: "center",
     },
     contentDesc: {
+      fontFamily: "Roboto_500Medium",
+      fontStyle: "normal",
+      fontWeight: "normal",
       fontSize: 14,
+      lineHeight: 22,
       textAlign: "center",
       margin: 24,
     },
     cancelButton: {
+      fontFamily: "Roboto_500Medium",
+      fontStyle: "normal",
+      fontWeight: "bold",
+      fontSize: 16,
+      lineHeight: 24,
+      textAlign: "center",
+      color: "# rgba(0, 0, 0, 0.85)",
       marginTop: 24,
     },
     view: {
@@ -151,7 +179,7 @@ export default NFCReader = ({ navigation }) => {
         <Logo style={styles.nfc} />
         <Text style={styles.title}>感應功能已就緒</Text>
         <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
-        <Button type="primary" onPress={() => readNdef()}>
+        <Button style={styles.buttonText} type="primary" onPress={() => readNdef()}>
           開啟感應
         </Button>
         <Modal isVisible={isModalVisible} style={styles.view}>
@@ -164,6 +192,16 @@ export default NFCReader = ({ navigation }) => {
             </Button>
           </View>
         </Modal>
+      </View>
+       <View style={{ flex: 1 }}>
+        {links.map((link, index) => {
+          return (
+            <Flex justify="center" style={styles.gap} key={index}>
+              <IconOutline name={link.icon} size={20} style={styles.icon} />
+              <Text style={styles.link}>{link.title}</Text>
+            </Flex>
+          );
+        })}
       </View>
     </View>
   );

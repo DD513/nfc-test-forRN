@@ -48,7 +48,7 @@ export default Workout = ({ navigation }) => {
             navigation.navigate("NFCReader");
           }}
         >
-          <Icon name="fire-alt" color="#fff" size={18}>
+          <Icon styles={styles.buttonText} name="fire-alt" color="#fff" size={18}>
             {"  "}開始訓練
           </Icon>
         </Button>
@@ -65,7 +65,7 @@ export default Workout = ({ navigation }) => {
                 navigation.navigate("Category");
               }}
             >
-              <Icon name="bolt" size={18}>
+              <Icon styles={styles.buttonText} name="bolt" size={16}>
                 {"  "}
                 {day}
               </Icon>
@@ -88,17 +88,29 @@ const styles = StyleSheet.create({
   },
   startButton: {
     width: "100%",
-    height: 100,
+    height: 80,
     margin: 8,
+    borderRadius: 2,
   },
   plan: {
     width: "100%",
     margin: 8,
-    height: "auto",
-    padding: 16,
+    height: 40,
+    padding: 0,
+    borderRadius: 2,
   },
   titleText: {
+    fontFamily: "Roboto_500Medium",
+    fontStyle: "normal",
     fontSize: 20,
-    fontWeight: "bold",
+    lineHeight: 28,
+  },
+  buttonText: {
+    fontFamily: "Roboto_500Medium",
+    fontStyle: "normal",
+    fontWeight: "normal",
+    fontSize: 16,
+    lineHeight: 24,
+    textAlign: "center",
   },
 });
