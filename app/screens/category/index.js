@@ -9,21 +9,16 @@ import {
   Button,
   Flex,
   Icon,
-  InputItem,
-  List,
   SwipeAction,
   Provider,
-  WingBlank,
   Modal,
   Toast,
 } from "@ant-design/react-native";
-
-import { Button, Flex, Icon, SwipeAction } from "@ant-design/react-native";
 import VideoModal from "./videoModal";
 import DropShadow from "react-native-drop-shadow";
 
 export default Category = ({ navigation }) => {
-  const [videoModal, setVideoModal] = useState(true);
+  const [videoModal, setVideoModal] = useState(false);
   const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
   let [newKg, setNewKg] = useState(30);
@@ -352,7 +347,7 @@ export default Category = ({ navigation }) => {
             visible={videoModal}
             setVideoModal={setVideoModal}
             videoId={"qiYAjdOW2t4"}
-            title={'肩推'}
+            title={"肩推"}
           />
           <Provider>
             <Modal
