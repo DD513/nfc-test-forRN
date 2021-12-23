@@ -23,7 +23,7 @@ export default videoModal = (props) => {
       closable
     >
       <WhiteSpace size="xl" />
-      <YoutubePlayer videoId={props.videoId} height={height / 3} />
+      <YoutubePlayer videoId={props.videoId} height={width * 0.52} />
     </Modal>
   );
 };
