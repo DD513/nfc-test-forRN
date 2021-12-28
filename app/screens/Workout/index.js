@@ -48,7 +48,7 @@ export default Workout = ({ navigation }) => {
             navigation.navigate("NFCReader");
           }}
         >
-          <Icon styles={styles.buttonText} name="fire-alt" color="#fff" size={18}>
+          <Icon styles={styles.buttonText} name="fire-alt" color="#fff" size={15.43}>
             {"  "}開始訓練
           </Icon>
         </Button>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     lineHeight: 28,
   },
   buttonText: {
-    fontFamily: "Roboto_500Medium",
+    fontFamily: "Roboto_400Regular",
     fontStyle: "normal",
     fontWeight: "normal",
     fontSize: 16,

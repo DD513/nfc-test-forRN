@@ -140,7 +140,7 @@ export default Category = ({ navigation }) => {
       <StatusBar barStyle="dark-content" />
       <View style={styles.divBlock}>
         <View style={styles.divBlock}>
-          <ScrollView style={styles.randerBlock}>
+          <ScrollView style={styles.renderBlock}>
             <Flex justify="between" align="center" style={styles.titleFrame}>
               <Text style={styles.categoryInfo}>
                 {category !== "" ? category : "類別"}
@@ -276,12 +276,14 @@ export default Category = ({ navigation }) => {
                     )}
                   </Flex.Item>
 
-                  <Flex justify="center" align="center">
-                    <Text style={styles.timer}>
-                      {minutes > 9 ? minutes : "0" + minutes}:
-                      {seconds > 9 ? seconds : "0" + seconds}
-                    </Text>
-                  </Flex>
+                  <>
+                    <Flex justify="center" align="center">
+                      <Text style={styles.timer}>
+                        {minutes > 9 ? minutes : "0" + minutes}:
+                        {seconds > 9 ? seconds : "0" + seconds}
+                      </Text>
+                    </Flex>
+                  </>
 
                   <View style={styles.colContent}>
                     <DropShadow styles={styles.startButtonShadow}>

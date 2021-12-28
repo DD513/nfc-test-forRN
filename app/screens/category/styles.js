@@ -31,7 +31,12 @@ export default StyleSheet.create({
     ...layout.margin(0, 0, 0, 0),
     // backgroundColor: "#E6F7FF", // can't set as two-tone version in RN
   },
-
+  categoryList: {
+    backgroundColor: "#ffffff",
+    // height: screenHeight - 78 - 354, // not necessary , 78: titleFrame height, 354: preserved for timerBlock height
+    // flex: 1, // not works for layout
+    // justifyContent: "flex-end", // not works for layout
+  },
   categoryDynamic: {
     ...layout.padding(8, 24),
     height: 40,
@@ -71,9 +76,9 @@ export default StyleSheet.create({
     lineHeight: 22,
     color: "rgba(0, 0, 0, 0.45)",
   },
-  randerBlock: {
-    height: screenHeight - 472,
-    backgroundColor: "#ffffff",
+  renderBlock: {
+    height: screenHeight - 78 - 40 - 354, // 78: titleFrame, 40: categoryDynamic, 354: preserved for timerBlock
+    backgroundColor: "#fff",
     // overflow: "auto", // conflict with RN
   },
   divBlock: {
@@ -127,6 +132,10 @@ export default StyleSheet.create({
     // shadowRadius: 10,
   },
   timerBlock: {
+    backgroundColor: "#ffffff",
+    // position: "fixed", // not available in RN
+    // position: "absolute", // not touchable and disable shadow in RN
+    // zIndex: 1, // can't fix touchable issue in RN
     display: "flex",
     left: 0,
     bottom: 0,
@@ -163,7 +172,6 @@ export default StyleSheet.create({
     // position: "static", // not supported in RN
     // width: 97, // can't show full time in RN
     height: 46,
-    top: 0,
     ...layout.margin(10, 0),
     fontFamily: "Roboto_500Medium",
     fontStyle: "normal",

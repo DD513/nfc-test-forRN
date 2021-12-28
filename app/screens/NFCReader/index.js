@@ -4,7 +4,9 @@ import NfcManager, { NfcTech, Ndef } from "react-native-nfc-manager";
 import { Button, Flex } from "@ant-design/react-native";
 import { IconOutline } from "@ant-design/icons-react-native";
 import Logo from "../../../assets/NFC.svg";
+import { layout } from "../../../util/layout";
 import Modal from "react-native-modal";
+import DropShadow from "react-native-drop-shadow";
 
 export default NFCReader = ({ navigation }) => {
   const [tag, setTag] = useState("init");
@@ -91,6 +93,17 @@ export default NFCReader = ({ navigation }) => {
       lineHeight: 22,
       color: "rgba(0, 0, 0, 0.45)",
     },
+    buttonShadow: {
+      /* Different from web:
+    boxShadow: "0px 2px 0px rgba(0, 0, 0, 0.043)", */
+      shadowColor: "rgba(217, 217, 217, 0.043)", //  rgba(0, 0, 0, 0.043) is too dark in Android, use this instead
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 1,
+      shadowRadius: 0,
+    },
     buttonText: {
       fontFamily: "Roboto_700Bold",
       fontStyle: "normal",
@@ -98,13 +111,24 @@ export default NFCReader = ({ navigation }) => {
       fontSize: 16,
       lineHeight: 24,
       textAlign: "center",
+      justifyContent: "center",
+      alignItems: "center",
+      ...layout.padding(8, 16),
+      height: 40,
+      borderRadius: 2,
     },
     link: {
+      fontFamily: "Roboto_400Regular",
+      fontStyle: "normal",
+      fontWeight: "normal",
+      fontSize: 14,
+      lineHeight: 22,
       textAlign: "center",
       color: "#1890FF",
     },
     gap: {
       margin: 8,
+      height: 32,
     },
     icon: {
       color: "#1890FF",
@@ -147,7 +171,7 @@ export default NFCReader = ({ navigation }) => {
       margin: 24,
     },
     cancelButton: {
-      fontFamily: "Roboto_500Medium",
+      fontFamily: "Roboto_700Bold",
       fontStyle: "normal",
       fontWeight: "bold",
       fontSize: 16,
@@ -179,9 +203,15 @@ export default NFCReader = ({ navigation }) => {
         <Logo style={styles.nfc} />
         <Text style={styles.title}>感應功能已就緒</Text>
         <Text style={styles.desc}>將手機靠近器材 NFC 標記以取得器材資訊</Text>
-        <Button style={styles.buttonText} type="primary" onPress={() => readNdef()}>
-          開啟感應
-        </Button>
+        <DropShadow style={styles.buttonShadow}>
+          <Button
+            style={styles.buttonText}
+            type="primary"
+            onPress={() => readNdef()}
+          >
+            開啟感應
+          </Button>
+        </DropShadow>
         <Modal isVisible={isModalVisible} style={styles.view}>
           <View style={styles.content}>
             <Text style={styles.contentTitle}>可進行掃描</Text>
@@ -193,11 +223,11 @@ export default NFCReader = ({ navigation }) => {
           </View>
         </Modal>
       </View>
-       <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         {links.map((link, index) => {
           return (
             <Flex justify="center" style={styles.gap} key={index}>
-              <IconOutline name={link.icon} size={20} style={styles.icon} />
+              <IconOutline name={link.icon} size={14} style={styles.icon} />
               <Text style={styles.link}>{link.title}</Text>
             </Flex>
           );

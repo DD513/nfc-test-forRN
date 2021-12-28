@@ -4,10 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { AppLoading } from "expo-app-loading";
 import { Provider } from "@ant-design/react-native";
 import {
   useFonts,
+  Roboto_400Regular,
   Roboto_500Medium,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
@@ -16,6 +17,7 @@ import NFCReader from "./app/screens/NFCReader";
 import Category from "./app/screens/category";
 import Workout from "./app/screens/Workout";
 import { Icon } from "@ant-design/react-native";
+import { FontDisplay } from "expo-font";
 const navigationRef = createNavigationContainerRef();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -31,7 +33,7 @@ function Root() {
     { name: "Workout", component: Workout, icon: "fire" },
     { name: "History", component: NFCReader, icon: "calendar" },
     { name: "Program", component: NFCReader, icon: "project" },
-    { name: "Settings", component: NFCReader, icon: "setting" },
+    { name: "Setting", component: NFCReader, icon: "setting" },
   ];
   return (
     <Tab.Navigator>
@@ -54,10 +56,36 @@ function Root() {
                 textAlign: "center",
               },
               headerTitleAlign: "center",
-              tabBarLabel: tab.name,
+              tabBarStyle: {
+                paddingLeft: 24,
+                paddingRight: 24,
+              },
+              tabBarItemStyle: {
+                width: 49,
+                height: 46,
+                padding: 0,
+                borderBottomColor: "transparent",
+                borderBottomWidth: 2,
+                marginLeft: 16,
+                marginRight: 16,
+              },
+              tabBarIconStyle: {
+                marginBottom: 0,
+              },
+              tabBarActiveTintColor: "#1890FF",
+              tabBarInactiveTintColor: "#000000",
+              tabBarLabelStyle: {
+                fontFamily: "Roboto_400Regular",
+                fontStyle: "normal",
+                fontWeight: "normal",
+                fontSize: 12,
+                lineHeight: 20,
+                marginTop: -10,
+              },
               tabBarIcon: ({ color, size }) => (
                 <Icon name={tab.icon} color={color} size={14} />
               ),
+              tabBarLabel: tab.name,
             }}
           />
         );
@@ -71,6 +99,7 @@ export default function App() {
     prefixes: ["https://fintess-coach.herokuapp.com"],
   };
   const [fontsLoaded] = useFonts({
+    Roboto_400Regular,
     Roboto_500Medium,
     Roboto_700Bold,
   });
