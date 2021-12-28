@@ -118,13 +118,13 @@ export default StyleSheet.create({
   timerBlockShadow: {
     /* Different from web:
     boxShadow: "0px -10px 10px rgba(0, 0, 0, 0.05)", */
-    shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
-    shadowOffset: {
-      width: 0,
-      height: -10,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 10,
+    // shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
+    // shadowOffset: {
+    //   width: 0,
+    //   height: -10,
+    // },
+    // shadowOpacity: 1,
+    // shadowRadius: 10,
   },
   timerBlock: {
     display: "flex",
@@ -147,15 +147,14 @@ export default StyleSheet.create({
     alignItems: "center",
     display: "flex",
     justifyContent: "center",
-    ...layout.margin(16, 0),
-    ...layout.padding(8, 0),
+    ...layout.margin(16, 0, 16),
   },
   timerStatusButton: {
     width: 64,
     height: 64,
   },
   timer: {
-    ...layout.margin(8, 0),
+    ...layout.margin(16, 0, 0),
     fontSize: 38,
     lineHeight: 46,
     height: 46,
@@ -184,12 +183,17 @@ export default StyleSheet.create({
     width: 42.28,
   },
   categoryStatusBlock: {
+    zIndex: 1,
+    marginBottom: "-30%",
     position: "relative",
     bottom: 0,
-    height: "45%",
+    height: "50%",
     // backgroundColor: "yellow",
     justifyContent: "center",
+    borderTopColor: "rgba(0, 0, 0, 0.05)",
+    borderTopWidth: 10,
   },
+
   trainingButton: {
     ...layout.padding(8, 16),
     height: 40,
@@ -207,7 +211,7 @@ export default StyleSheet.create({
   startButtonShadow: {
     /* web:
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043); */
-    shadowColor: "rgba(0, 0, 0, 0.043);",
+    shadowColor: "rgba(0, 0, 0, 0.043)",
     shadowOffset: {
       width: 0,
       height: 2,
