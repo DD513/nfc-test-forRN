@@ -123,13 +123,14 @@ export default StyleSheet.create({
   timerBlockShadow: {
     /* Different from web:
     boxShadow: "0px -10px 10px rgba(0, 0, 0, 0.05)", */
-    // shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
-    // shadowOffset: {
-    //   width: 0,
-    //   height: -10,
-    // },
-    // shadowOpacity: 1,
-    // shadowRadius: 10,
+    /* for Android */
+    shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
+    shadowOffset: {
+      width: 0,
+      height: -10,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 10,
   },
   timerBlock: {
     backgroundColor: "#ffffff",
@@ -192,14 +193,22 @@ export default StyleSheet.create({
   },
   categoryStatusBlock: {
     zIndex: 1,
-    marginBottom: "-30%",
+    marginBottom: "-40%",
     position: "relative",
     bottom: 0,
     height: "50%",
     // backgroundColor: "yellow",
     justifyContent: "center",
-    borderTopColor: "rgba(0, 0, 0, 0.05)",
-    borderTopWidth: 10,
+    // borderTopColor: "rgba(0, 0, 0, 0.05)",
+    // borderTopWidth: 10,
+    /* for iOS */
+    shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
+    shadowOffset: {
+      width: 0,
+      height: -10,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 10,
   },
 
   trainingButton: {
@@ -215,10 +224,19 @@ export default StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
     color: "rgba(0, 0, 0, 0.85)",
+    /* for iOS */
+    shadowColor: "rgba(0, 0, 0, 0.016);",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 0,
   },
   startButtonShadow: {
     /* web:
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043); */
+    /* for Android */
     shadowColor: "rgba(0, 0, 0, 0.043)",
     shadowOffset: {
       width: 0,
@@ -257,6 +275,7 @@ export default StyleSheet.create({
   trainingButtonShadow: {
     /* web:
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.016); */
+    /* for Android */
     shadowColor: "rgba(0, 0, 0, 0.016);",
     shadowOffset: {
       width: 0,

@@ -289,7 +289,19 @@ export default Category = ({ navigation }) => {
                     <DropShadow styles={styles.startButtonShadow}>
                       <Button
                         type={buttonKey === "開始" ? "primary" : "warning"}
-                        style={styles.trainingButton}
+                        style={
+                          (styles.trainingButton,
+                          {
+                            /* for iOS */
+                            shadowColor: "rgba(0, 0, 0, 0.043)",
+                            shadowOffset: {
+                              width: 0,
+                              height: 2,
+                            },
+                            shadowOpacity: 1,
+                            shadowRadius: 0,
+                          })
+                        }
                         onPress={onPressStart}
                       >
                         {buttonKey}
