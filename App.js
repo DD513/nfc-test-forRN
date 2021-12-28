@@ -5,6 +5,7 @@ import { createNavigationContainerRef } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AppLoading } from "expo-app-loading";
+import { Provider } from "@ant-design/react-native";
 import {
   useFonts,
   Roboto_400Regular,
@@ -104,38 +105,40 @@ export default function App() {
   });
 
   return (
-    <NavigationContainer
-      linking={linking}
-      fallback={<Text>Loading...</Text>}
-      ref={navigationRef}
-    >
-      <Stack.Navigator initialRouteName="Root">
-        <Stack.Screen
-          name="NFCReader"
-          component={NFCReader}
-          options={({ navigation }) => ({
-            title: "NFC 感應",
+    <Provider>
+      <NavigationContainer
+        linking={linking}
+        fallback={<Text>Loading...</Text>}
+        ref={navigationRef}
+      >
+        <Stack.Navigator initialRouteName="Root">
+          <Stack.Screen
+            name="NFCReader"
+            component={NFCReader}
+            options={({ navigation }) => ({
+              title: "NFC 感應",
             headerTitleStyle: {
               fontFamily: "Roboto_500Medium",
               fontStyle: "normal",
               fontSize: 20,
               lineHeight: 28,
             },
-            headerTitleAlign: "center",
-            headerLeft: () => (
-              <Icon
-                name="arrow-left"
-                color="rgba(0, 0, 0, 0.85)"
-                onPress={navigation.goBack}
-              />
-            ),
-          })}
-        />
-        <Stack.Group screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Root" component={Root} />
-          <Stack.Screen name="Category" component={Category} />
-        </Stack.Group>
-      </Stack.Navigator>
-    </NavigationContainer>
+              headerTitleAlign: "center",
+              headerLeft: () => (
+                <Icon
+                  name="arrow-left"
+                  color="rgba(0, 0, 0, 0.85)"
+                  onPress={navigation.goBack}
+                />
+              ),
+            })}
+          />
+          <Stack.Group screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Root" component={Root} />
+            <Stack.Screen name="Category" component={Category} />
+          </Stack.Group>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

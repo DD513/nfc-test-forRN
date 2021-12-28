@@ -1,3 +1,4 @@
+import { Flex } from "@ant-design/react-native";
 import { StyleSheet, Dimensions } from "react-native";
 import { layout } from "../../../util/layout";
 
@@ -80,6 +81,10 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
     // overflow: "auto", // conflict with RN
   },
+  divBlock: {
+    height: "100%",
+    width: "100%",
+  },
   deleteButton: {
     width: 76,
     height: 56,
@@ -93,8 +98,8 @@ export default StyleSheet.create({
     ...layout.padding(8, 24),
   },
   categoryInputButton: {
-    width: 40,
-    height: 40,
+    width: 45,
+    height: 45,
     borderRadius: 100,
   },
   categoryInputButtonItem: {
@@ -105,25 +110,40 @@ export default StyleSheet.create({
     borderColor: "#D9D9D9",
     borderRadius: 2,
   },
+  categoryInputButtonItemDisabled: {
+    textAlign: "center",
+    width: 50,
+    height: 40,
+    borderWidth: 1,
+    borderColor: "#D9D9D9",
+    borderRadius: 2,
+    backgroundColor: "#F5F5F5",
+    color: "rgba(0, 0, 0, 0.25)",
+  },
   timerBlockShadow: {
     /* Different from web:
     boxShadow: "0px -10px 10px rgba(0, 0, 0, 0.05)", */
-    shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
-    shadowOffset: {
-      width: 0,
-      height: -10,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 10,
+    // shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
+    // shadowOffset: {
+    //   width: 0,
+    //   height: -10,
+    // },
+    // shadowOpacity: 1,
+    // shadowRadius: 10,
   },
   timerBlock: {
     backgroundColor: "#ffffff",
     // position: "fixed", // not available in RN
     // position: "absolute", // not touchable and disable shadow in RN
     // zIndex: 1, // can't fix touchable issue in RN
+    display: "flex",
+    left: 0,
+    bottom: 0,
     width: "100%",
+    height: "100%",
     // height: 354, // break layout in RN
     ...layout.padding(16),
+    justifyContent: "center",
   },
   rowContent: {
     textAlign: "center",
@@ -136,13 +156,14 @@ export default StyleSheet.create({
     alignItems: "center",
     display: "flex",
     justifyContent: "center",
+    ...layout.margin(16, 0, 16),
   },
   timerStatusButton: {
     width: 64,
     height: 64,
   },
   timer: {
-    ...layout.margin(8, 0),
+    ...layout.margin(16, 0, 0),
     fontSize: 38,
     lineHeight: 46,
     height: 46,
@@ -169,6 +190,18 @@ export default StyleSheet.create({
   second: {
     width: 42.28,
   },
+  categoryStatusBlock: {
+    zIndex: 1,
+    marginBottom: "-30%",
+    position: "relative",
+    bottom: 0,
+    height: "50%",
+    // backgroundColor: "yellow",
+    justifyContent: "center",
+    borderTopColor: "rgba(0, 0, 0, 0.05)",
+    borderTopWidth: 10,
+  },
+
   trainingButton: {
     ...layout.padding(8, 16),
     height: 40,
@@ -186,7 +219,7 @@ export default StyleSheet.create({
   startButtonShadow: {
     /* web:
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043); */
-    shadowColor: "rgba(0, 0, 0, 0.043);",
+    shadowColor: "rgba(0, 0, 0, 0.043)",
     shadowOffset: {
       width: 0,
       height: 2,
