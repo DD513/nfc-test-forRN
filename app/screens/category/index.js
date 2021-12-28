@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useStopwatch } from "react-timer-hook";
-import { SafeAreaView, View, Text, ScrollView, TextInput } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  StatusBar,
+} from "react-native";
 import styles from "./styles.js";
 import FitnessIcon from "../../../assets/workout.svg";
 import BreakIcon from "../../../assets/break.svg";
@@ -129,31 +136,32 @@ export default Category = ({ navigation }) => {
   //   return <AppLoading />;
   // } else {
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <SafeAreaView style={{ backgroundColor: "#ffffff" }}>
+      <StatusBar barStyle="dark-content" />
+      <View style={styles.divBlock}>
         <View style={styles.divBlock}>
-          <Flex justify="between" align="center" style={styles.titleFrame}>
-            <Text style={styles.categoryInfo}>
-              {category !== "" ? category : "類別"}
-            </Text>
-            <Flex style={styles.categoryIcons} justify="between">
-              <Icon
-                style={styles.categoryIcon}
-                size={36}
-                color="#1890FF"
-                name="bell"
-              />
-              <Icon
-                style={styles.categoryIcon}
-                size={36}
-                color="#1890FF"
-                name="play-circle"
-                onPress={() => setVideoModal(true)}
-              />
+          <ScrollView style={styles.randerBlock}>
+            <Flex justify="between" align="center" style={styles.titleFrame}>
+              <Text style={styles.categoryInfo}>
+                {category !== "" ? category : "類別"}
+              </Text>
+              <Flex style={styles.categoryIcons} justify="between">
+                <Icon
+                  style={styles.categoryIcon}
+                  size={36}
+                  color="#1890FF"
+                  name="bell"
+                />
+                <Icon
+                  style={styles.categoryIcon}
+                  size={36}
+                  color="#1890FF"
+                  name="play-circle"
+                  onPress={() => setVideoModal(true)}
+                />
+              </Flex>
             </Flex>
-          </Flex>
 
-          <View style={styles.categoryList}>
             <Flex
               justify="between"
               align="center"
@@ -179,82 +187,84 @@ export default Category = ({ navigation }) => {
                 </Text>
               </Flex>
             </Flex>
-            <ScrollView style={styles.randerBlock}>
-              {_.map(renderData, (item, index) => (
-                <SwipeAction
-                  key={index}
-                  autoClose
-                  style={styles.swipeAction}
-                  right={[
-                    {
-                      text: <Icon name="delete" style={styles.deleteButton} />,
-                      onPress: () => {
-                        deleteModalClick(index);
-                      },
+
+            {_.map(renderData, (item, index) => (
+              <SwipeAction
+                key={index}
+                autoClose
+                style={styles.swipeAction}
+                right={[
+                  {
+                    text: <Icon name="delete" style={styles.deleteButton} />,
+                    onPress: () => {
+                      deleteModalClick(index);
                     },
-                  ]}
-                  onOpen={() => console.log("open")}
-                  onClose={() => console.log("close")}
+                  },
+                ]}
+                onOpen={() => console.log("open")}
+                onClose={() => console.log("close")}
+              >
+                <Flex
+                  justify="between"
+                  align="center"
+                  direction="row"
+                  style={styles.categoryInputRow}
                 >
-                  <Flex
-                    justify="between"
-                    align="center"
-                    direction="row"
-                    style={styles.categoryInputRow}
-                  >
-                    <View>
-                      <Button
-                        style={styles.categoryInputButton}
-                        type="ghost"
-                        shape="circle"
-                      >
-                        {++index}
-                      </Button>
-                    </View>
-                    {changeRenderKg(index)}
-                    {changeRenderReps(index)}
-                    <View>
-                      <TextInput
-                        key={`kg${index}`}
-                        style={
-                          renderData.length === index
-                            ? styles.categoryInputButtonItem
-                            : styles.categoryInputButtonItemDisabled
-                        }
-                        onChangeText={setNewKg}
-                        defaultValue={item.kg.toString()}
-                        editable={
-                          renderData.length === index ? !disabled : disabled
-                        }
-                        selectTextOnFocus={
-                          renderData.length === index ? !disabled : disabled
-                        }
-                        keyboardType="numeric" // 更改這個只是增加使用者體驗，要使用toString讓他變成自串
-                      />
-                    </View>
-                    <View>
-                      <TextInput
-                        key={`reps${index}`}
-                        onChangeText={setNewReps}
-                        style={
-                          renderData.length === index
-                            ? styles.categoryInputButtonItem
-                            : styles.categoryInputButtonItemDisabled
-                        }
-                        defaultValue={item.reps.toString()}
-                        editable={
-                          renderData.length === index ? !disabled : disabled
-                        }
-                        selectTextOnFocus={
-                          renderData.length === index ? !disabled : disabled
-                        }
-                        keyboardType="numeric"
-                      />
-                    </View>
-                  </Flex>
-                </SwipeAction>
-              ))}
-            </ScrollView>
+                  <View>
+                    <Button
+                      style={styles.categoryInputButton}
+                      type="ghost"
+                      shape="circle"
+                    >
+                      {++index}
+                    </Button>
+                  </View>
+                  {changeRenderKg(index)}
+                  {changeRenderReps(index)}
+                  <View>
+                    <TextInput
+                      key={`kg${index}`}
+                      style={
+                        renderData.length === index
+                          ? styles.categoryInputButtonItem
+                          : styles.categoryInputButtonItemDisabled
+                      }
+                      onChangeText={setNewKg}
+                      defaultValue={item.kg.toString()}
+                      editable={
+                        renderData.length === index ? !disabled : disabled
+                      }
+                      selectTextOnFocus={
+                        renderData.length === index ? !disabled : disabled
+                      }
+                      keyboardType="numeric" // 更改這個只是增加使用者體驗，要使用toString讓他變成自串
+                    />
+                  </View>
+                  <View>
+                    <TextInput
+                      key={`reps${index}`}
+                      onChangeText={setNewReps}
+                      style={
+                        renderData.length === index
+                          ? styles.categoryInputButtonItem
+                          : styles.categoryInputButtonItemDisabled
+                      }
+                      defaultValue={item.reps.toString()}
+                      editable={
+                        renderData.length === index ? !disabled : disabled
+                      }
+                      selectTextOnFocus={
+                        renderData.length === index ? !disabled : disabled
+                      }
+                      keyboardType="numeric"
+                    />
+                  </View>
+                </Flex>
+              </SwipeAction>
+            ))}
+          </ScrollView>
+
+          <View style={styles.categoryStatusBlock}>
             <DropShadow style={styles.timerBlockShadow}>
               <View style={styles.timerBlock}>
                 <View style={styles.rowContent}>
@@ -317,27 +327,23 @@ export default Category = ({ navigation }) => {
                   </View>
 
                   <View style={styles.trainingButtonsRowContent}>
-                    <Flex.Item style={styles.trainingButtonsColContent}>
-                      <DropShadow styles={styles.trainingButtonShadow}>
-                        <Button
-                          style={[styles.completeButton, styles.trainingButton]}
-                        >
-                          完成訓練
-                        </Button>
-                      </DropShadow>
-                    </Flex.Item>
-                    <Flex.Item style={styles.colContent}>
-                      <DropShadow styles={styles.trainingButtonShadow}>
-                        <Button
-                          style={[styles.cancelButton, styles.trainingButton]}
-                          onPress={() => {
-                            navigation.navigate("Workout");
-                          }}
-                        >
-                          取消訓練
-                        </Button>
-                      </DropShadow>
-                    </Flex.Item>
+                    <DropShadow styles={styles.trainingButtonShadow}>
+                      <Button
+                        style={[styles.completeButton, styles.trainingButton]}
+                      >
+                        完成訓練
+                      </Button>
+                    </DropShadow>
+                    <DropShadow styles={styles.trainingButtonShadow}>
+                      <Button
+                        style={[styles.cancelButton, styles.trainingButton]}
+                        onPress={() => {
+                          navigation.navigate("Workout");
+                        }}
+                      >
+                        取消訓練
+                      </Button>
+                    </DropShadow>
                   </View>
                 </View>
               </View>
@@ -369,7 +375,7 @@ export default Category = ({ navigation }) => {
             </Modal>
           </Provider>
         </View>
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };

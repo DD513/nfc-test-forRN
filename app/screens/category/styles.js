@@ -1,3 +1,4 @@
+import { Flex } from "@ant-design/react-native";
 import { StyleSheet, Dimensions } from "react-native";
 import { layout } from "../../../util/layout";
 
@@ -30,9 +31,7 @@ export default StyleSheet.create({
     ...layout.margin(0, 0, 0, 0),
     // backgroundColor: "#E6F7FF", // can't set as two-tone version in RN
   },
-  categoryList: {
-    backgroundColor: "#ffffff",
-  },
+
   categoryDynamic: {
     ...layout.padding(8, 24),
     height: 40,
@@ -74,8 +73,12 @@ export default StyleSheet.create({
   },
   randerBlock: {
     height: screenHeight - 472,
-    backgroundColor: "#fff",
+    backgroundColor: "#ffffff",
     // overflow: "auto", // conflict with RN
+  },
+  divBlock: {
+    height: "100%",
+    width: "100%",
   },
   deleteButton: {
     width: 76,
@@ -124,12 +127,14 @@ export default StyleSheet.create({
     shadowRadius: 10,
   },
   timerBlock: {
-    backgroundColor: "#ffffff",
+    display: "flex",
     left: 0,
     bottom: 0,
     width: "100%",
+    height: "100%",
     // height: 354, // break layout in RN
     ...layout.padding(16),
+    justifyContent: "center",
   },
   rowContent: {
     textAlign: "center",
@@ -142,6 +147,8 @@ export default StyleSheet.create({
     alignItems: "center",
     display: "flex",
     justifyContent: "center",
+    ...layout.margin(16, 0),
+    ...layout.padding(8, 0),
   },
   timerStatusButton: {
     width: 64,
@@ -175,6 +182,13 @@ export default StyleSheet.create({
   },
   second: {
     width: 42.28,
+  },
+  categoryStatusBlock: {
+    position: "relative",
+    bottom: 0,
+    height: "45%",
+    // backgroundColor: "yellow",
+    justifyContent: "center",
   },
   trainingButton: {
     ...layout.padding(8, 16),
