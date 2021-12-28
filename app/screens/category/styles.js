@@ -32,7 +32,9 @@ export default StyleSheet.create({
   },
   categoryList: {
     backgroundColor: "#ffffff",
-    height: screenHeight - 78 - 354,
+    // height: screenHeight - 78 - 354, // not necessary , 78: titleFrame height, 354: preserved for timerBlock height
+    // flex: 1, // not works for layout
+    // justifyContent: "flex-end", // not works for layout
   },
   categoryDynamic: {
     ...layout.padding(8, 24),
@@ -73,8 +75,8 @@ export default StyleSheet.create({
     lineHeight: 22,
     color: "rgba(0, 0, 0, 0.45)",
   },
-  randerBlock: {
-    height: screenHeight - 78 - 354 - 40,
+  renderBlock: {
+    height: screenHeight - 78 - 40 - 354, // 78: titleFrame, 40: categoryDynamic, 354: preserved for timerBlock
     backgroundColor: "#fff",
     // overflow: "auto", // conflict with RN
   },
@@ -117,6 +119,8 @@ export default StyleSheet.create({
   timerBlock: {
     backgroundColor: "#ffffff",
     // position: "fixed", // not available in RN
+    // position: "absolute", // not touchable and disable shadow in RN
+    // zIndex: 1, // can't fix touchable issue in RN
     width: "100%",
     // height: 354, // break layout in RN
     ...layout.padding(16),

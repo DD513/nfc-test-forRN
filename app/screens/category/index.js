@@ -95,28 +95,29 @@ export default Category = ({ navigation }) => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={styles.divBlock}>
-          <Flex justify="between" align="center" style={styles.titleFrame}>
-            <Text style={styles.categoryInfo}>
-              {category !== "" ? category : "類別"}
-            </Text>
-            <Flex style={styles.categoryIcons} justify="between">
-              <Icon
-                style={styles.categoryIcon}
-                size={36}
-                color="#1890FF"
-                name="bell"
-              />
-              <Icon
-                style={styles.categoryIcon}
-                size={36}
-                color="#1890FF"
-                name="play-circle"
-              />
-            </Flex>
+      <View style={styles.divBlock}>
+        <Flex justify="between" align="center" style={styles.titleFrame}>
+          <Text style={styles.categoryInfo}>
+            {category !== "" ? category : "類別"}
+          </Text>
+          <Flex style={styles.categoryIcons} justify="between">
+            <Icon
+              style={styles.categoryIcon}
+              size={36}
+              color="#1890FF"
+              name="bell"
+            />
+            <Icon
+              style={styles.categoryIcon}
+              size={36}
+              color="#1890FF"
+              name="play-circle"
+            />
           </Flex>
+        </Flex>
 
-          <View style={styles.categoryList}>
+        <View style={styles.categoryList}>
+          <>
             <Flex
               justify="between"
               align="center"
@@ -142,7 +143,9 @@ export default Category = ({ navigation }) => {
                 </Text>
               </Flex>
             </Flex>
-            <ScrollView style={styles.randerBlock}>
+          </>
+          <>
+            <ScrollView style={styles.renderBlock}>
               {_.map(renderData, (item, index) => (
                 <SwipeAction
                   key={index}
@@ -189,99 +192,106 @@ export default Category = ({ navigation }) => {
                 </SwipeAction>
               ))}
             </ScrollView>
-          </View>
+          </>
 
-          <DropShadow style={styles.timerBlockShadow}>
-            <View style={styles.timerBlock}>
-              <View style={styles.rowContent}>
-                <Flex.Item style={styles.timerStatus}>
-                  {buttonKey === "開始" ? (
-                    <Breaklogo width={64} height={64} />
-                  ) : (
-                    <Fintesslogo width={64} height={64} />
-                  )}
-                </Flex.Item>
+          <>
+            <DropShadow style={styles.timerBlockShadow}>
+              <View style={styles.timerBlock}>
+                <View style={styles.rowContent}>
+                  <>
+                    <Flex.Item style={styles.timerStatus}>
+                      {buttonKey === "開始" ? (
+                        <Breaklogo width={64} height={64} />
+                      ) : (
+                        <Fintesslogo width={64} height={64} />
+                      )}
+                    </Flex.Item>
+                  </>
 
-                <Flex justify="center" align="center">
-                  <Text style={styles.timer}>
-                    {minutes > 9 ? minutes : "0" + minutes}:
-                    {seconds > 9 ? seconds : "0" + seconds}
-                  </Text>
-                </Flex>
+                  <>
+                    <Flex justify="center" align="center">
+                      <Text style={styles.timer}>
+                        {minutes > 9 ? minutes : "0" + minutes}:
+                        {seconds > 9 ? seconds : "0" + seconds}
+                      </Text>
+                    </Flex>
+                  </>
 
-                <View style={styles.colContent}>
-                  <Provider>
-                    <DropShadow styles={styles.startButtonShadow}>
-                      <Button
-                        type={buttonKey === "開始" ? "primary" : "warning"}
-                        style={styles.trainingButton}
-                        onPress={onPressStart}
-                      >
-                        {buttonKey}
-                      </Button>
-                    </DropShadow>
-                  </Provider>
-                </View>
+                  <View style={styles.colContent}>
+                    <Provider>
+                      <DropShadow styles={styles.startButtonShadow}>
+                        <Button
+                          type={buttonKey === "開始" ? "primary" : "warning"}
+                          style={styles.trainingButton}
+                          onPress={onPressStart}
+                        >
+                          {buttonKey}
+                        </Button>
+                      </DropShadow>
+                    </Provider>
+                  </View>
 
-                <View style={(styles.rowContent, styles.equipmentInfo)}>
-                  <Flex
-                    style={styles.equipmentInfoColContent}
-                    align="center"
-                    justify="start"
-                  >
-                    <Icon
-                      style={styles.equipmentInfoIcon}
-                      name="aim"
-                      size={14}
-                    />
-                    <Text style={styles.equipmentInfoName}>
-                      {location !== "" ? location : "地點"}
-                    </Text>
-                  </Flex>
-                  <Flex
-                    style={(styles.equipmentInfoColContent, { marginTop: 8 })}
-                    align="center"
-                    justify="start"
-                  >
-                    <Icon
-                      style={styles.equipmentInfoIcon}
-                      name="barcode"
-                      size={14}
-                    />
-                    <Text style={styles.equipmentInfoName}>
-                      {model !== "" ? model : "器材"}
-                    </Text>
-                  </Flex>
-                </View>
+                  <View style={(styles.rowContent, styles.equipmentInfo)}>
+                    <Flex
+                      style={styles.equipmentInfoColContent}
+                      align="center"
+                      justify="start"
+                    >
+                      <Icon
+                        style={styles.equipmentInfoIcon}
+                        name="aim"
+                        size={14}
+                      />
+                      <Text style={styles.equipmentInfoName}>
+                        {location !== "" ? location : "地點"}
+                      </Text>
+                    </Flex>
+                    <Flex
+                      style={(styles.equipmentInfoColContent, { marginTop: 8 })}
+                      align="center"
+                      justify="start"
+                    >
+                      <Icon
+                        style={styles.equipmentInfoIcon}
+                        name="barcode"
+                        size={14}
+                      />
+                      <Text style={styles.equipmentInfoName}>
+                        {model !== "" ? model : "器材"}
+                      </Text>
+                    </Flex>
+                  </View>
 
-                <View style={styles.trainingButtonsRowContent}>
-                  <Flex.Item style={styles.trainingButtonsColContent}>
-                    <DropShadow styles={styles.trainingButtonShadow}>
-                      <Button
-                        style={[styles.completeButton, styles.trainingButton]}
-                      >
-                        完成訓練
-                      </Button>
-                    </DropShadow>
-                  </Flex.Item>
-                  <Flex.Item style={styles.colContent}>
-                    <DropShadow styles={styles.trainingButtonShadow}>
-                      <Button
-                        style={[styles.cancelButton, styles.trainingButton]}
-                        onPress={() => {
-                          navigation.navigate("Workout");
-                        }}
-                      >
-                        取消訓練
-                      </Button>
-                    </DropShadow>
-                  </Flex.Item>
+                  <View style={styles.trainingButtonsRowContent}>
+                    <Flex.Item style={styles.trainingButtonsColContent}>
+                      <DropShadow styles={styles.trainingButtonShadow}>
+                        <Button
+                          style={[styles.completeButton, styles.trainingButton]}
+                        >
+                          完成訓練
+                        </Button>
+                      </DropShadow>
+                    </Flex.Item>
+                    <Flex.Item style={styles.colContent}>
+                      <DropShadow styles={styles.trainingButtonShadow}>
+                        <Button
+                          style={[styles.cancelButton, styles.trainingButton]}
+                          onPress={() => {
+                            navigation.navigate("Workout");
+                          }}
+                        >
+                          取消訓練
+                        </Button>
+                      </DropShadow>
+                    </Flex.Item>
+                  </View>
                 </View>
               </View>
-            </View>
-          </DropShadow>
-          {/* <Modal></Modal> */}
+            </DropShadow>
+          </>
         </View>
+        {/* <Modal></Modal> */}
+      </View>
       </ScrollView>
     </SafeAreaView>
   );
