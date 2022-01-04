@@ -143,7 +143,7 @@ export default StyleSheet.create({
     // zIndex: 1, // can't fix touchable issue in RN
     display: "flex",
     left: 0,
-    bottom: 0,
+    bottom: 12,
     width: "100%",
     height: "100%",
     // height: 354, // break layout in RN
