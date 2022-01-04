@@ -15,6 +15,7 @@ import {
 
 import NFCReader from "./app/screens/NFCReader";
 import Category from "./app/screens/category";
+import Completed from "./app/screens/completed";
 import Workout from "./app/screens/Workout";
 import { Icon } from "@ant-design/react-native";
 import { FontDisplay } from "expo-font";
@@ -117,18 +118,43 @@ export default function App() {
             component={NFCReader}
             options={({ navigation }) => ({
               title: "NFC 感應",
-            headerTitleStyle: {
-              fontFamily: "Roboto_500Medium",
-              fontStyle: "normal",
-              fontSize: 20,
-              lineHeight: 28,
-            },
+              headerTitleStyle: {
+                fontFamily: "Roboto_500Medium",
+                fontStyle: "normal",
+                fontSize: 20,
+                lineHeight: 28,
+              },
               headerTitleAlign: "center",
               headerLeft: () => (
                 <Icon
                   name="arrow-left"
                   color="rgba(0, 0, 0, 0.85)"
                   onPress={navigation.goBack}
+                />
+              ),
+            })}
+          />
+          <Stack.Screen
+            name="Completed"
+            component={Completed}
+            options={({ navigation }) => ({
+              title: "完成訓練",
+              headerTitleStyle: {
+                fontFamily: "Roboto_500Medium",
+                fontStyle: "normal",
+                fontSize: 20,
+                lineHeight: 28,
+              },
+              headerTitleAlign: "center",
+              // disable the navigation button
+              headerLeft: () => (
+                <></>
+              ),
+              headerRight: () => (
+                <Icon
+                  name="share-alt"
+                  color="rgba(0, 0, 0, 0.85)"
+                  // onPress=
                 />
               ),
             })}

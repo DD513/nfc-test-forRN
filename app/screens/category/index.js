@@ -348,6 +348,9 @@ export default Category = ({ navigation }) => {
                     <DropShadow styles={styles.trainingButtonShadow}>
                       <Button
                         style={[styles.completeButton, styles.trainingButton]}
+                        onPress={() => {
+                          navigation.navigate("Completed");
+                        }}
                       >
                         完成訓練
                       </Button>
