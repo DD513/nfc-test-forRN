@@ -87,10 +87,14 @@ export default StyleSheet.create({
   },
   deleteButton: {
     width: 76,
-    height: 56,
+    height: "100%",
     textAlign: "center",
     textAlignVertical: "center",
+    alignItems: "center",
+    alignSelf: "center",
     backgroundColor: "#FF4D4F",
+  },
+  deleteButtonIcon: {
     color: "#ffffff",
   },
   categoryInputRow: {

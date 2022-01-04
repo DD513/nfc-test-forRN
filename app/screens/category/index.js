@@ -195,7 +195,11 @@ export default Category = ({ navigation }) => {
                 style={styles.swipeAction}
                 right={[
                   {
-                    text: <Icon name="delete" style={styles.deleteButton} />,
+                    text: (
+                      <Button type="warning" style={styles.deleteButton}>
+                        <Icon name="delete" style={styles.deleteButtonIcon} />
+                      </Button>
+                    ),
                     onPress: () => {
                       deleteModalClick(index);
                     },
