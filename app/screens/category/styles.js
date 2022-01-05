@@ -125,9 +125,6 @@ export default StyleSheet.create({
     color: "rgba(0, 0, 0, 0.25)",
   },
   timerBlockShadow: {
-    /* Different from web:
-    boxShadow: "0px -10px 10px rgba(0, 0, 0, 0.05)", */
-    /* for Android */
     shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
     shadowOffset: {
       width: 0,
@@ -137,16 +134,11 @@ export default StyleSheet.create({
     shadowRadius: 10,
   },
   timerBlock: {
-    backgroundColor: "#ffffff",
-    // position: "fixed", // not available in RN
-    // position: "absolute", // not touchable and disable shadow in RN
-    // zIndex: 1, // can't fix touchable issue in RN
     display: "flex",
     left: 0,
     bottom: 12,
     width: "100%",
     height: "100%",
-    // height: 354, // break layout in RN
     ...layout.padding(16),
     justifyContent: "center",
   },
@@ -196,23 +188,25 @@ export default StyleSheet.create({
     width: 42.28,
   },
   categoryStatusBlock: {
-    zIndex: 1,
-    marginBottom: "-40%",
-    position: "relative",
-    bottom: 0,
-    height: "50%",
-    // backgroundColor: "yellow",
-    justifyContent: "center",
-    // borderTopColor: "rgba(0, 0, 0, 0.05)",
-    // borderTopWidth: 10,
-    /* for iOS */
-    shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
-    shadowOffset: {
-      width: 0,
-      height: -10,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 10,
+    height: 90,
+    backgroundColor: "red",
+    // zIndex: 1,
+    // marginBottom: "-40%",
+    // position: "relative",
+    // bottom: 0,
+    // height: "50%",
+    // // backgroundColor: "yellow",
+    // justifyContent: "center",
+    // // borderTopColor: "rgba(0, 0, 0, 0.05)",
+    // // borderTopWidth: 10,
+    // /* for iOS */
+    // shadowColor: "rgba(217, 217, 217, 0.05)", //  rgba(0, 0, 0, 0.05) is too dark in Android, use this instead
+    // shadowOffset: {
+    //   width: 0,
+    //   height: -10,
+    // },
+    // shadowOpacity: 1,
+    // shadowRadius: 10,
   },
 
   trainingButton: {
