@@ -22,10 +22,12 @@ import {
   Toast,
 } from "@ant-design/react-native";
 import VideoModal from "./videoModal";
+import ConfirmModal from "./confirmModal";
 import DropShadow from "react-native-drop-shadow";
 
 export default Category = ({ navigation }) => {
   const [videoModal, setVideoModal] = useState(false);
+  const [finishModal, setFinishModal] = useState(true);
   const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
   let [newKg, setNewKg] = useState(30);
@@ -349,7 +351,7 @@ export default Category = ({ navigation }) => {
                       <Button
                         style={[styles.completeButton, styles.trainingButton]}
                         onPress={() => {
-                          navigation.navigate("Completed");
+                          setFinishModal(true);
                         }}
                       >
                         完成訓練
@@ -375,6 +377,13 @@ export default Category = ({ navigation }) => {
             setVideoModal={setVideoModal}
             videoId={"qiYAjdOW2t4"}
             title={"肩推"}
+          />
+          <ConfirmModal
+            visible={finishModal}
+            setModal={setFinishModal}
+            title={"完成訓練"}
+            desc={"確認結束？"}
+            confirm={() => navigation.navigate("Completed")}
           />
           <Provider>
             <Modal
