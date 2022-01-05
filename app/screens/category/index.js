@@ -27,7 +27,8 @@ import DropShadow from "react-native-drop-shadow";
 
 export default Category = ({ navigation }) => {
   const [videoModal, setVideoModal] = useState(false);
-  const [finishModal, setFinishModal] = useState(true);
+  const [finishModal, setFinishModal] = useState(false);
+  const [cancelModal, setCancelModal] = useState(false);
   const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
   let [newKg, setNewKg] = useState(30);
@@ -361,7 +362,7 @@ export default Category = ({ navigation }) => {
                       <Button
                         style={[styles.cancelButton, styles.trainingButton]}
                         onPress={() => {
-                          navigation.navigate("Workout");
+                          setCancelModal(true);
                         }}
                       >
                         取消訓練
@@ -378,12 +379,21 @@ export default Category = ({ navigation }) => {
             videoId={"qiYAjdOW2t4"}
             title={"肩推"}
           />
+          {/* 完成訓練確認 */}
           <ConfirmModal
             visible={finishModal}
             setModal={setFinishModal}
             title={"完成訓練"}
             desc={"確認結束？"}
             confirm={() => navigation.navigate("Completed")}
+          />
+          {/* 取消訓練確認 */}
+          <ConfirmModal
+            visible={cancelModal}
+            setModal={setCancelModal}
+            title={"要取消訓練嗎？"}
+            desc={"本次的訓練記錄將不會保存"}
+            confirm={() => navigation.goBack()}
           />
           <Provider>
             <Modal

@@ -6,10 +6,6 @@ export default confirmModal = (props) => {
   const handleClose = () => props.setModal(false);
 
   const styles = StyleSheet.create({
-    // modal: {
-    //   margin: 0,
-    //   padding: 0,
-    // },
     desc: {
       textAlign: "center",
       color: "#888",
