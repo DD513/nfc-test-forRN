@@ -1,6 +1,6 @@
 import _ from "lodash";
 import axios from "axios";
-import ApiConfig from "../config/api-config";
+import ApiConfig from "../app/config/api-config";
 
 const ax = axios.create({
   baseURL: ApiConfig.BASE_URL,

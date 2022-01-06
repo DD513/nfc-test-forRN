@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStopwatch } from "react-timer-hook";
 import {
   SafeAreaView,
@@ -23,8 +23,26 @@ import {
 } from "@ant-design/react-native";
 import VideoModal from "./videoModal";
 import DropShadow from "react-native-drop-shadow";
+import { connect } from "react-redux";
 
-export default Category = ({ navigation }) => {
+const mapStateToProps = (state) => {
+  return {
+    // categories: state.category.categories || [],
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GET_thisCategory(id, callback) {
+      dispatch({ type: "GET_thisCategorys", id, callback });
+    },
+    // POST_thisCategory(payload, callback, loading) {
+    //   dispatch({ type: 'category/POST_thisCategory', payload, callback, loading });
+    // },
+  };
+};
+
+const Category = (props, { navigation }) => {
   const [videoModal, setVideoModal] = useState(false);
   const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
@@ -39,6 +57,7 @@ export default Category = ({ navigation }) => {
     autoStart: false,
   });
 
+  console.log("===id===", props.route.params);
   // 後端假資料
   const res = {
     id: 1,
@@ -54,6 +73,9 @@ export default Category = ({ navigation }) => {
     ],
     video_url: "https://www.youtube.com/embed/uIJjC7zjJYc",
   };
+  const categoryId = 1;
+  console.log("tttt", categoryId);
+  props.GET_thisCategory(categoryId);
 
   const { category, location, model, menu } = res;
   let [renderData, setRenderData] = useState(menu);
@@ -401,3 +423,5 @@ export default Category = ({ navigation }) => {
   );
 };
 // };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Category);
