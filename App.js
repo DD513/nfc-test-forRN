@@ -147,13 +147,17 @@ export default function App() {
               },
               headerTitleAlign: "center",
               // disable the navigation button
-              headerLeft: () => (
-                <></>
-              ),
+              headerLeft: () => <></>,
               headerRight: () => (
                 <Icon
                   name="share-alt"
                   color="rgba(0, 0, 0, 0.85)"
+                  style={{
+                    width: 24,
+                    height: 24,
+                    margin: 0,
+                    padding: 0,
+                  }}
                   // onPress=
                 />
               ),
