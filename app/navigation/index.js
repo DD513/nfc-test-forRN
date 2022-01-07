@@ -1,16 +1,26 @@
+// Imports: Dependencies
 import React from "react";
-import { Text, Button, View } from "react-native";
+import { Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNavigationContainerRef } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AppLoading } from "expo-app-loading";
 import { Provider } from "@ant-design/react-native";
+import AppLoading from "expo-app-loading";
 import {
   useFonts,
+  Roboto_100Thin,
+  Roboto_100Thin_Italic,
+  Roboto_300Light,
+  Roboto_300Light_Italic,
   Roboto_400Regular,
+  Roboto_400Regular_Italic,
   Roboto_500Medium,
+  Roboto_500Medium_Italic,
   Roboto_700Bold,
+  Roboto_700Bold_Italic,
+  Roboto_900Black,
+  Roboto_900Black_Italic,
 } from "@expo-google-fonts/roboto";
 
 import NFCReader from "../screens/NFCReader";
@@ -19,7 +29,6 @@ import Completed from "../screens/completed";
 import Workout from "../screens/Workout";
 import Counter from "../screens/Counter";
 import { Icon } from "@ant-design/react-native";
-import { FontDisplay } from "expo-font";
 const navigationRef = createNavigationContainerRef();
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -100,70 +109,79 @@ export default function App() {
   const linking = {
     prefixes: ["https://fintess-coach.herokuapp.com"],
   };
-  const [fontsLoaded] = useFonts({
+  let [fontsLoaded] = useFonts({
+    Roboto_100Thin,
+    Roboto_100Thin_Italic,
+    Roboto_300Light,
+    Roboto_300Light_Italic,
     Roboto_400Regular,
+    Roboto_400Regular_Italic,
     Roboto_500Medium,
+    Roboto_500Medium_Italic,
     Roboto_700Bold,
+    Roboto_700Bold_Italic,
+    Roboto_900Black,
+    Roboto_900Black_Italic,
   });
 
-  return (
-    <Provider>
-      <NavigationContainer
-        linking={linking}
-        fallback={<Text>Loading...</Text>}
-        ref={navigationRef}
-      >
-        <Stack.Navigator initialRouteName="Root">
-          <Stack.Screen
-            name="NFCReader"
-            component={NFCReader}
-            options={({ navigation }) => ({
-              title: "NFC 感應",
-              headerTitleStyle: {
-                fontFamily: "Roboto_500Medium",
-                fontStyle: "normal",
-                fontSize: 20,
-                lineHeight: 28,
-              },
-              headerTitleAlign: "center",
-              headerLeft: () => (
-                <Icon
-                  name="arrow-left"
-                  color="rgba(0, 0, 0, 0.85)"
-                  onPress={navigation.goBack}
-                />
-              ),
-            })}
-          />
-          <Stack.Screen
-            name="Completed"
-            component={Completed}
-            options={({ navigation }) => ({
-              title: "完成訓練",
-              headerTitleStyle: {
-                fontFamily: "Roboto_500Medium",
-                fontStyle: "normal",
-                fontSize: 20,
-                lineHeight: 28,
-              },
-              headerTitleAlign: "center",
-              // disable the navigation button
-              headerLeft: () => <View />,
-              headerRight: () => (
-                <Icon
-                  name="share-alt"
-                  color="rgba(0, 0, 0, 0.85)"
-                  // onPress=
-                />
-              ),
-            })}
-          />
-          <Stack.Group screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Root" component={Root} />
-            <Stack.Screen name="Category" component={Category} />
-          </Stack.Group>
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
+  let fontSize = 24;
+  let paddingVertical = 6;
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <Provider>
+        <NavigationContainer
+          linking={linking}
+          fallback={<Text>Loading...</Text>}
+          ref={navigationRef}
+        >
+          <Stack.Navigator initialRouteName="Root">
+            <Stack.Group
+              screenOptions={{
+                headerTitleStyle: {
+                  fontFamily: "Roboto_500Medium",
+                  fontStyle: "normal",
+                  fontSize: 20,
+                  lineHeight: 28,
+                },
+                headerTitleAlign: "center",
+              }}
+            >
+              <Stack.Screen
+                name="Completed"
+                component={Completed}
+                options={{
+                  title: "完成訓練",
+                  headerRight: () => (
+                    <Icon name="share-alt" color="rgba(0, 0, 0, 0.85)" />
+                  ),
+                  headerLeft: () => <></>,
+                }}
+              />
+              <Stack.Screen
+                name="NFCReader"
+                component={NFCReader}
+                options={({ navigation }) => ({
+                  title: "NFC 感應",
+                  headerLeft: () => (
+                    <Icon
+                      name="arrow-left"
+                      color="rgba(0, 0, 0, 0.85)"
+                      onPress={navigation.goBack}
+                    />
+                  ),
+                })}
+              />
+            </Stack.Group>
+            <Stack.Group screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="Root" component={Root} />
+              <Stack.Screen name="Category" component={Category} />
+            </Stack.Group>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+    );
+  }
 }
