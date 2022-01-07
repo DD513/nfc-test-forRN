@@ -1,6 +1,5 @@
 // Imports: Dependencies
 import React from "react";
-
 import { Provider } from "react-redux";
 // Imports: Screens
 import RootNavigation from "./app/navigation/index";
