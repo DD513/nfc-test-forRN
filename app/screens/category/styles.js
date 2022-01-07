@@ -232,9 +232,6 @@ export default StyleSheet.create({
     shadowRadius: 0,
   },
   startButtonShadow: {
-    /* web:
-    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.043); */
-    /* for Android */
     shadowColor: "rgba(0, 0, 0, 0.043)",
     shadowOffset: {
       width: 0,

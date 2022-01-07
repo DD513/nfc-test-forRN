@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import { useStopwatch } from "react-timer-hook";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  ScrollView,
-  TextInput,
-  StatusBar,
-} from "react-native";
+import { SafeAreaView, View, Text, ScrollView, TextInput } from "react-native";
 import styles from "./styles.js";
 import FitnessIcon from "../../../assets/workout.svg";
 import BreakIcon from "../../../assets/break.svg";
@@ -20,11 +13,12 @@ import {
   Provider,
   Modal,
   Toast,
+  WhiteSpace,
 } from "@ant-design/react-native";
 import VideoModal from "./videoModal";
 import ConfirmModal from "./confirmModal";
+import { Dimensions } from "react-native";
 import DropShadow from "react-native-drop-shadow";
-
 export default Category = ({ navigation }) => {
   const [videoModal, setVideoModal] = useState(false);
   const [finishModal, setFinishModal] = useState(false);
@@ -36,6 +30,8 @@ export default Category = ({ navigation }) => {
   const [disabled, setDisabled] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   let [deleteSets, setDeleteSets] = useState(null);
+
+  const windowHeight = Dimensions.get("window").height;
 
   // stopwatch
   const { seconds, minutes, start, pause, reset } = useStopwatch({
@@ -130,248 +126,227 @@ export default Category = ({ navigation }) => {
     setDeleteModal(false);
   };
 
-  /* bug happened! */
-  // // // To avoid rendering text before the font is loaded, install the expo-app-loading package to use the <AppLoading /> component: https://stackoverflow.com/questions/33971221/google-fonts-in-react-native
-  // let [fontsLoaded] = useFonts({
-  //   Roboto_500Medium,
-  // });
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // } else {
   return (
-    <SafeAreaView style={{ backgroundColor: "#ffffff" }}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.divBlock}>
-        <View style={styles.divBlock}>
-          <ScrollView style={styles.renderBlock}>
-            <Flex justify="between" align="center" style={styles.titleFrame}>
-              <Text style={styles.categoryInfo}>
-                {category !== "" ? category : "類別"}
-              </Text>
-              <Flex style={styles.categoryIcons} justify="between">
-                <Icon
-                  style={styles.categoryIcon}
-                  size={36}
-                  color="#1890FF"
-                  name="bell"
-                />
-                <Icon
-                  style={styles.categoryIcon}
-                  size={36}
-                  color="#1890FF"
-                  name="play-circle"
-                  onPress={() => setVideoModal(true)}
-                />
-              </Flex>
+    <>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          backgroundColor: "#fff",
+        }}
+      >
+        <ScrollView
+          style={{
+            flex: 2,
+          }}
+        >
+          <Flex justify="between" align="center" style={styles.titleFrame}>
+            <Text style={styles.categoryInfo}>
+              {category !== "" ? category : "類別"}
+            </Text>
+            <Flex style={styles.categoryIcons} justify="between">
+              <Icon
+                style={styles.categoryIcon}
+                size={36}
+                color="#1890FF"
+                name="bell"
+              />
+              <Icon
+                style={styles.categoryIcon}
+                size={36}
+                color="#1890FF"
+                name="play-circle"
+                onPress={() => setVideoModal(true)}
+              />
             </Flex>
+          </Flex>
+
+          <Flex
+            justify="between"
+            align="center"
+            direction="row"
+            style={styles.categoryDynamic}
+          >
+            <Flex styles={styles.categoryCol}>
+              <Text style={styles.fieldSubtitle}>
+                <Text style={styles.fieldChinese}>組數</Text>
+                <Text style={styles.fieldEnglish}>Sets</Text>
+              </Text>
+            </Flex>
+            <Flex styles={styles.categoryCol}>
+              <Text style={styles.fieldSubtitle}>
+                <Text style={styles.fieldChinese}>公斤</Text>
+                <Text style={styles.fieldEnglish}>KG</Text>
+              </Text>
+            </Flex>
+            <Flex styles={styles.categoryCol}>
+              <Text style={styles.fieldSubtitle}>
+                <Text style={styles.fieldChinese}>次數</Text>
+                <Text style={styles.fieldEnglish}>Reps</Text>
+              </Text>
+            </Flex>
+          </Flex>
+
+          {_.map(renderData, (item, index) => (
+            <SwipeAction
+              key={index}
+              autoClose
+              style={styles.swipeAction}
+              right={[
+                {
+                  text: (
+                    <Button type="warning" style={styles.deleteButton}>
+                      <Icon name="delete" style={styles.deleteButtonIcon} />
+                    </Button>
+                  ),
+                  onPress: () => {
+                    deleteModalClick(index);
+                  },
+                },
+              ]}
+              onOpen={() => console.log("open")}
+              onClose={() => console.log("close")}
+            >
+              <Flex
+                justify="between"
+                align="center"
+                direction="row"
+                style={styles.categoryInputRow}
+              >
+                <View>
+                  <Button
+                    style={styles.categoryInputButton}
+                    type="ghost"
+                    shape="circle"
+                  >
+                    {++index}
+                  </Button>
+                </View>
+                {changeRenderKg(index)}
+                {changeRenderReps(index)}
+                <View>
+                  <TextInput
+                    key={`kg${index}`}
+                    style={
+                      renderData.length === index
+                        ? styles.categoryInputButtonItem
+                        : styles.categoryInputButtonItemDisabled
+                    }
+                    onChangeText={setNewKg}
+                    defaultValue={item.kg.toString()}
+                    editable={
+                      renderData.length === index ? !disabled : disabled
+                    }
+                    selectTextOnFocus={
+                      renderData.length === index ? !disabled : disabled
+                    }
+                    keyboardType="numeric" // 更改這個只是增加使用者體驗，要使用toString讓他變成自串
+                  />
+                </View>
+                <View>
+                  <TextInput
+                    key={`reps${index}`}
+                    onChangeText={setNewReps}
+                    style={
+                      renderData.length === index
+                        ? styles.categoryInputButtonItem
+                        : styles.categoryInputButtonItemDisabled
+                    }
+                    defaultValue={item.reps.toString()}
+                    editable={
+                      renderData.length === index ? !disabled : disabled
+                    }
+                    selectTextOnFocus={
+                      renderData.length === index ? !disabled : disabled
+                    }
+                    keyboardType="numeric"
+                  />
+                </View>
+              </Flex>
+            </SwipeAction>
+          ))}
+        </ScrollView>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "space-between",
+            alignItems: "stretch",
+            padding: 16,
+          }}
+        >
+          <View>
+            <Flex justify="center" align="center">
+              {buttonKey === "開始" ? (
+                <BreakIcon width={64} height={64} />
+              ) : (
+                <FitnessIcon width={64} height={64} />
+              )}
+            </Flex>
+            <Flex justify="center" align="center">
+              <Text style={styles.timer}>
+                {minutes > 9 ? minutes : "0" + minutes}:
+                {seconds > 9 ? seconds : "0" + seconds}
+              </Text>
+            </Flex>
+
+            <Button
+              type={buttonKey === "開始" ? "primary" : "warning"}
+              style={
+                (styles.trainingButton,
+                {
+                  /* for iOS */
+                  shadowColor: "rgba(0, 0, 0, 0.043)",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2,
+                  },
+                  shadowOpacity: 1,
+                  shadowRadius: 0,
+                })
+              }
+              onPress={onPressStart}
+            >
+              {buttonKey}
+            </Button>
 
             <Flex
-              justify="between"
+              style={styles.equipmentInfoColContent}
               align="center"
-              direction="row"
-              style={styles.categoryDynamic}
+              justify="start"
             >
-              <Flex styles={styles.categoryCol}>
-                <Text style={styles.fieldSubtitle}>
-                  <Text style={styles.fieldChinese}>組數</Text>
-                  <Text style={styles.fieldEnglish}>Sets</Text>
-                </Text>
-              </Flex>
-              <Flex styles={styles.categoryCol}>
-                <Text style={styles.fieldSubtitle}>
-                  <Text style={styles.fieldChinese}>公斤</Text>
-                  <Text style={styles.fieldEnglish}>KG</Text>
-                </Text>
-              </Flex>
-              <Flex styles={styles.categoryCol}>
-                <Text style={styles.fieldSubtitle}>
-                  <Text style={styles.fieldChinese}>次數</Text>
-                  <Text style={styles.fieldEnglish}>Reps</Text>
-                </Text>
-              </Flex>
+              <Icon style={styles.equipmentInfoIcon} name="aim" size={14} />
+              <Text style={styles.equipmentInfoName}>
+                {location !== "" ? location : "地點"}
+              </Text>
+            </Flex>
+            <Flex
+              style={(styles.equipmentInfoColContent, { margin: 8 })}
+              align="center"
+              justify="start"
+            >
+              <Icon style={styles.equipmentInfoIcon} name="barcode" size={14} />
+              <Text style={styles.equipmentInfoName}>
+                {model !== "" ? model : "器材"}
+              </Text>
             </Flex>
 
-            {_.map(renderData, (item, index) => (
-              <SwipeAction
-                key={index}
-                autoClose
-                style={styles.swipeAction}
-                right={[
-                  {
-                    text: (
-                      <Button type="warning" style={styles.deleteButton}>
-                        <Icon name="delete" style={styles.deleteButtonIcon} />
-                      </Button>
-                    ),
-                    onPress: () => {
-                      deleteModalClick(index);
-                    },
-                  },
-                ]}
-                onOpen={() => console.log("open")}
-                onClose={() => console.log("close")}
-              >
-                <Flex
-                  justify="between"
-                  align="center"
-                  direction="row"
-                  style={styles.categoryInputRow}
-                >
-                  <View>
-                    <Button
-                      style={styles.categoryInputButton}
-                      type="ghost"
-                      shape="circle"
-                    >
-                      {++index}
-                    </Button>
-                  </View>
-                  {changeRenderKg(index)}
-                  {changeRenderReps(index)}
-                  <View>
-                    <TextInput
-                      key={`kg${index}`}
-                      style={
-                        renderData.length === index
-                          ? styles.categoryInputButtonItem
-                          : styles.categoryInputButtonItemDisabled
-                      }
-                      onChangeText={setNewKg}
-                      defaultValue={item.kg.toString()}
-                      editable={
-                        renderData.length === index ? !disabled : disabled
-                      }
-                      selectTextOnFocus={
-                        renderData.length === index ? !disabled : disabled
-                      }
-                      keyboardType="numeric" // 更改這個只是增加使用者體驗，要使用toString讓他變成自串
-                    />
-                  </View>
-                  <View>
-                    <TextInput
-                      key={`reps${index}`}
-                      onChangeText={setNewReps}
-                      style={
-                        renderData.length === index
-                          ? styles.categoryInputButtonItem
-                          : styles.categoryInputButtonItemDisabled
-                      }
-                      defaultValue={item.reps.toString()}
-                      editable={
-                        renderData.length === index ? !disabled : disabled
-                      }
-                      selectTextOnFocus={
-                        renderData.length === index ? !disabled : disabled
-                      }
-                      keyboardType="numeric"
-                    />
-                  </View>
-                </Flex>
-              </SwipeAction>
-            ))}
-          </ScrollView>
+            <Button
+              style={[styles.completeButton, styles.trainingButton]}
+              onPress={() => {
+                setFinishModal(true);
+              }}
+            >
+              完成訓練
+            </Button>
 
-          <View style={styles.categoryStatusBlock}>
-            <DropShadow style={styles.timerBlockShadow}>
-              <View style={styles.timerBlock}>
-                <View style={styles.rowContent}>
-                  <Flex.Item style={styles.timerStatus}>
-                    {buttonKey === "開始" ? (
-                      <BreakIcon width={64} height={64} />
-                    ) : (
-                      <FitnessIcon width={64} height={64} />
-                    )}
-                  </Flex.Item>
-
-                  <>
-                    <Flex justify="center" align="center">
-                      <Text style={styles.timer}>
-                        {minutes > 9 ? minutes : "0" + minutes}:
-                        {seconds > 9 ? seconds : "0" + seconds}
-                      </Text>
-                    </Flex>
-                  </>
-
-                  <View style={styles.colContent}>
-                    <DropShadow styles={styles.startButtonShadow}>
-                      <Button
-                        type={buttonKey === "開始" ? "primary" : "warning"}
-                        style={
-                          (styles.trainingButton,
-                          {
-                            /* for iOS */
-                            shadowColor: "rgba(0, 0, 0, 0.043)",
-                            shadowOffset: {
-                              width: 0,
-                              height: 2,
-                            },
-                            shadowOpacity: 1,
-                            shadowRadius: 0,
-                          })
-                        }
-                        onPress={onPressStart}
-                      >
-                        {buttonKey}
-                      </Button>
-                    </DropShadow>
-                  </View>
-
-                  <View style={(styles.rowContent, styles.equipmentInfo)}>
-                    <Flex
-                      style={styles.equipmentInfoColContent}
-                      align="center"
-                      justify="start"
-                    >
-                      <Icon
-                        style={styles.equipmentInfoIcon}
-                        name="aim"
-                        size={14}
-                      />
-                      <Text style={styles.equipmentInfoName}>
-                        {location !== "" ? location : "地點"}
-                      </Text>
-                    </Flex>
-                    <Flex
-                      style={(styles.equipmentInfoColContent, { marginTop: 8 })}
-                      align="center"
-                      justify="start"
-                    >
-                      <Icon
-                        style={styles.equipmentInfoIcon}
-                        name="barcode"
-                        size={14}
-                      />
-                      <Text style={styles.equipmentInfoName}>
-                        {model !== "" ? model : "器材"}
-                      </Text>
-                    </Flex>
-                  </View>
-
-                  <View style={styles.trainingButtonsRowContent}>
-                    <DropShadow styles={styles.trainingButtonShadow}>
-                      <Button
-                        style={[styles.completeButton, styles.trainingButton]}
-                        onPress={() => {
-                          setFinishModal(true);
-                        }}
-                      >
-                        完成訓練
-                      </Button>
-                    </DropShadow>
-                    <DropShadow styles={styles.trainingButtonShadow}>
-                      <Button
-                        style={[styles.cancelButton, styles.trainingButton]}
-                        onPress={() => {
-                          setCancelModal(true);
-                        }}
-                      >
-                        取消訓練
-                      </Button>
-                    </DropShadow>
-                  </View>
-                </View>
-              </View>
-            </DropShadow>
+            <Button
+              style={[styles.cancelButton, styles.trainingButton]}
+              onPress={() => {
+                setCancelModal(true);
+              }}
+            >
+              取消訓練
+            </Button>
           </View>
           <VideoModal
             visible={videoModal}
@@ -395,28 +370,26 @@ export default Category = ({ navigation }) => {
             desc={"本次的訓練記錄將不會保存"}
             confirm={() => navigation.goBack()}
           />
-          <Provider>
-            <Modal
-              title={`確定要刪除第${deleteSets}筆紀錄嗎？`}
-              transparent
-              onClose={deleteModalOnClose}
-              maskClosable
-              visible={deleteModal}
-              footer={[
-                { text: "Cancel", onPress: () => deleteModalOnClose },
-                { text: "Ok", onPress: () => deleteRenderData(deleteSets) },
-              ]}
-            >
-              <View style={{ paddingVertical: 20 }}>
-                <Text style={{ textAlign: "center" }}>
-                  注意！刪除後無法回覆紀錄
-                </Text>
-              </View>
-            </Modal>
-          </Provider>
+          <Modal
+            title={`確定要刪除第${deleteSets}筆紀錄嗎？`}
+            transparent
+            onClose={deleteModalOnClose}
+            maskClosable
+            visible={deleteModal}
+            footer={[
+              { text: "Cancel", onPress: () => deleteModalOnClose },
+              { text: "Ok", onPress: () => deleteRenderData(deleteSets) },
+            ]}
+          >
+            <View style={{ paddingVertical: 20 }}>
+              <Text style={{ textAlign: "center" }}>
+                注意！刪除後無法回覆紀錄
+              </Text>
+            </View>
+          </Modal>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 };
 // };
