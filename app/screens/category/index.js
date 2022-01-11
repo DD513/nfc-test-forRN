@@ -59,6 +59,23 @@ const Category = (props, { navigation }) => {
   const categoryId = props.route.params.id;
   props.GET_thisCategory(categoryId);
 
+  // 後端假資料
+  // const res = {
+  //   id: 1,
+  //   category: "肩推",
+  //   model: "MATRIX G7-S23",
+  //   name: "Ultra 合式肩推訓練機",
+  //   location: "Mono Gym - Taichung",
+  //   menu: [
+  //     {
+  //       kg: 30,
+  //       reps: 12,
+  //     },
+  //   ],
+  //   video_url: "https://www.youtube.com/embed/uIJjC7zjJYc",
+  // };
+
+  // const { category, location, model, menu } = res;
   const { category, location, model, menu } = props.categories;
   let [renderData, setRenderData] = useState(menu);
   let [allData, setAllData] = useState([]);
