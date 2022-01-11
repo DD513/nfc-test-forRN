@@ -17,12 +17,14 @@ import {
 } from "@ant-design/react-native";
 import VideoModal from "./videoModal";
 import ConfirmModal from "./confirmModal";
+import CoachRatingModal from "./coachRatingModal";
 import { Dimensions } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 export default Category = ({ navigation }) => {
   const [videoModal, setVideoModal] = useState(false);
   const [finishModal, setFinishModal] = useState(false);
   const [cancelModal, setCancelModal] = useState(false);
+  const [coachRatingModal, setCoachRatingModal] = useState(false);
   const [buttonKey, setButtonKey] = useState("開始");
   let [totalTime, setTotalTime] = useState(0);
   let [newKg, setNewKg] = useState(30);
@@ -149,6 +151,7 @@ export default Category = ({ navigation }) => {
               size={36}
               color="#1890FF"
               name="bell"
+              onPress={() => setCoachRatingModal(true)}
             />
             <Icon
               style={styles.categoryIcon}
@@ -375,6 +378,17 @@ export default Category = ({ navigation }) => {
           title={"要取消訓練嗎？"}
           desc={"本次的訓練記錄將不會保存"}
           confirm={() => navigation.goBack()}
+        />
+        {/* 教練指導評分 */}
+        <CoachRatingModal
+          visible={coachRatingModal}
+          setCoachRatingModal={setCoachRatingModal}
+          /* 以下應該從API取得 */
+          coachPhoto={{ 
+            uri: "https://i.imgur.com/hCXicGC.png"
+          }}
+          coachName={"Nadia"}
+          demoEquipmentName={"肩上推舉機"}
         />
         <Modal
           title={`確定要刪除第${deleteSets}筆紀錄嗎？`}
