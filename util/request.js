@@ -6,7 +6,6 @@ const ax = axios.create({
   baseURL: ApiConfig.BASE_URL,
   timeout: 60000,
 });
-
 responseData = (res) => {
   return res.data;
 };

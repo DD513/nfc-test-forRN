@@ -8,7 +8,7 @@ const categoryReducer = (state = initialState, action) => {
     case "SAVE_thisCategory": {
       return {
         ...state,
-        counter: state.category + action.payload,
+        category: action.payload,
       };
     }
     default: {

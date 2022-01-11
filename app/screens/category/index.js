@@ -27,7 +27,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
-    // categories: state.category.categories || [],
+    categories: state.category.category || [],
   };
 };
 
@@ -56,28 +56,10 @@ const Category = (props, { navigation }) => {
   const { seconds, minutes, start, pause, reset } = useStopwatch({
     autoStart: false,
   });
-
-  console.log("===id===", props.route.params);
-  // 後端假資料
-  const res = {
-    id: 1,
-    category: "肩推",
-    model: "MATRIX G7-S23",
-    name: "Ultra 合式肩推訓練機",
-    location: "Mono Gym - Taichung",
-    menu: [
-      {
-        kg: 30,
-        reps: 12,
-      },
-    ],
-    video_url: "https://www.youtube.com/embed/uIJjC7zjJYc",
-  };
-  const categoryId = 1;
-  console.log("tttt", categoryId);
+  const categoryId = props.route.params.id;
   props.GET_thisCategory(categoryId);
 
-  const { category, location, model, menu } = res;
+  const { category, location, model, menu } = props.categories;
   let [renderData, setRenderData] = useState(menu);
   let [allData, setAllData] = useState([]);
 
@@ -371,7 +353,7 @@ const Category = (props, { navigation }) => {
                       <Button
                         style={[styles.completeButton, styles.trainingButton]}
                         onPress={() => {
-                          navigation.navigate("Completed");
+                          props.navigation.navigate("Completed");
                         }}
                       >
                         完成訓練
@@ -381,7 +363,7 @@ const Category = (props, { navigation }) => {
                       <Button
                         style={[styles.cancelButton, styles.trainingButton]}
                         onPress={() => {
-                          navigation.navigate("Workout");
+                          props.navigation.navigate("Workout");
                         }}
                       >
                         取消訓練

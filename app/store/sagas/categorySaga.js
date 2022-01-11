@@ -7,10 +7,10 @@ export function* GET_thisCategorys({ id, callback }) {
     console.log("======GET_thisCategory_id======", id);
     const response = yield call(GET_thisCategory, id);
     console.log("======GET_thisCategory_res======", response);
-    // yield put({
-    //   type: 'SAVE_thisCategory',
-    //   payload: response,
-    // });
+    yield put({
+      type: "SAVE_thisCategory",
+      payload: response,
+    });
     // if (callback) callback(response);
     // message.info({ content: response.message, style: { marginTop: '50vh' } });
     // if (loading) loading(false);

@@ -48,7 +48,12 @@ export default Workout = ({ navigation }) => {
             navigation.navigate("NFCReader");
           }}
         >
-          <Icon styles={styles.buttonText} name="fire-alt" color="#fff" size={15.43}>
+          <Icon
+            styles={styles.buttonText}
+            name="fire-alt"
+            color="#fff"
+            size={15.43}
+          >
             {"  "}開始訓練
           </Icon>
         </Button>
@@ -62,7 +67,7 @@ export default Workout = ({ navigation }) => {
               style={styles.plan}
               key={index}
               onPress={() => {
-                navigation.navigate("Category");
+                navigation.navigate("Category", { id: ++index });
               }}
             >
               <Icon styles={styles.buttonText} name="bolt" size={16}>
