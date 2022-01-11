@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStopwatch } from "react-timer-hook";
 import { SafeAreaView, View, Text, ScrollView, TextInput } from "react-native";
 import styles from "./styles.js";
@@ -19,7 +19,26 @@ import VideoModal from "./videoModal";
 import ConfirmModal from "./confirmModal";
 import { Dimensions } from "react-native";
 import DropShadow from "react-native-drop-shadow";
-export default Category = ({ navigation }) => {
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    categories: state.category.category || [],
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    GET_thisCategory(id, callback) {
+      dispatch({ type: "GET_thisCategorys", id, callback });
+    },
+    // POST_thisCategory(payload, callback, loading) {
+    //   dispatch({ type: 'category/POST_thisCategory', payload, callback, loading });
+    // },
+  };
+};
+
+const Category = (props, { navigation }) => {
   const [videoModal, setVideoModal] = useState(false);
   const [finishModal, setFinishModal] = useState(false);
   const [cancelModal, setCancelModal] = useState(false);
@@ -37,24 +56,27 @@ export default Category = ({ navigation }) => {
   const { seconds, minutes, start, pause, reset } = useStopwatch({
     autoStart: false,
   });
+  const categoryId = props.route.params.id;
+  props.GET_thisCategory(categoryId);
 
   // 後端假資料
-  const res = {
-    id: 1,
-    category: "肩推",
-    model: "MATRIX G7-S23",
-    name: "Ultra 合式肩推訓練機",
-    location: "Mono Gym - Taichung",
-    menu: [
-      {
-        kg: 30,
-        reps: 12,
-      },
-    ],
-    video_url: "https://www.youtube.com/embed/uIJjC7zjJYc",
-  };
+  // const res = {
+  //   id: 1,
+  //   category: "肩推",
+  //   model: "MATRIX G7-S23",
+  //   name: "Ultra 合式肩推訓練機",
+  //   location: "Mono Gym - Taichung",
+  //   menu: [
+  //     {
+  //       kg: 30,
+  //       reps: 12,
+  //     },
+  //   ],
+  //   video_url: "https://www.youtube.com/embed/uIJjC7zjJYc",
+  // };
 
-  const { category, location, model, menu } = res;
+  // const { category, location, model, menu } = res;
+  const { category, location, model, menu } = props.categories;
   let [renderData, setRenderData] = useState(menu);
   let [allData, setAllData] = useState([]);
 
@@ -366,7 +388,7 @@ export default Category = ({ navigation }) => {
           setModal={setFinishModal}
           title={"完成訓練"}
           desc={"確認結束？"}
-          confirm={() => navigation.navigate("Completed")}
+          confirm={() => props.navigation.navigate("Completed")}
         />
         {/* 取消訓練確認 */}
         <ConfirmModal
@@ -374,7 +396,7 @@ export default Category = ({ navigation }) => {
           setModal={setCancelModal}
           title={"要取消訓練嗎？"}
           desc={"本次的訓練記錄將不會保存"}
-          confirm={() => navigation.goBack()}
+          confirm={() => props.navigation.goBack()}
         />
         <Modal
           title={`確定要刪除第${deleteSets}筆紀錄嗎？`}
@@ -395,3 +417,6 @@ export default Category = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+// };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Category);
